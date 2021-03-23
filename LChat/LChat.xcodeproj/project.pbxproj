@@ -52,18 +52,8 @@
 		74F86D4C260A013600CA03EC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D1E260A013600CA03EC /* ProfileViewController.swift */; };
 		74F86D4D260A013600CA03EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D21260A013600CA03EC /* HomeViewModel.swift */; };
 		74F86D4E260A013600CA03EC /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D23260A013600CA03EC /* HomeTabBarController.swift */; };
-		74F86D4F260A013600CA03EC /* SearchUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D26260A013600CA03EC /* SearchUserViewModel.swift */; };
-		74F86D50260A013600CA03EC /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D28260A013600CA03EC /* SearchUserViewController.swift */; };
 		74F86D51260A013600CA03EC /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D2B260A013600CA03EC /* ChatListViewModel.swift */; };
 		74F86D52260A013600CA03EC /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D2D260A013600CA03EC /* ChatListViewController.swift */; };
-		74F86D53260A013600CA03EC /* AuthCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D30260A013600CA03EC /* AuthCodeViewModel.swift */; };
-		74F86D54260A013600CA03EC /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D31260A013600CA03EC /* CountriesViewModel.swift */; };
-		74F86D55260A013600CA03EC /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D32260A013600CA03EC /* SigninViewModel.swift */; };
-		74F86D56260A013600CA03EC /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D33260A013600CA03EC /* RegisterViewModel.swift */; };
-		74F86D57260A013600CA03EC /* AuthCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D35260A013600CA03EC /* AuthCodeViewController.swift */; };
-		74F86D58260A013600CA03EC /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D36260A013600CA03EC /* CountriesViewController.swift */; };
-		74F86D59260A013600CA03EC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D37260A013600CA03EC /* SignInViewController.swift */; };
-		74F86D5A260A013600CA03EC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D38260A013600CA03EC /* RegisterViewController.swift */; };
 		74F86D5B260A013600CA03EC /* SearchUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D3B260A013600CA03EC /* SearchUserViewModel.swift */; };
 		74F86D5C260A013600CA03EC /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D3D260A013600CA03EC /* SearchUserViewController.swift */; };
 /* End PBXBuildFile section */
@@ -141,18 +131,8 @@
 		74F86D1E260A013600CA03EC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		74F86D21260A013600CA03EC /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		74F86D23260A013600CA03EC /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
-		74F86D26260A013600CA03EC /* SearchUserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserViewModel.swift; sourceTree = "<group>"; };
-		74F86D28260A013600CA03EC /* SearchUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
 		74F86D2B260A013600CA03EC /* ChatListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		74F86D2D260A013600CA03EC /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
-		74F86D30260A013600CA03EC /* AuthCodeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCodeViewModel.swift; sourceTree = "<group>"; };
-		74F86D31260A013600CA03EC /* CountriesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
-		74F86D32260A013600CA03EC /* SigninViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
-		74F86D33260A013600CA03EC /* RegisterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
-		74F86D35260A013600CA03EC /* AuthCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCodeViewController.swift; sourceTree = "<group>"; };
-		74F86D36260A013600CA03EC /* CountriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
-		74F86D37260A013600CA03EC /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		74F86D38260A013600CA03EC /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		74F86D3B260A013600CA03EC /* SearchUserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserViewModel.swift; sourceTree = "<group>"; };
 		74F86D3D260A013600CA03EC /* SearchUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
 		AC207C6CA9B66BA72A81161E /* Pods-LChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LChat.release.xcconfig"; path = "Target Support Files/Pods-LChat/Pods-LChat.release.xcconfig"; sourceTree = "<group>"; };
@@ -333,9 +313,7 @@
 				74F86D0F260A013600CA03EC /* LoginModule */,
 				74F86D1A260A013600CA03EC /* ProfileModule */,
 				74F86D1F260A013600CA03EC /* HomeModule */,
-				74F86D24260A013600CA03EC /* SearchUserModule */,
 				74F86D29260A013600CA03EC /* ChatListModule */,
-				74F86D2E260A013600CA03EC /* LoginSessionModule */,
 				74F86D39260A013600CA03EC /* SearchModule */,
 			);
 			path = Modules;
@@ -481,31 +459,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		74F86D24260A013600CA03EC /* SearchUserModule */ = {
-			isa = PBXGroup;
-			children = (
-				74F86D25260A013600CA03EC /* ViewModels */,
-				74F86D27260A013600CA03EC /* Controllers */,
-			);
-			path = SearchUserModule;
-			sourceTree = "<group>";
-		};
-		74F86D25260A013600CA03EC /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				74F86D26260A013600CA03EC /* SearchUserViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		74F86D27260A013600CA03EC /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				74F86D28260A013600CA03EC /* SearchUserViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		74F86D29260A013600CA03EC /* ChatListModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,37 +482,6 @@
 				74F86D2D260A013600CA03EC /* ChatListViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		74F86D2E260A013600CA03EC /* LoginSessionModule */ = {
-			isa = PBXGroup;
-			children = (
-				74F86D2F260A013600CA03EC /* ViewModels */,
-				74F86D34260A013600CA03EC /* Controllers */,
-			);
-			path = LoginSessionModule;
-			sourceTree = "<group>";
-		};
-		74F86D2F260A013600CA03EC /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				74F86D30260A013600CA03EC /* AuthCodeViewModel.swift */,
-				74F86D31260A013600CA03EC /* CountriesViewModel.swift */,
-				74F86D32260A013600CA03EC /* SigninViewModel.swift */,
-				74F86D33260A013600CA03EC /* RegisterViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		74F86D34260A013600CA03EC /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				74F86D35260A013600CA03EC /* AuthCodeViewController.swift */,
-				74F86D36260A013600CA03EC /* CountriesViewController.swift */,
-				74F86D37260A013600CA03EC /* SignInViewController.swift */,
-				74F86D38260A013600CA03EC /* RegisterViewController.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		74F86D39260A013600CA03EC /* SearchModule */ = {
@@ -839,15 +761,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				740D47D12609E62C005C04A2 /* ViewController.swift in Sources */,
-				74F86D50260A013600CA03EC /* SearchUserViewController.swift in Sources */,
-				74F86D5A260A013600CA03EC /* RegisterViewController.swift in Sources */,
 				74F86D51260A013600CA03EC /* ChatListViewModel.swift in Sources */,
 				74F86D48260A013600CA03EC /* CountriesViewController.swift in Sources */,
 				74F86D3E260A013600CA03EC /* ChatViewModel.swift in Sources */,
 				74F86CCE2609FFFB00CA03EC /* Navigator.swift in Sources */,
 				74F86D44260A013600CA03EC /* CountriesViewModel.swift in Sources */,
-				74F86D58260A013600CA03EC /* CountriesViewController.swift in Sources */,
-				74F86D4F260A013600CA03EC /* SearchUserViewModel.swift in Sources */,
 				74F86CC42609FFE700CA03EC /* ChatNavigator.swift in Sources */,
 				74F86CF5260A007700CA03EC /* FirebasePath.swift in Sources */,
 				74F86D52260A013600CA03EC /* ChatListViewController.swift in Sources */,
@@ -856,7 +774,6 @@
 				74F86CF1260A007700CA03EC /* FBDatabaseLoader.swift in Sources */,
 				74F86CF7260A007800CA03EC /* MainAssembler.swift in Sources */,
 				74F86CFC260A007800CA03EC /* CountrySelector.swift in Sources */,
-				74F86D56260A013600CA03EC /* RegisterViewModel.swift in Sources */,
 				74F86D4A260A013600CA03EC /* RegisterViewController.swift in Sources */,
 				74F86D4E260A013600CA03EC /* HomeTabBarController.swift in Sources */,
 				74F86D42260A013600CA03EC /* SettingViewController.swift in Sources */,
@@ -873,22 +790,17 @@
 				74F86D5B260A013600CA03EC /* SearchUserViewModel.swift in Sources */,
 				74F86CFB260A007800CA03EC /* FBAuthManager.swift in Sources */,
 				74F86CF9260A007800CA03EC /* Message.swift in Sources */,
-				74F86D57260A013600CA03EC /* AuthCodeViewController.swift in Sources */,
 				74F86D41260A013600CA03EC /* SettingViewModel.swift in Sources */,
 				740D47CD2609E62C005C04A2 /* AppDelegate.swift in Sources */,
-				74F86D55260A013600CA03EC /* SigninViewModel.swift in Sources */,
 				740D47CF2609E62C005C04A2 /* SceneDelegate.swift in Sources */,
 				74F86D45260A013600CA03EC /* SigninViewModel.swift in Sources */,
 				74F86D3F260A013600CA03EC /* ChatViewModel.swift in Sources */,
-				74F86D54260A013600CA03EC /* CountriesViewModel.swift in Sources */,
 				74F86D49260A013600CA03EC /* SignInViewController.swift in Sources */,
 				74F86D4B260A013600CA03EC /* ProfileViewModel.swift in Sources */,
 				74F86D46260A013600CA03EC /* RegisterViewModel.swift in Sources */,
 				74F86D4C260A013600CA03EC /* ProfileViewController.swift in Sources */,
-				74F86D59260A013600CA03EC /* SignInViewController.swift in Sources */,
 				74F86CFA260A007800CA03EC /* PhoneNumber.swift in Sources */,
 				74F86D43260A013600CA03EC /* AuthCodeViewModel.swift in Sources */,
-				74F86D53260A013600CA03EC /* AuthCodeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
