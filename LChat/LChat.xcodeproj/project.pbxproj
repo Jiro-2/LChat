@@ -74,6 +74,9 @@
 		74F86D90260A101D00CA03EC /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D86260A101D00CA03EC /* UITextField+Extension.swift */; };
 		74F86D97260A10F100CA03EC /* UnSeenMessageBadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D95260A10F100CA03EC /* UnSeenMessageBadgeLabel.swift */; };
 		74F86D98260A10F100CA03EC /* PhoneNumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D96260A10F100CA03EC /* PhoneNumberTextField.swift */; };
+		74F86DA0260A115D00CA03EC /* FBWriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D9D260A115D00CA03EC /* FBWriteService.swift */; };
+		74F86DA1260A115D00CA03EC /* FBObserveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D9E260A115D00CA03EC /* FBObserveService.swift */; };
+		74F86DA2260A115D00CA03EC /* FBStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D9F260A115D00CA03EC /* FBStorageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +174,9 @@
 		74F86D86260A101D00CA03EC /* UITextField+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		74F86D95260A10F100CA03EC /* UnSeenMessageBadgeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnSeenMessageBadgeLabel.swift; sourceTree = "<group>"; };
 		74F86D96260A10F100CA03EC /* PhoneNumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberTextField.swift; sourceTree = "<group>"; };
+		74F86D9D260A115D00CA03EC /* FBWriteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBWriteService.swift; sourceTree = "<group>"; };
+		74F86D9E260A115D00CA03EC /* FBObserveService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBObserveService.swift; sourceTree = "<group>"; };
+		74F86D9F260A115D00CA03EC /* FBStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBStorageService.swift; sourceTree = "<group>"; };
 		AC207C6CA9B66BA72A81161E /* Pods-LChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LChat.release.xcconfig"; path = "Target Support Files/Pods-LChat/Pods-LChat.release.xcconfig"; sourceTree = "<group>"; };
 		FD6279072B7B6ADB04DB401A /* Pods_LChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -238,6 +244,7 @@
 		740D47CB2609E62C005C04A2 /* LChat */ = {
 			isa = PBXGroup;
 			children = (
+				74F86D9C260A115D00CA03EC /* Services */,
 				74F86D94260A10F100CA03EC /* Views */,
 				74F86D7C260A101D00CA03EC /* Extensions */,
 				74F86D69260A0F3400CA03EC /* Cells */,
@@ -587,6 +594,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		74F86D9C260A115D00CA03EC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				74F86D9D260A115D00CA03EC /* FBWriteService.swift */,
+				74F86D9E260A115D00CA03EC /* FBObserveService.swift */,
+				74F86D9F260A115D00CA03EC /* FBStorageService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		7D8E8B6B17765BD47F807B30 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -859,6 +876,7 @@
 				74F86D4A260A013600CA03EC /* RegisterViewController.swift in Sources */,
 				74F86D73260A0F3400CA03EC /* UserTableViewCell.swift in Sources */,
 				74F86D4E260A013600CA03EC /* HomeTabBarController.swift in Sources */,
+				74F86DA1260A115D00CA03EC /* FBObserveService.swift in Sources */,
 				74F86D42260A013600CA03EC /* SettingViewController.swift in Sources */,
 				74F86D5C260A013600CA03EC /* SearchUserViewController.swift in Sources */,
 				74F86D8C260A101D00CA03EC /* Extension+UILabel.swift in Sources */,
@@ -889,10 +907,12 @@
 				74F86D74260A0F3400CA03EC /* DeleteAccountTableViewCell.swift in Sources */,
 				74F86D46260A013600CA03EC /* RegisterViewModel.swift in Sources */,
 				74F86D8D260A101D00CA03EC /* String+Extension.swift in Sources */,
+				74F86DA0260A115D00CA03EC /* FBWriteService.swift in Sources */,
 				74F86D87260A101D00CA03EC /* UIImageView+Extension.swift in Sources */,
 				74F86D77260A0F3500CA03EC /* LanguageTableViewCell.swift in Sources */,
 				74F86D89260A101D00CA03EC /* UINavController+Extension.swift in Sources */,
 				74F86D76260A0F3500CA03EC /* DarkModeTableViewCell.swift in Sources */,
+				74F86DA2260A115D00CA03EC /* FBStorageService.swift in Sources */,
 				74F86D4C260A013600CA03EC /* ProfileViewController.swift in Sources */,
 				74F86CFA260A007800CA03EC /* PhoneNumber.swift in Sources */,
 				74F86D8E260A101D00CA03EC /* DateFormatter+Extension.swift in Sources */,
