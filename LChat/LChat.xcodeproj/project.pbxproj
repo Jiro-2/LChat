@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		740D47D92609E62E005C04A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 740D47D72609E62E005C04A2 /* LaunchScreen.storyboard */; };
 		740D47E42609E62F005C04A2 /* LChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D47E32609E62F005C04A2 /* LChatTests.swift */; };
 		740D47EF2609E62F005C04A2 /* LChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D47EE2609E62F005C04A2 /* LChatUITests.swift */; };
+		74F86CB12609F9BC00CA03EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74F86CB02609F9BC00CA03EC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		740D47EA2609E62F005C04A2 /* LChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		740D47EE2609E62F005C04A2 /* LChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LChatUITests.swift; sourceTree = "<group>"; };
 		740D47F02609E62F005C04A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74F86CB02609F9BC00CA03EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AC207C6CA9B66BA72A81161E /* Pods-LChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LChat.release.xcconfig"; path = "Target Support Files/Pods-LChat/Pods-LChat.release.xcconfig"; sourceTree = "<group>"; };
 		FD6279072B7B6ADB04DB401A /* Pods_LChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 				740D47D52609E62E005C04A2 /* Assets.xcassets */,
 				740D47D72609E62E005C04A2 /* LaunchScreen.storyboard */,
 				740D47DA2609E62E005C04A2 /* Info.plist */,
+				74F86CB02609F9BC00CA03EC /* GoogleService-Info.plist */,
 			);
 			path = LChat;
 			sourceTree = "<group>";
@@ -162,7 +165,6 @@
 				527B399BEB5AE46EB9486D5D /* Pods-LChatTests.debug.xcconfig */,
 				4D80D63B26F619DF561BC554 /* Pods-LChatTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -276,6 +278,7 @@
 			files = (
 				740D47D92609E62E005C04A2 /* LaunchScreen.storyboard in Resources */,
 				740D47D62609E62E005C04A2 /* Assets.xcassets in Resources */,
+				74F86CB12609F9BC00CA03EC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
