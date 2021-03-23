@@ -1,0 +1,6 @@
+framework module Pods_LChatTests {
+  umbrella header "Pods-LChatTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
