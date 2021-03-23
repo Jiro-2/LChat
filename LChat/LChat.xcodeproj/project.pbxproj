@@ -18,6 +18,23 @@
 		740D47E42609E62F005C04A2 /* LChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D47E32609E62F005C04A2 /* LChatTests.swift */; };
 		740D47EF2609E62F005C04A2 /* LChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D47EE2609E62F005C04A2 /* LChatUITests.swift */; };
 		74F86CB12609F9BC00CA03EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74F86CB02609F9BC00CA03EC /* GoogleService-Info.plist */; };
+		74F86CC42609FFE700CA03EC /* ChatNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CC32609FFE700CA03EC /* ChatNavigator.swift */; };
+		74F86CC92609FFF200CA03EC /* LoginNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CC82609FFF200CA03EC /* LoginNavigator.swift */; };
+		74F86CCE2609FFFB00CA03EC /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CCD2609FFFB00CA03EC /* Navigator.swift */; };
+		74F86CF1260A007700CA03EC /* FBDatabaseLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CDF260A007600CA03EC /* FBDatabaseLoader.swift */; };
+		74F86CF2260A007700CA03EC /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CE0260A007600CA03EC /* ChatService.swift */; };
+		74F86CF3260A007700CA03EC /* ObserveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CE1260A007600CA03EC /* ObserveService.swift */; };
+		74F86CF4260A007700CA03EC /* FIRDatabaseSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CE3260A007700CA03EC /* FIRDatabaseSearcher.swift */; };
+		74F86CF5260A007700CA03EC /* FirebasePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CE4260A007700CA03EC /* FirebasePath.swift */; };
+		74F86CF6260A007700CA03EC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CE5260A007700CA03EC /* User.swift */; };
+		74F86CF7260A007800CA03EC /* MainAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CE7260A007700CA03EC /* MainAssembler.swift */; };
+		74F86CF8260A007800CA03EC /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CE8260A007700CA03EC /* Chat.swift */; };
+		74F86CF9260A007800CA03EC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CE9260A007700CA03EC /* Message.swift */; };
+		74F86CFA260A007800CA03EC /* PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CEB260A007700CA03EC /* PhoneNumber.swift */; };
+		74F86CFB260A007800CA03EC /* FBAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CEC260A007700CA03EC /* FBAuthManager.swift */; };
+		74F86CFC260A007800CA03EC /* CountrySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CED260A007700CA03EC /* CountrySelector.swift */; };
+		74F86CFD260A007800CA03EC /* UserRegisterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CEE260A007700CA03EC /* UserRegisterData.swift */; };
+		74F86CFE260A007800CA03EC /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CF0260A007700CA03EC /* Bindable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +76,23 @@
 		740D47EE2609E62F005C04A2 /* LChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LChatUITests.swift; sourceTree = "<group>"; };
 		740D47F02609E62F005C04A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74F86CB02609F9BC00CA03EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		74F86CC32609FFE700CA03EC /* ChatNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatNavigator.swift; sourceTree = "<group>"; };
+		74F86CC82609FFF200CA03EC /* LoginNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNavigator.swift; sourceTree = "<group>"; };
+		74F86CCD2609FFFB00CA03EC /* Navigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		74F86CDF260A007600CA03EC /* FBDatabaseLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBDatabaseLoader.swift; sourceTree = "<group>"; };
+		74F86CE0260A007600CA03EC /* ChatService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		74F86CE1260A007600CA03EC /* ObserveService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserveService.swift; sourceTree = "<group>"; };
+		74F86CE3260A007700CA03EC /* FIRDatabaseSearcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRDatabaseSearcher.swift; sourceTree = "<group>"; };
+		74F86CE4260A007700CA03EC /* FirebasePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebasePath.swift; sourceTree = "<group>"; };
+		74F86CE5260A007700CA03EC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		74F86CE7260A007700CA03EC /* MainAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAssembler.swift; sourceTree = "<group>"; };
+		74F86CE8260A007700CA03EC /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		74F86CE9260A007700CA03EC /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		74F86CEB260A007700CA03EC /* PhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumber.swift; sourceTree = "<group>"; };
+		74F86CEC260A007700CA03EC /* FBAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAuthManager.swift; sourceTree = "<group>"; };
+		74F86CED260A007700CA03EC /* CountrySelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountrySelector.swift; sourceTree = "<group>"; };
+		74F86CEE260A007700CA03EC /* UserRegisterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRegisterData.swift; sourceTree = "<group>"; };
+		74F86CF0260A007700CA03EC /* Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		AC207C6CA9B66BA72A81161E /* Pods-LChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LChat.release.xcconfig"; path = "Target Support Files/Pods-LChat/Pods-LChat.release.xcconfig"; sourceTree = "<group>"; };
 		FD6279072B7B6ADB04DB401A /* Pods_LChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -126,6 +160,8 @@
 		740D47CB2609E62C005C04A2 /* LChat */ = {
 			isa = PBXGroup;
 			children = (
+				74F86CC22609FFA600CA03EC /* Navigators */,
+				74F86CB52609FEA000CA03EC /* Models */,
 				740D47CC2609E62C005C04A2 /* AppDelegate.swift */,
 				740D47CE2609E62C005C04A2 /* SceneDelegate.swift */,
 				740D47D02609E62C005C04A2 /* ViewController.swift */,
@@ -153,6 +189,77 @@
 				740D47F02609E62F005C04A2 /* Info.plist */,
 			);
 			path = LChatUITests;
+			sourceTree = "<group>";
+		};
+		74F86CB52609FEA000CA03EC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				74F86CE6260A007700CA03EC /* Assembly */,
+				74F86CEF260A007700CA03EC /* Bind */,
+				74F86CE8260A007700CA03EC /* Chat.swift */,
+				74F86CDE260A007600CA03EC /* ChatService */,
+				74F86CE2260A007700CA03EC /* FirebaseDatabase */,
+				74F86CEA260A007700CA03EC /* LoginSession */,
+				74F86CE9260A007700CA03EC /* Message.swift */,
+				74F86CE5260A007700CA03EC /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		74F86CC22609FFA600CA03EC /* Navigators */ = {
+			isa = PBXGroup;
+			children = (
+				74F86CC32609FFE700CA03EC /* ChatNavigator.swift */,
+				74F86CC82609FFF200CA03EC /* LoginNavigator.swift */,
+				74F86CCD2609FFFB00CA03EC /* Navigator.swift */,
+			);
+			path = Navigators;
+			sourceTree = "<group>";
+		};
+		74F86CDE260A007600CA03EC /* ChatService */ = {
+			isa = PBXGroup;
+			children = (
+				74F86CDF260A007600CA03EC /* FBDatabaseLoader.swift */,
+				74F86CE0260A007600CA03EC /* ChatService.swift */,
+				74F86CE1260A007600CA03EC /* ObserveService.swift */,
+			);
+			path = ChatService;
+			sourceTree = "<group>";
+		};
+		74F86CE2260A007700CA03EC /* FirebaseDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				74F86CE3260A007700CA03EC /* FIRDatabaseSearcher.swift */,
+				74F86CE4260A007700CA03EC /* FirebasePath.swift */,
+			);
+			path = FirebaseDatabase;
+			sourceTree = "<group>";
+		};
+		74F86CE6260A007700CA03EC /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				74F86CE7260A007700CA03EC /* MainAssembler.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		74F86CEA260A007700CA03EC /* LoginSession */ = {
+			isa = PBXGroup;
+			children = (
+				74F86CEB260A007700CA03EC /* PhoneNumber.swift */,
+				74F86CEC260A007700CA03EC /* FBAuthManager.swift */,
+				74F86CED260A007700CA03EC /* CountrySelector.swift */,
+				74F86CEE260A007700CA03EC /* UserRegisterData.swift */,
+			);
+			path = LoginSession;
+			sourceTree = "<group>";
+		};
+		74F86CEF260A007700CA03EC /* Bind */ = {
+			isa = PBXGroup;
+			children = (
+				74F86CF0260A007700CA03EC /* Bindable.swift */,
+			);
+			path = Bind;
 			sourceTree = "<group>";
 		};
 		7D8E8B6B17765BD47F807B30 /* Pods */ = {
@@ -407,8 +514,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				740D47D12609E62C005C04A2 /* ViewController.swift in Sources */,
+				74F86CCE2609FFFB00CA03EC /* Navigator.swift in Sources */,
+				74F86CC42609FFE700CA03EC /* ChatNavigator.swift in Sources */,
+				74F86CF5260A007700CA03EC /* FirebasePath.swift in Sources */,
+				74F86CFD260A007800CA03EC /* UserRegisterData.swift in Sources */,
+				74F86CC92609FFF200CA03EC /* LoginNavigator.swift in Sources */,
+				74F86CF1260A007700CA03EC /* FBDatabaseLoader.swift in Sources */,
+				74F86CF7260A007800CA03EC /* MainAssembler.swift in Sources */,
+				74F86CFC260A007800CA03EC /* CountrySelector.swift in Sources */,
+				74F86CF3260A007700CA03EC /* ObserveService.swift in Sources */,
+				74F86CFE260A007800CA03EC /* Bindable.swift in Sources */,
+				74F86CF2260A007700CA03EC /* ChatService.swift in Sources */,
+				74F86CF8260A007800CA03EC /* Chat.swift in Sources */,
+				74F86CF6260A007700CA03EC /* User.swift in Sources */,
+				74F86CF4260A007700CA03EC /* FIRDatabaseSearcher.swift in Sources */,
+				74F86CFB260A007800CA03EC /* FBAuthManager.swift in Sources */,
+				74F86CF9260A007800CA03EC /* Message.swift in Sources */,
 				740D47CD2609E62C005C04A2 /* AppDelegate.swift in Sources */,
 				740D47CF2609E62C005C04A2 /* SceneDelegate.swift in Sources */,
+				74F86CFA260A007800CA03EC /* PhoneNumber.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
