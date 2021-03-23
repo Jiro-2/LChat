@@ -29,7 +29,6 @@ class AuthCodeViewController: UIViewController {
     private var landscapeConstraints: [NSLayoutConstraint] = []
     private var regxRegConstraints: [NSLayoutConstraint] = []
     
-    
     //MARK: Subviews
     
     //TextFields

@@ -72,6 +72,8 @@
 		74F86D8E260A101D00CA03EC /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D84260A101D00CA03EC /* DateFormatter+Extension.swift */; };
 		74F86D8F260A101D00CA03EC /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D85260A101D00CA03EC /* UIStackView+Extension.swift */; };
 		74F86D90260A101D00CA03EC /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D86260A101D00CA03EC /* UITextField+Extension.swift */; };
+		74F86D97260A10F100CA03EC /* UnSeenMessageBadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D95260A10F100CA03EC /* UnSeenMessageBadgeLabel.swift */; };
+		74F86D98260A10F100CA03EC /* PhoneNumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D96260A10F100CA03EC /* PhoneNumberTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +169,8 @@
 		74F86D84260A101D00CA03EC /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		74F86D85260A101D00CA03EC /* UIStackView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		74F86D86260A101D00CA03EC /* UITextField+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		74F86D95260A10F100CA03EC /* UnSeenMessageBadgeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnSeenMessageBadgeLabel.swift; sourceTree = "<group>"; };
+		74F86D96260A10F100CA03EC /* PhoneNumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberTextField.swift; sourceTree = "<group>"; };
 		AC207C6CA9B66BA72A81161E /* Pods-LChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LChat.release.xcconfig"; path = "Target Support Files/Pods-LChat/Pods-LChat.release.xcconfig"; sourceTree = "<group>"; };
 		FD6279072B7B6ADB04DB401A /* Pods_LChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -234,6 +238,7 @@
 		740D47CB2609E62C005C04A2 /* LChat */ = {
 			isa = PBXGroup;
 			children = (
+				74F86D94260A10F100CA03EC /* Views */,
 				74F86D7C260A101D00CA03EC /* Extensions */,
 				74F86D69260A0F3400CA03EC /* Cells */,
 				74F86D02260A013600CA03EC /* Modules */,
@@ -573,6 +578,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		74F86D94260A10F100CA03EC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				74F86D95260A10F100CA03EC /* UnSeenMessageBadgeLabel.swift */,
+				74F86D96260A10F100CA03EC /* PhoneNumberTextField.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		7D8E8B6B17765BD47F807B30 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -862,9 +876,11 @@
 				74F86D40260A013600CA03EC /* ChatViewController.swift in Sources */,
 				74F86D5B260A013600CA03EC /* SearchUserViewModel.swift in Sources */,
 				74F86CFB260A007800CA03EC /* FBAuthManager.swift in Sources */,
+				74F86D97260A10F100CA03EC /* UnSeenMessageBadgeLabel.swift in Sources */,
 				74F86CF9260A007800CA03EC /* Message.swift in Sources */,
 				74F86D41260A013600CA03EC /* SettingViewModel.swift in Sources */,
 				740D47CD2609E62C005C04A2 /* AppDelegate.swift in Sources */,
+				74F86D98260A10F100CA03EC /* PhoneNumberTextField.swift in Sources */,
 				74F86D75260A0F3400CA03EC /* ChatCustomizeTableViewCell.swift in Sources */,
 				740D47CF2609E62C005C04A2 /* SceneDelegate.swift in Sources */,
 				74F86D45260A013600CA03EC /* SigninViewModel.swift in Sources */,
