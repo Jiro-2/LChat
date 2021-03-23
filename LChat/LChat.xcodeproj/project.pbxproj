@@ -36,7 +36,6 @@
 		74F86CFD260A007800CA03EC /* UserRegisterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CEE260A007700CA03EC /* UserRegisterData.swift */; };
 		74F86CFE260A007800CA03EC /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CF0260A007700CA03EC /* Bindable.swift */; };
 		74F86D3E260A013600CA03EC /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D05260A013600CA03EC /* ChatViewModel.swift */; };
-		74F86D3F260A013600CA03EC /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D07260A013600CA03EC /* ChatViewModel.swift */; };
 		74F86D40260A013600CA03EC /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D09260A013600CA03EC /* ChatViewController.swift */; };
 		74F86D41260A013600CA03EC /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D0C260A013600CA03EC /* SettingViewModel.swift */; };
 		74F86D42260A013600CA03EC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D0E260A013600CA03EC /* SettingViewController.swift */; };
@@ -115,7 +114,6 @@
 		74F86CEE260A007700CA03EC /* UserRegisterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRegisterData.swift; sourceTree = "<group>"; };
 		74F86CF0260A007700CA03EC /* Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		74F86D05260A013600CA03EC /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
-		74F86D07260A013600CA03EC /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		74F86D09260A013600CA03EC /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		74F86D0C260A013600CA03EC /* SettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		74F86D0E260A013600CA03EC /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -323,7 +321,6 @@
 			isa = PBXGroup;
 			children = (
 				74F86D04260A013600CA03EC /* ViewModel */,
-				74F86D06260A013600CA03EC /* ViewModels */,
 				74F86D08260A013600CA03EC /* Controllers */,
 			);
 			path = ChatModule;
@@ -335,14 +332,6 @@
 				74F86D05260A013600CA03EC /* ChatViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		74F86D06260A013600CA03EC /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				74F86D07260A013600CA03EC /* ChatViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		74F86D08260A013600CA03EC /* Controllers */ = {
@@ -794,7 +783,6 @@
 				740D47CD2609E62C005C04A2 /* AppDelegate.swift in Sources */,
 				740D47CF2609E62C005C04A2 /* SceneDelegate.swift in Sources */,
 				74F86D45260A013600CA03EC /* SigninViewModel.swift in Sources */,
-				74F86D3F260A013600CA03EC /* ChatViewModel.swift in Sources */,
 				74F86D49260A013600CA03EC /* SignInViewController.swift in Sources */,
 				74F86D4B260A013600CA03EC /* ProfileViewModel.swift in Sources */,
 				74F86D46260A013600CA03EC /* RegisterViewModel.swift in Sources */,
