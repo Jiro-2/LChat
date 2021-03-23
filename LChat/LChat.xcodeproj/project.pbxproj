@@ -55,6 +55,13 @@
 		74F86D52260A013600CA03EC /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D2D260A013600CA03EC /* ChatListViewController.swift */; };
 		74F86D5B260A013600CA03EC /* SearchUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D3B260A013600CA03EC /* SearchUserViewModel.swift */; };
 		74F86D5C260A013600CA03EC /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D3D260A013600CA03EC /* SearchUserViewController.swift */; };
+		74F86D72260A0F3400CA03EC /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D6A260A0F3400CA03EC /* ChatTableViewCell.swift */; };
+		74F86D73260A0F3400CA03EC /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D6B260A0F3400CA03EC /* UserTableViewCell.swift */; };
+		74F86D74260A0F3400CA03EC /* DeleteAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D6D260A0F3400CA03EC /* DeleteAccountTableViewCell.swift */; };
+		74F86D75260A0F3400CA03EC /* ChatCustomizeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D6E260A0F3400CA03EC /* ChatCustomizeTableViewCell.swift */; };
+		74F86D76260A0F3500CA03EC /* DarkModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D6F260A0F3400CA03EC /* DarkModeTableViewCell.swift */; };
+		74F86D77260A0F3500CA03EC /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D70260A0F3400CA03EC /* LanguageTableViewCell.swift */; };
+		74F86D78260A0F3500CA03EC /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D71260A0F3400CA03EC /* NotificationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +140,13 @@
 		74F86D2D260A013600CA03EC /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		74F86D3B260A013600CA03EC /* SearchUserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserViewModel.swift; sourceTree = "<group>"; };
 		74F86D3D260A013600CA03EC /* SearchUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
+		74F86D6A260A0F3400CA03EC /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		74F86D6B260A0F3400CA03EC /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		74F86D6D260A0F3400CA03EC /* DeleteAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAccountTableViewCell.swift; sourceTree = "<group>"; };
+		74F86D6E260A0F3400CA03EC /* ChatCustomizeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCustomizeTableViewCell.swift; sourceTree = "<group>"; };
+		74F86D6F260A0F3400CA03EC /* DarkModeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkModeTableViewCell.swift; sourceTree = "<group>"; };
+		74F86D70260A0F3400CA03EC /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
+		74F86D71260A0F3400CA03EC /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		AC207C6CA9B66BA72A81161E /* Pods-LChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LChat.release.xcconfig"; path = "Target Support Files/Pods-LChat/Pods-LChat.release.xcconfig"; sourceTree = "<group>"; };
 		FD6279072B7B6ADB04DB401A /* Pods_LChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -200,6 +214,7 @@
 		740D47CB2609E62C005C04A2 /* LChat */ = {
 			isa = PBXGroup;
 			children = (
+				74F86D69260A0F3400CA03EC /* Cells */,
 				74F86D02260A013600CA03EC /* Modules */,
 				74F86CC22609FFA600CA03EC /* Navigators */,
 				74F86CB52609FEA000CA03EC /* Models */,
@@ -498,6 +513,28 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		74F86D69260A0F3400CA03EC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				74F86D6A260A0F3400CA03EC /* ChatTableViewCell.swift */,
+				74F86D6B260A0F3400CA03EC /* UserTableViewCell.swift */,
+				74F86D6C260A0F3400CA03EC /* SettingCells */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		74F86D6C260A0F3400CA03EC /* SettingCells */ = {
+			isa = PBXGroup;
+			children = (
+				74F86D6D260A0F3400CA03EC /* DeleteAccountTableViewCell.swift */,
+				74F86D6E260A0F3400CA03EC /* ChatCustomizeTableViewCell.swift */,
+				74F86D6F260A0F3400CA03EC /* DarkModeTableViewCell.swift */,
+				74F86D70260A0F3400CA03EC /* LanguageTableViewCell.swift */,
+				74F86D71260A0F3400CA03EC /* NotificationTableViewCell.swift */,
+			);
+			path = SettingCells;
+			sourceTree = "<group>";
+		};
 		7D8E8B6B17765BD47F807B30 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -756,6 +793,7 @@
 				74F86CCE2609FFFB00CA03EC /* Navigator.swift in Sources */,
 				74F86D44260A013600CA03EC /* CountriesViewModel.swift in Sources */,
 				74F86CC42609FFE700CA03EC /* ChatNavigator.swift in Sources */,
+				74F86D72260A0F3400CA03EC /* ChatTableViewCell.swift in Sources */,
 				74F86CF5260A007700CA03EC /* FirebasePath.swift in Sources */,
 				74F86D52260A013600CA03EC /* ChatListViewController.swift in Sources */,
 				74F86CFD260A007800CA03EC /* UserRegisterData.swift in Sources */,
@@ -764,6 +802,7 @@
 				74F86CF7260A007800CA03EC /* MainAssembler.swift in Sources */,
 				74F86CFC260A007800CA03EC /* CountrySelector.swift in Sources */,
 				74F86D4A260A013600CA03EC /* RegisterViewController.swift in Sources */,
+				74F86D73260A0F3400CA03EC /* UserTableViewCell.swift in Sources */,
 				74F86D4E260A013600CA03EC /* HomeTabBarController.swift in Sources */,
 				74F86D42260A013600CA03EC /* SettingViewController.swift in Sources */,
 				74F86D5C260A013600CA03EC /* SearchUserViewController.swift in Sources */,
@@ -774,6 +813,7 @@
 				74F86CF6260A007700CA03EC /* User.swift in Sources */,
 				74F86D4D260A013600CA03EC /* HomeViewModel.swift in Sources */,
 				74F86D47260A013600CA03EC /* AuthCodeViewController.swift in Sources */,
+				74F86D78260A0F3500CA03EC /* NotificationTableViewCell.swift in Sources */,
 				74F86CF4260A007700CA03EC /* FIRDatabaseSearcher.swift in Sources */,
 				74F86D40260A013600CA03EC /* ChatViewController.swift in Sources */,
 				74F86D5B260A013600CA03EC /* SearchUserViewModel.swift in Sources */,
@@ -781,11 +821,15 @@
 				74F86CF9260A007800CA03EC /* Message.swift in Sources */,
 				74F86D41260A013600CA03EC /* SettingViewModel.swift in Sources */,
 				740D47CD2609E62C005C04A2 /* AppDelegate.swift in Sources */,
+				74F86D75260A0F3400CA03EC /* ChatCustomizeTableViewCell.swift in Sources */,
 				740D47CF2609E62C005C04A2 /* SceneDelegate.swift in Sources */,
 				74F86D45260A013600CA03EC /* SigninViewModel.swift in Sources */,
 				74F86D49260A013600CA03EC /* SignInViewController.swift in Sources */,
 				74F86D4B260A013600CA03EC /* ProfileViewModel.swift in Sources */,
+				74F86D74260A0F3400CA03EC /* DeleteAccountTableViewCell.swift in Sources */,
 				74F86D46260A013600CA03EC /* RegisterViewModel.swift in Sources */,
+				74F86D77260A0F3500CA03EC /* LanguageTableViewCell.swift in Sources */,
+				74F86D76260A0F3500CA03EC /* DarkModeTableViewCell.swift in Sources */,
 				74F86D4C260A013600CA03EC /* ProfileViewController.swift in Sources */,
 				74F86CFA260A007800CA03EC /* PhoneNumber.swift in Sources */,
 				74F86D43260A013600CA03EC /* AuthCodeViewModel.swift in Sources */,
