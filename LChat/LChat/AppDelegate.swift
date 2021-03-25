@@ -14,19 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-        let authManager = FBAuthManager()
-        authManager.checkUserAgainstDatabase { success, error in
-            
-            if success == false {
-                
-                do {
-                    try Auth.auth().signOut()
-                } catch let error {
-                    
-                    print(error.localizedDescription)
-                }
-            }
-        }
+//        let authManager = FBAuthManager()
+//        authManager.checkUserAgainstDatabase { success, error in
+//
+//            if success == false {
+//
+//                do {
+//                    try Auth.auth().signOut()
+//                } catch let error {
+//
+//                    print(error.localizedDescription)
+//                }
+//            }
+//        }
         return true
     }
 

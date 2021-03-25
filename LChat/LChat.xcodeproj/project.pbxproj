@@ -77,6 +77,12 @@
 		74F86DA0260A115D00CA03EC /* FBWriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D9D260A115D00CA03EC /* FBWriteService.swift */; };
 		74F86DA1260A115D00CA03EC /* FBObserveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D9E260A115D00CA03EC /* FBObserveService.swift */; };
 		74F86DA2260A115D00CA03EC /* FBStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D9F260A115D00CA03EC /* FBStorageService.swift */; };
+		74F86DB3260A22FF00CA03EC /* FBLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DB2260A22FF00CA03EC /* FBLoginService.swift */; };
+		74F86DB8260A311F00CA03EC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DB7260A311F00CA03EC /* LoginViewController.swift */; };
+		74F86DD2260B912C00CA03EC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DD1260B912C00CA03EC /* LoginViewModel.swift */; };
+		74F86DDA260B9A6D00CA03EC /* AuthFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DD9260B9A6D00CA03EC /* AuthFormView.swift */; };
+		74F86DFA260D359C00CA03EC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DF9260D359C00CA03EC /* SignUpViewController.swift */; };
+		74F86DFF260D36CD00CA03EC /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DFE260D36CD00CA03EC /* SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +183,12 @@
 		74F86D9D260A115D00CA03EC /* FBWriteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBWriteService.swift; sourceTree = "<group>"; };
 		74F86D9E260A115D00CA03EC /* FBObserveService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBObserveService.swift; sourceTree = "<group>"; };
 		74F86D9F260A115D00CA03EC /* FBStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBStorageService.swift; sourceTree = "<group>"; };
+		74F86DB2260A22FF00CA03EC /* FBLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLoginService.swift; sourceTree = "<group>"; };
+		74F86DB7260A311F00CA03EC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		74F86DD1260B912C00CA03EC /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		74F86DD9260B9A6D00CA03EC /* AuthFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFormView.swift; sourceTree = "<group>"; };
+		74F86DF9260D359C00CA03EC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		74F86DFE260D36CD00CA03EC /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		AC207C6CA9B66BA72A81161E /* Pods-LChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LChat.release.xcconfig"; path = "Target Support Files/Pods-LChat/Pods-LChat.release.xcconfig"; sourceTree = "<group>"; };
 		FD6279072B7B6ADB04DB401A /* Pods_LChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -285,11 +297,11 @@
 			children = (
 				74F86CE6260A007700CA03EC /* Assembly */,
 				74F86CEF260A007700CA03EC /* Bind */,
-				74F86CE8260A007700CA03EC /* Chat.swift */,
 				74F86CDE260A007600CA03EC /* ChatService */,
 				74F86CE2260A007700CA03EC /* FirebaseDatabase */,
 				74F86CEA260A007700CA03EC /* LoginSession */,
 				74F86CE9260A007700CA03EC /* Message.swift */,
+				74F86CE8260A007700CA03EC /* Chat.swift */,
 				74F86CE5260A007700CA03EC /* User.swift */,
 			);
 			path = Models;
@@ -419,7 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				74F86D10260A013600CA03EC /* ViewModels */,
-				74F86D15260A013600CA03EC /* Controllers */,
+				74F86D15260A013600CA03EC /* View */,
 			);
 			path = LoginModule;
 			sourceTree = "<group>";
@@ -431,19 +443,24 @@
 				74F86D12260A013600CA03EC /* CountriesViewModel.swift */,
 				74F86D13260A013600CA03EC /* SigninViewModel.swift */,
 				74F86D14260A013600CA03EC /* RegisterViewModel.swift */,
+				74F86DD1260B912C00CA03EC /* LoginViewModel.swift */,
+				74F86DFE260D36CD00CA03EC /* SignUpViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		74F86D15260A013600CA03EC /* Controllers */ = {
+		74F86D15260A013600CA03EC /* View */ = {
 			isa = PBXGroup;
 			children = (
 				74F86D16260A013600CA03EC /* AuthCodeViewController.swift */,
 				74F86D17260A013600CA03EC /* CountriesViewController.swift */,
 				74F86D18260A013600CA03EC /* SignInViewController.swift */,
 				74F86D19260A013600CA03EC /* RegisterViewController.swift */,
+				74F86DB7260A311F00CA03EC /* LoginViewController.swift */,
+				74F86DD9260B9A6D00CA03EC /* AuthFormView.swift */,
+				74F86DF9260D359C00CA03EC /* SignUpViewController.swift */,
 			);
-			path = Controllers;
+			path = View;
 			sourceTree = "<group>";
 		};
 		74F86D1A260A013600CA03EC /* ProfileModule */ = {
@@ -600,6 +617,7 @@
 				74F86D9D260A115D00CA03EC /* FBWriteService.swift */,
 				74F86D9E260A115D00CA03EC /* FBObserveService.swift */,
 				74F86D9F260A115D00CA03EC /* FBStorageService.swift */,
+				74F86DB2260A22FF00CA03EC /* FBLoginService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -864,20 +882,25 @@
 				74F86CCE2609FFFB00CA03EC /* Navigator.swift in Sources */,
 				74F86D44260A013600CA03EC /* CountriesViewModel.swift in Sources */,
 				74F86CC42609FFE700CA03EC /* ChatNavigator.swift in Sources */,
+				74F86DFA260D359C00CA03EC /* SignUpViewController.swift in Sources */,
 				74F86D72260A0F3400CA03EC /* ChatTableViewCell.swift in Sources */,
+				74F86DB8260A311F00CA03EC /* LoginViewController.swift in Sources */,
 				74F86D8B260A101D00CA03EC /* Character+Extension.swift in Sources */,
 				74F86CF5260A007700CA03EC /* FirebasePath.swift in Sources */,
 				74F86D52260A013600CA03EC /* ChatListViewController.swift in Sources */,
 				74F86CFD260A007800CA03EC /* UserRegisterData.swift in Sources */,
 				74F86CC92609FFF200CA03EC /* LoginNavigator.swift in Sources */,
 				74F86CF1260A007700CA03EC /* FBDatabaseLoader.swift in Sources */,
+				74F86DFF260D36CD00CA03EC /* SignUpViewModel.swift in Sources */,
 				74F86CF7260A007800CA03EC /* MainAssembler.swift in Sources */,
 				74F86CFC260A007800CA03EC /* CountrySelector.swift in Sources */,
 				74F86D4A260A013600CA03EC /* RegisterViewController.swift in Sources */,
 				74F86D73260A0F3400CA03EC /* UserTableViewCell.swift in Sources */,
+				74F86DB3260A22FF00CA03EC /* FBLoginService.swift in Sources */,
 				74F86D4E260A013600CA03EC /* HomeTabBarController.swift in Sources */,
 				74F86DA1260A115D00CA03EC /* FBObserveService.swift in Sources */,
 				74F86D42260A013600CA03EC /* SettingViewController.swift in Sources */,
+				74F86DDA260B9A6D00CA03EC /* AuthFormView.swift in Sources */,
 				74F86D5C260A013600CA03EC /* SearchUserViewController.swift in Sources */,
 				74F86D8C260A101D00CA03EC /* Extension+UILabel.swift in Sources */,
 				74F86CF3260A007700CA03EC /* ObserveService.swift in Sources */,
@@ -906,6 +929,7 @@
 				74F86D4B260A013600CA03EC /* ProfileViewModel.swift in Sources */,
 				74F86D74260A0F3400CA03EC /* DeleteAccountTableViewCell.swift in Sources */,
 				74F86D46260A013600CA03EC /* RegisterViewModel.swift in Sources */,
+				74F86DD2260B912C00CA03EC /* LoginViewModel.swift in Sources */,
 				74F86D8D260A101D00CA03EC /* String+Extension.swift in Sources */,
 				74F86DA0260A115D00CA03EC /* FBWriteService.swift in Sources */,
 				74F86D87260A101D00CA03EC /* UIImageView+Extension.swift in Sources */,
@@ -1091,6 +1115,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EgorGurba.LChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1110,6 +1135,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EgorGurba.LChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

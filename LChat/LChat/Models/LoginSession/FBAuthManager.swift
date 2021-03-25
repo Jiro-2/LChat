@@ -22,7 +22,7 @@ protocol FBAuthManagerProtocol {
 
 class FBAuthManager: FBAuthManagerProtocol {
     
-    private let rootRef = Database.database(url: "https://lingochat-7b2d0-default-rtdb.europe-west1.firebasedatabase.app").reference()
+    private let rootRef = Database.database(url: "https://lchat-9bb0e-default-rtdb.europe-west1.firebasedatabase.app").reference()
     
     
     func registerUser(with firstName: String, lastName: String, phoneNumber: String, completionBlock: @escaping (_ succes: Bool) -> ()) {

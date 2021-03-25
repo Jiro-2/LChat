@@ -22,38 +22,45 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigator = LoginNavigator(navigationController: navController)
         let authManager = FBAuthManager()
         window.makeKeyAndVisible()
+        navigator.navigate(to: .signUp, presented: false)
         self.window = window
         
+        self.window?.rootViewController = navController
         
-        Auth.auth().addStateDidChangeListener { auth, user in
-            
-            if user == nil {
-                
-                print("User nil")
-                navigator.navigate(to: .signin, presented: false)
-                self.window?.rootViewController = navController
-
-                
-            } else {
-                                
-                authManager.checkPresenceUserInDataBase { isPresence in
-                    
-                    if isPresence {
-                        
-                        let navigator = ChatNavigator(navigationController: navController)
-                        navigator.navigate(to: .chatList, presented: false)
-                        self.window?.rootViewController = navController
-                       
-                        print("Юзер существует в базе, перейти в его чаты", #function)
-                        
-                        
-                    } else {
-                        
-                        navigator.navigate(to: .register, presented: false)
-                    }
-                }
-            }
-        }
+        
+        
+        
+//        Auth.auth().addStateDidChangeListener { auth, user in
+//
+//            if user == nil {
+//
+//                print("User nil")
+//                navigator.navigate(to: .signin, presented: false)
+//                self.window?.rootViewController = navController
+//
+//
+//            } else {
+//
+//                authManager.checkPresenceUserInDataBase { isPresence in
+//
+//                    if isPresence {
+//
+////                        let navigator = ChatNavigator(navigationController: navController)
+////                        navigator.navigate(to: .chatList, presented: false)
+////
+//                        navigator.navigate(to: .signUp, presented: false)
+//                        self.window?.rootViewController = navController
+//
+//                        print("Юзер существует в базе, перейти в его чаты", #function)
+//
+//
+//                    } else {
+//
+//                        navigator.navigate(to: .register, presented: false)
+//                    }
+//                }
+//            }
+//        }
     }
     
     

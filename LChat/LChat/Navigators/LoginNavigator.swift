@@ -16,6 +16,7 @@ class LoginNavigator: Navigator {
         case signin
         case authentication
         case selectionCountry
+        case signUp
     }
     
     
@@ -91,6 +92,10 @@ class LoginNavigator: Navigator {
             viewController.viewModel = viewModel
             
             return viewController
+            
+        case .signUp:
+            
+            return MainAssembler.buildLogInModule(navigator: self)
         }
     }
 }

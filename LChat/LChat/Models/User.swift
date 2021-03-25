@@ -7,8 +7,20 @@
 
 import Foundation
 
+enum UserProperty: String {
+    case id
+    case userName
+    case phone
+    case location
+    case bio
+}
+
+
 struct User: Identifiable {
     
-   let id: String
-   var userName: String
+    let id: String
+    var userName: String
+    var location: String?
+    var phone: String?
+    var bio: String?
 }

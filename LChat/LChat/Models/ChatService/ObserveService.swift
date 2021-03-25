@@ -23,7 +23,7 @@ protocol ChatObservable {
 final class ObserveService: ChatObservable {
   
     
-    private let databaseReference = Database.database(url: "https://lingochat-7b2d0-default-rtdb.europe-west1.firebasedatabase.app").reference()
+    private let databaseReference = Database.database(url: "https://lchat-9bb0e-default-rtdb.europe-west1.firebasedatabase.app").reference()
     private let databaseLoader: DatabaseLoadable
     
     

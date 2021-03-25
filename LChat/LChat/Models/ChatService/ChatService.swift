@@ -40,7 +40,7 @@ final class ChatService: ChatServiceProtocol {
     
     //MARK: - Properties -
     
-    private let databaseRef = Database.database(url: "https://lingochat-7b2d0-default-rtdb.europe-west1.firebasedatabase.app").reference()
+    private let databaseRef = Database.database(url: "https://lchat-9bb0e-default-rtdb.europe-west1.firebasedatabase.app").reference()
     var currentUserId = Auth.auth().currentUser?.uid ?? ""
     
     

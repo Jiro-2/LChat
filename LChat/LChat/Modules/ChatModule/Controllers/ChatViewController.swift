@@ -45,7 +45,7 @@ final class ChatViewController: MessagesViewController {
     private func startButtonDidTap() {
         
         if let member = self.member {
-            viewModel.startChat(with: member)
+        //    viewModel.startChat(with: member)
             self.startChatButton.isHidden = true
             self.inputAccessoryView?.isHidden = false
         }
@@ -79,7 +79,7 @@ final class ChatViewController: MessagesViewController {
         checkChatExistenceWithSelectedUser()
         setupChatViewModelObserver()
         
-        currentUserID = viewModel.getCurrentSenderID()
+      //  currentUserID = viewModel.getCurrentSenderID()
         
         view.addSubviews([startChatButton])
     }
@@ -127,10 +127,10 @@ final class ChatViewController: MessagesViewController {
            let chatListViewController = tabBarController.selectedViewController as? ChatListViewController {
             
             member = chatListViewController.viewModel.selectedChat?.member
-            viewModel.currentChat.value = chatListViewController.viewModel.selectedChat
+        //    viewModel.currentChat.value = chatListViewController.viewModel.selectedChat
             
-            viewModel.getMessages() // ????????
-            viewModel.setObserve()
+          //  viewModel.getMessages() // ????????
+          //  viewModel.setObserve()
         }
     }
     
@@ -144,18 +144,18 @@ final class ChatViewController: MessagesViewController {
                 
                 member = selectedUser
                 
-                viewModel.checkExistenceChatWith(user: selectedUser) { isExist in
-                    
-                    if isExist {
-            
-                        self.startChatButton.isHidden = true
-                        
-                    } else {
-                        
-                        self.startChatButton.isHidden = false
-                        self.inputAccessoryView?.isHidden = true
-                    }
-                }
+//                viewModel.checkExistenceChatWith(user: selectedUser) { isExist in
+//
+//                    if isExist {
+//
+//                        self.startChatButton.isHidden = true
+//
+//                    } else {
+//
+//                        self.startChatButton.isHidden = false
+//                        self.inputAccessoryView?.isHidden = true
+//                    }
+//                }
             }
         }
     }
@@ -163,12 +163,12 @@ final class ChatViewController: MessagesViewController {
     
     private func setupChatViewModelObserver() {
         
-        viewModel.currentChat.bind { [weak self] chat in
-            
-            guard let self = self else { return }
-            
-            self.messages = chat?.messages ?? []
-        }
+//        viewModel.currentChat.bind { [weak self] chat in
+//
+//            guard let self = self else { return }
+//
+//            self.messages = chat?.messages ?? []
+//        }
     }
     
     
@@ -296,19 +296,19 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         
         if !text.isEmpty {
             
-            if let id = currentUserID {
-                
-                viewModel.sendMessageBy(user: User(id: id, userName: ""), text: text) { error in
-                    
-                    if let _ = error {
-                        
-                        print("Show failed sending in UI")
-                        
-                    } else {
-                        inputBar.inputTextView.text = ""
-                    }
-                }
-            }
+//            if let id = currentUserID {
+//
+//                viewModel.sendMessageBy(user: User(id: id, userName: ""), text: text) { error in
+//
+//                    if let _ = error {
+//
+//                        print("Show failed sending in UI")
+//
+//                    } else {
+//                        inputBar.inputTextView.text = ""
+//                    }
+//                }
+//            }
         }
     }
 }

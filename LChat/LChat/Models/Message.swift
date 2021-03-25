@@ -8,7 +8,7 @@
 import Foundation
 import MessageKit
 
-struct Message: Identifiable {
+struct Message: Identifiable, Equatable {
     
     let memberId: String
     let text: String
