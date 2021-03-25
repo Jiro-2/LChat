@@ -45,13 +45,4 @@ final class MainAssembler {
                 
         return tabBarController
     }
-    
-    static func buildLogInModule(navigator: LoginNavigator) -> UIViewController {
-        
-        let viewModel = LoginViewModel()
-        let viewController = LoginViewController(viewModel: viewModel)
-        
-        return viewController
-    }
-    
 }

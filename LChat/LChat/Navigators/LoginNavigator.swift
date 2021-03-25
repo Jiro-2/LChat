@@ -95,7 +95,7 @@ class LoginNavigator: Navigator {
             
         case .signUp:
             
-            return MainAssembler.buildLogInModule(navigator: self)
+            return LoginAssembler.buildSignUpModule(navigator: self)
         }
     }
 }
