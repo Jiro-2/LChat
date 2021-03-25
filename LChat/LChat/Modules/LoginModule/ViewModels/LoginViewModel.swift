@@ -11,14 +11,22 @@ import Foundation
 
 protocol LoginViewModelProtocol {
     
-    
+    func navigateToSignUp()
 }
-
 
 
 final class LoginViewModel: LoginViewModelProtocol {
     
+    let navigator: LoginNavigator
+    
+    init(navigator: LoginNavigator) {
+        self.navigator = navigator
+    }
     
     
-  
+    
+    func navigateToSignUp() {
+        
+        navigator.navigate(to: .signUp, presented: false)
+    }
 }

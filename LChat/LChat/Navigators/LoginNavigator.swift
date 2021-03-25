@@ -17,6 +17,7 @@ class LoginNavigator: Navigator {
         case authentication
         case selectionCountry
         case signUp
+        case login
     }
     
     
@@ -96,6 +97,10 @@ class LoginNavigator: Navigator {
         case .signUp:
             
             return LoginAssembler.buildSignUpModule(navigator: self)
+            
+        case .login:
+            
+            return LoginAssembler.buildLogInModule(navigator: self)
         }
     }
 }

@@ -11,7 +11,7 @@ class SignUpViewController: UIViewController {
 
     //MARK: - Properties -
     
-    var viewModel: LoginViewModelProtocol
+    var viewModel: SignUpViewModelProtocol
     var cardViewBottomConstraint: NSLayoutConstraint?
 
     
@@ -34,7 +34,7 @@ class SignUpViewController: UIViewController {
         
         button.addAction(UIAction(handler: { _ in
         
-            self.viewModel.authType.value = .logIn
+            self.viewModel.navigateToLogin()
         
         }), for: .touchUpInside)
         
@@ -45,7 +45,7 @@ class SignUpViewController: UIViewController {
     
     //MARK: - Init -
     
-    init(viewModel: LoginViewModelProtocol) {
+    init(viewModel: SignUpViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -71,7 +71,7 @@ class SignUpViewController: UIViewController {
         cardView.userNameTxtField.delegate = self
         
         cardView.titleLabel.text = "Sign Up"
-
+        cardView.button.setTitle("Signup Now", for: .normal)
        
         
         NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow(_:)),

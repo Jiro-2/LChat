@@ -35,7 +35,7 @@ final class LoginViewController: UIViewController {
         
         button.addAction(UIAction(handler: { _ in
         
-            self.viewModel.authType.value = .signUp
+            self.viewModel.navigateToSignUp()
         
         }), for: .touchUpInside)
         
@@ -69,6 +69,7 @@ final class LoginViewController: UIViewController {
         configCardViewButtonAction()
         setupViewModelObserver()
         cardView.titleLabel.text = "Get Login"
+        cardView.button.setTitle("Get Login", for: .normal)
         cardView.phoneTxtField.delegate = self
         cardView.userNameTxtField.delegate = self
 
@@ -80,7 +81,6 @@ final class LoginViewController: UIViewController {
           NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)),
                                                  name: UIResponder.keyboardWillHideNotification,
                                                  object: nil)
-        
         
     }
     

@@ -83,6 +83,7 @@
 		74F86DDA260B9A6D00CA03EC /* AuthFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DD9260B9A6D00CA03EC /* AuthFormView.swift */; };
 		74F86DFA260D359C00CA03EC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DF9260D359C00CA03EC /* SignUpViewController.swift */; };
 		74F86DFF260D36CD00CA03EC /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DFE260D36CD00CA03EC /* SignUpViewModel.swift */; };
+		74F86E10260D3ECB00CA03EC /* LoginAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86E0F260D3ECB00CA03EC /* LoginAssembler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +190,7 @@
 		74F86DD9260B9A6D00CA03EC /* AuthFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFormView.swift; sourceTree = "<group>"; };
 		74F86DF9260D359C00CA03EC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		74F86DFE260D36CD00CA03EC /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		74F86E0F260D3ECB00CA03EC /* LoginAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAssembler.swift; sourceTree = "<group>"; };
 		AC207C6CA9B66BA72A81161E /* Pods-LChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LChat.release.xcconfig"; path = "Target Support Files/Pods-LChat/Pods-LChat.release.xcconfig"; sourceTree = "<group>"; };
 		FD6279072B7B6ADB04DB401A /* Pods_LChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -262,6 +264,8 @@
 				74F86D69260A0F3400CA03EC /* Cells */,
 				74F86D02260A013600CA03EC /* Modules */,
 				74F86CC22609FFA600CA03EC /* Navigators */,
+				74F86CE6260A007700CA03EC /* Assembly */,
+				74F86CEF260A007700CA03EC /* Bind */,
 				74F86CB52609FEA000CA03EC /* Models */,
 				740D47CC2609E62C005C04A2 /* AppDelegate.swift */,
 				740D47CE2609E62C005C04A2 /* SceneDelegate.swift */,
@@ -295,8 +299,6 @@
 		74F86CB52609FEA000CA03EC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				74F86CE6260A007700CA03EC /* Assembly */,
-				74F86CEF260A007700CA03EC /* Bind */,
 				74F86CDE260A007600CA03EC /* ChatService */,
 				74F86CE2260A007700CA03EC /* FirebaseDatabase */,
 				74F86CEA260A007700CA03EC /* LoginSession */,
@@ -340,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				74F86CE7260A007700CA03EC /* MainAssembler.swift */,
+				74F86E0F260D3ECB00CA03EC /* LoginAssembler.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -457,8 +460,8 @@
 				74F86D18260A013600CA03EC /* SignInViewController.swift */,
 				74F86D19260A013600CA03EC /* RegisterViewController.swift */,
 				74F86DB7260A311F00CA03EC /* LoginViewController.swift */,
-				74F86DD9260B9A6D00CA03EC /* AuthFormView.swift */,
 				74F86DF9260D359C00CA03EC /* SignUpViewController.swift */,
+				74F86DD9260B9A6D00CA03EC /* AuthFormView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -887,6 +890,7 @@
 				74F86DB8260A311F00CA03EC /* LoginViewController.swift in Sources */,
 				74F86D8B260A101D00CA03EC /* Character+Extension.swift in Sources */,
 				74F86CF5260A007700CA03EC /* FirebasePath.swift in Sources */,
+				74F86E10260D3ECB00CA03EC /* LoginAssembler.swift in Sources */,
 				74F86D52260A013600CA03EC /* ChatListViewController.swift in Sources */,
 				74F86CFD260A007800CA03EC /* UserRegisterData.swift in Sources */,
 				74F86CC92609FFF200CA03EC /* LoginNavigator.swift in Sources */,

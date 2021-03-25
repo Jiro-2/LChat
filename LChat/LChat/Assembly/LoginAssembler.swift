@@ -12,7 +12,7 @@ class LoginAssembler {
     
     static func buildLogInModule(navigator: LoginNavigator) -> UIViewController {
         
-        let viewModel = LoginViewModel()
+        let viewModel = LoginViewModel(navigator: navigator)
         let viewController = LoginViewController(viewModel: viewModel)
         
         return viewController
@@ -21,7 +21,7 @@ class LoginAssembler {
     
     static func buildSignUpModule(navigator: LoginNavigator) -> UIViewController {
     
-        let viewModel = SignUpViewModel()
+        let viewModel = SignUpViewModel(navigator: navigator)
         let viewController = SignUpViewController(viewModel: viewModel)
         
         return viewController
