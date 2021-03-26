@@ -10,9 +10,8 @@ import Foundation
 
 typealias Country = (name: String?, flag: String?, callingCode: Int?)
 
-
 protocol CountrySelectable {
-    
+
     func getCountry(_ codeISO: String) -> Country
     func getCountryCodes() -> [String]
     func getAllCountries() -> [Country]

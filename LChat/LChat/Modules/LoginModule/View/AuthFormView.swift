@@ -38,9 +38,9 @@ class AuthFormView: UIView {
     
     
     
-    lazy var phoneTxtField: UITextField = {
+    lazy var phoneTxtField: PhoneNumberTextField = {
         
-        let txtField = UITextField(placeholder: " Phone")
+        let txtField = PhoneNumberTextField()
         txtField.backgroundColor = #colorLiteral(red: 0.9533203244, green: 0.9572271705, blue: 0.9638128877, alpha: 1)
         txtField.layer.cornerRadius = 10.0
         
@@ -63,8 +63,6 @@ class AuthFormView: UIView {
     
         return button
     }()
-    
-    
     
     
     

@@ -65,14 +65,8 @@ class SignUpViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         setBackgroundImage()
         setupLayout()
-        configCardViewButtonAction()
         setupViewModelObserver()
-        cardView.phoneTxtField.delegate = self
-        cardView.userNameTxtField.delegate = self
-        
-        cardView.titleLabel.text = "Sign Up"
-        cardView.button.setTitle("Signup Now", for: .normal)
-       
+        configCardView()
         
         NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow(_:)),
                                                 name: UIResponder.keyboardWillShowNotification,
@@ -81,8 +75,6 @@ class SignUpViewController: UIViewController {
           NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)),
                                                  name: UIResponder.keyboardWillHideNotification,
                                                  object: nil)
-        
-        
         
     }
     
@@ -114,7 +106,41 @@ class SignUpViewController: UIViewController {
 
     //MARK: - Methods -
     
-    func configCardViewButtonAction() {
+    
+    
+    private func configCardView() {
+        
+        configCardViewButtonAction()
+        configPhoneTxtFieldAction()
+        
+        cardView.phoneTxtField.delegate = self
+        cardView.userNameTxtField.delegate = self
+        
+        cardView.titleLabel.text = "Sign Up"
+        cardView.button.setTitle("Signup Now", for: .normal)
+        
+        if let code = viewModel.getLocaleCallingCode() {
+            print(code)
+            cardView.phoneTxtField.leftViewLabel.text = code
+        }
+    }
+    
+    
+    
+    
+    
+    
+   private func configPhoneTxtFieldAction() {
+        
+        cardView.phoneTxtField.leftViewTapAction = {
+            
+            print("left view tapped")
+        }
+    }
+    
+    
+    
+  private  func configCardViewButtonAction() {
         
         cardView.buttonAction = {
             
@@ -131,20 +157,19 @@ class SignUpViewController: UIViewController {
         if let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
             
             cardViewBottomConstraint?.constant = -frame.height
-            animateCardView()
+            
+            UIView.animate(withDuration: 0.5) {
+                
+                self.view.layoutIfNeeded()
+            }
         }
     }
     
     
     @objc
     private func keyboardWillHide(_ notification: Notification) {
+        
         cardViewBottomConstraint?.constant = 0
-        animateCardView()
-    }
-    
-    
-    
-    func animateCardView() {
         
         UIView.animate(withDuration: 0.5) {
             
@@ -167,10 +192,7 @@ class SignUpViewController: UIViewController {
     private func setupViewModelObserver() {
         
        
-        
-        
     }
-    
     
     
     

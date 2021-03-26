@@ -7,16 +7,11 @@
 
 import UIKit
 
-protocol PhoneNumberTextFieldDelegate: class {
-    func leftViewTapped()
-}
-
 class PhoneNumberTextField: UITextField {
     
     //MARK: - Properties
     
-    weak var leftViewDelegate: PhoneNumberTextFieldDelegate?
-    
+    var leftViewTapAction: (() -> ())?
     
     //MARK: - Subviews
     
@@ -24,9 +19,9 @@ class PhoneNumberTextField: UITextField {
     private let chevronDown = UIImageView(image: UIImage(systemName: "chevron.down"))
     
     
-    var countryLabel: UILabel = {
+    var leftViewLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "KohinoorTelugu-Medium", size: 20.0)
+        label.font = UIFont.systemFont(ofSize: 20.0)
         label.textAlignment = .center
         label.text = "+000"
         
@@ -42,7 +37,7 @@ class PhoneNumberTextField: UITextField {
         placeholder = "00 000 00 00"
         keyboardType = .numberPad
         
-        addLeftView(countryLabel)
+        addLeftView(leftViewLabel)
         
         leftView?.addSubview(chevronUp)
         leftView?.addSubview(chevronDown)
@@ -68,8 +63,23 @@ class PhoneNumberTextField: UITextField {
     }
     
     
+    
+    //MARK: - Private
+    
+    private func addGestureToLeftView() {
+        
+        if leftView != nil {
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(leftViewTapped))
+            leftViewLabel.isUserInteractionEnabled = true
+            leftViewLabel.addGestureRecognizer(tap)
+        }
+    }
+    
+    
+    
     @objc
-    func leftViewTapped() {
+    private func leftViewTapped() {
         
         if chevronUp.isHidden {
             
@@ -81,21 +91,8 @@ class PhoneNumberTextField: UITextField {
             chevronUp.isHidden = true
             chevronDown.isHidden = false
         }
-    }
-    
-    
-    //MARK: - Private
-    
-    
-    private func addGestureToLeftView() {
         
-        if leftView != nil {
-            
-            let tap = UITapGestureRecognizer(target: self, action: #selector(leftViewTapped))
-            tap.delegate = self
-            countryLabel.isUserInteractionEnabled = true
-            countryLabel.addGestureRecognizer(tap)
-        }
+        self.leftViewTapAction?()
     }
     
     
@@ -105,7 +102,6 @@ class PhoneNumberTextField: UITextField {
         self.leftViewMode = .always
         self.leftView = leftView
     }
-    
     
     
     private func configImages() {
@@ -118,7 +114,6 @@ class PhoneNumberTextField: UITextField {
         chevronUp.tintColor = #colorLiteral(red: 0.7401513457, green: 0.7386283278, blue: 0.7552842498, alpha: 1)
         chevronDown.tintColor = #colorLiteral(red: 0.7401513457, green: 0.7386283278, blue: 0.7552842498, alpha: 1)
     }
-    
     
     
     private func layoutImages() {
@@ -136,17 +131,5 @@ class PhoneNumberTextField: UITextField {
                 chevronDown.rightAnchor.constraint(equalTo: leftView.rightAnchor, constant: -2.0)
             ])
         }
-    }
-}
-
-
-
-extension PhoneNumberTextField: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive event: UIEvent) -> Bool {
-        
-        leftViewDelegate?.leftViewTapped()
-        
-        return true
     }
 }

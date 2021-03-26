@@ -27,7 +27,6 @@ class SignInViewController: UIViewController {
     //MARK: - Subviews
     
     
-    
     //TextField
     
     private let phoneTextField: PhoneNumberTextField = {
@@ -37,7 +36,7 @@ class SignInViewController: UIViewController {
         txtField.layer.borderWidth = 1.0
         txtField.layer.borderColor = UIColor.lightGray.cgColor
         txtField.clipsToBounds = true
-        txtField.countryLabel.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        txtField.leftViewLabel.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         txtField.tintColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         txtField.font = UIFont(name: "KohinoorTelugu-Medium", size: 20.0)
         
@@ -113,7 +112,7 @@ class SignInViewController: UIViewController {
     @objc
     private func signInBtnTapped() {
         
-        if let callingCode = phoneTextField.countryLabel.text, let number = phoneTextField.text {
+        if let callingCode = phoneTextField.leftViewLabel.text, let number = phoneTextField.text {
         
             let numberWithoutSpace = number.components(separatedBy: " ").joined()
             
@@ -127,7 +126,7 @@ class SignInViewController: UIViewController {
     
     private func subscribeDelegates() {
         
-        phoneTextField.leftViewDelegate = self
+     //   phoneTextField.leftViewDelegate = self
         phoneTextField.delegate = self
     }
     
@@ -138,7 +137,7 @@ class SignInViewController: UIViewController {
         let localeCountry = viewModel?.getLocaleCountry()
         
         if let code = localeCountry?.callingCode {
-            phoneTextField.countryLabel.text = "+\(code)"
+            phoneTextField.leftViewLabel.text = "+\(code)"
         }
     }
     
@@ -252,13 +251,13 @@ class SignInViewController: UIViewController {
 
 //MARK: Delegates
 
-extension SignInViewController: PhoneNumberTextFieldDelegate {
-    
-    func leftViewTapped() {
-        
-        viewModel?.navigator.navigate(to: .selectionCountry, presented: true)
-    }
-}
+//extension SignInViewController: PhoneNumberTextFieldDelegate {
+//
+//    func leftViewTapped() {
+//
+//        viewModel?.navigator.navigate(to: .selectionCountry, presented: true)
+//    }
+//}
 
 
 extension SignInViewController: CountriesViewControllerDelegate {
@@ -266,7 +265,7 @@ extension SignInViewController: CountriesViewControllerDelegate {
     func selectCountry(_ country: Country) {
         
         if let code = country.callingCode {
-            self.phoneTextField.countryLabel.text = "+\(code)"
+            self.phoneTextField.leftViewLabel.text = "+\(code)"
         }
     }
 }

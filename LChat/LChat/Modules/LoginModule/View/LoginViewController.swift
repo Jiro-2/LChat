@@ -66,14 +66,9 @@ final class LoginViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         setBackgroundImage()
         setupLayout()
-        configCardViewButtonAction()
         setupViewModelObserver()
-        cardView.titleLabel.text = "Get Login"
-        cardView.button.setTitle("Get Login", for: .normal)
-        cardView.phoneTxtField.delegate = self
-        cardView.userNameTxtField.delegate = self
-
-       
+        configCardView()
+        
         NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow(_:)),
                                                 name: UIResponder.keyboardWillShowNotification,
                                                 object: nil)
@@ -111,6 +106,38 @@ final class LoginViewController: UIViewController {
     
 
     //MARK: - Methods -
+    
+    
+    func configCardView() {
+        
+        configCardViewButtonAction()
+        configPhoneTxtFieldAction()
+        
+        cardView.titleLabel.text = "Get Login"
+        cardView.button.setTitle("Get Login", for: .normal)
+        
+        cardView.phoneTxtField.delegate = self
+        cardView.userNameTxtField.delegate = self
+
+        if let code = viewModel.getLocaleCallingCode() {
+            print(code)
+            cardView.phoneTxtField.leftViewLabel.text = code
+        }
+    }
+    
+    
+    
+    func configPhoneTxtFieldAction() {
+       
+        cardView.phoneTxtField.leftViewTapAction = { [weak self] in
+            
+            print("Did tap")
+            
+        }
+    }
+    
+    
+    
     
     func configCardViewButtonAction() {
         
@@ -170,7 +197,6 @@ final class LoginViewController: UIViewController {
     
     
     
-    
     private func setupLayout() {
         
         view.addSubviews([cardView, signUpButton])
@@ -203,3 +229,4 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
+
