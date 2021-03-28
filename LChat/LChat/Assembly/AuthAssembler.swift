@@ -30,4 +30,21 @@ class AuthAssembler {
         
         return viewController
     }
+    
+    static func buildVerificationModule() -> UIViewController {
+     
+        let viewModel = VerificationViewModel()
+        let viewController = VerificationViewController(viewModel: viewModel)
+        
+        return viewController
+    }
+    
+    static func buildCountriesModule() -> UIViewController {
+     
+        let countrySelector = CountrySelector()
+        let viewModel = CountriesViewModel(countrySelector: countrySelector)
+        let viewController = CountriesViewController(viewModel: viewModel)
+        
+        return viewController
+    }
 }
