@@ -9,33 +9,17 @@ import UIKit
 
 extension UITextField {
     
-    
     convenience init(placeholder: String) {
         self.init()
         self.placeholder = placeholder
     }
     
     
-    
-    convenience init(borderWidth: CGFloat, borderColor: UIColor, cornerRadius: CGFloat, leftPadding: CGFloat) {
+    convenience init(backgroundColor color: UIColor, cornerRadius radius: CGFloat, textAlignment: NSTextAlignment) {
         self.init()
-        self.layer.borderWidth = borderWidth
-        self.layer.borderColor = borderColor.cgColor
-        self.layer.cornerRadius = cornerRadius
-        translatesAutoresizingMaskIntoConstraints = false
-        self.addLeftPadding(with: leftPadding)
-    }
-    
-    
-    convenience init(borderColor: UIColor, borderWidth: CGFloat, textAlignment: NSTextAlignment = .center, tintColor: UIColor, font: UIFont?, cornerRadius: CGFloat) {
-        self.init()
-        translatesAutoresizingMaskIntoConstraints = false
-        self.layer.borderColor = borderColor.cgColor
-        self.layer.borderWidth = borderWidth
+        self.backgroundColor = color
+        self.layer.cornerRadius = radius
         self.textAlignment = textAlignment
-        self.tintColor = tintColor
-        self.font = font
-        self.layer.cornerRadius = cornerRadius
     }
 }
 
