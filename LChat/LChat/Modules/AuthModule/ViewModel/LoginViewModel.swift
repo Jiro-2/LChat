@@ -14,6 +14,7 @@ protocol LoginViewModelProtocol {
     func navigateToSignUp()
     func showCountries()
     func getLocaleCallingCode() -> Int?
+    func login(WithCallingCode code: String, phoneNumber phone: String, completion: @escaping (_ isSuccess: Bool) -> ())
 }
 
 
@@ -29,19 +30,25 @@ final class LoginViewModel: LoginViewModelProtocol {
     
     
     
-    func login(With phone: String) {
+    func login(WithCallingCode code: String, phoneNumber phone: String, completion: @escaping (_ isSuccess: Bool) -> ()) {
         
-        loginService.login(withPhone: phone) { result in
+        
+        if code != "+000" && phone.isValidPhone {
             
-            switch result {
-            
-            case .failure(let error):
-                
-                print(error)
-                
-            case .success(let verificationId):
-            
-                print(verificationId)
+            loginService.login(withPhone: code + phone) { result in
+
+                switch result {
+
+                case .failure(let error):
+
+                    print(error)
+                    completion(false)
+
+                case .success(let verificationId):
+
+                    print(verificationId)
+                    completion(true)
+                }
             }
         }
     }
