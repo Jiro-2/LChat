@@ -25,7 +25,7 @@ final class AuthCoordinator: Coordinator {
     
     func start() {
         
-        guard let vc = LoginAssembler.buildLoginModule() as? LoginViewController else { return }
+        guard let vc = AuthAssembler.buildLoginModule() as? LoginViewController else { return }
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
@@ -33,7 +33,14 @@ final class AuthCoordinator: Coordinator {
     
     func navigateToSignUp() {
         
-        guard let vc = LoginAssembler.buildSignUpModule() as? SignUpViewController else { return }
+        guard let vc = AuthAssembler.buildSignUpModule() as? SignUpViewController else { return }
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func navigateToVerification() {
+     
+        guard let vc = AuthAssembler.buildVerificationModule() as? VerificationViewController else { return }
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }

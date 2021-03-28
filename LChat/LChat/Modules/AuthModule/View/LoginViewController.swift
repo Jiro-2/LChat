@@ -2,16 +2,19 @@
 //  SignUpViewController.swift
 //  LChat
 //
-//  Created by Егор on 25.03.2021.
+//  Created by Егор on 23.03.2021.
 //
 
 import UIKit
 
-class SignUpViewController: UIViewController {
 
+final class LoginViewController: UIViewController {
+    
+    
     //MARK: - Properties -
     
-    var viewModel: SignUpViewModelProtocol
+    var viewModel: LoginViewModelProtocol
+    var coordinator: AuthCoordinator?
     var cardViewBottomConstraint: NSLayoutConstraint?
 
     
@@ -24,17 +27,16 @@ class SignUpViewController: UIViewController {
     }()
     
    
-    
-    lazy var logInButton: UIButton = {
+    lazy var signUpButton: UIButton = {
        
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Log In", for: .normal)
+        button.setTitle("Sign Up", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20.0, weight: .bold)
         
         button.addAction(UIAction(handler: { _ in
         
-            self.viewModel.navigateToLogin()
+            self.coordinator?.navigateToSignUp()
         
         }), for: .touchUpInside)
         
@@ -45,7 +47,7 @@ class SignUpViewController: UIViewController {
     
     //MARK: - Init -
     
-    init(viewModel: SignUpViewModelProtocol) {
+    init(viewModel: LoginViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -107,42 +109,42 @@ class SignUpViewController: UIViewController {
     //MARK: - Methods -
     
     
-    
-    private func configCardView() {
+    func configCardView() {
         
         configCardViewButtonAction()
         configPhoneTxtFieldAction()
         
+        cardView.titleLabel.text = "Get Login"
+        cardView.button.setTitle("Get Login", for: .normal)
+        
         cardView.phoneTxtField.delegate = self
         cardView.userNameTxtField.delegate = self
         
-        cardView.titleLabel.text = "Sign Up"
-        cardView.button.setTitle("Signup Now", for: .normal)
-        
         if let code = viewModel.getLocaleCallingCode() {
-            print(code)
-            cardView.phoneTxtField.leftViewLabel.text = code
-        }
-    }
-    
-    
-    
-    
-    
-    
-   private func configPhoneTxtFieldAction() {
-        
-        cardView.phoneTxtField.leftViewTapAction = {
             
-            print("left view tapped")
+            cardView.phoneTxtField.leftViewLabel.text = "+" + String(code)
         }
     }
     
     
     
-  private  func configCardViewButtonAction() {
+    func configPhoneTxtFieldAction() {
+       
+        cardView.phoneTxtField.leftViewTapAction = { [weak self] in
+
+
+            print(#function)
+            
+        }
+    }
+    
+    
+    
+    
+    func configCardViewButtonAction() {
         
         cardView.buttonAction = {
+            
             
             print("Did tap")
         }
@@ -166,9 +168,9 @@ class SignUpViewController: UIViewController {
     }
     
     
+    
     @objc
     private func keyboardWillHide(_ notification: Notification) {
-        
         cardViewBottomConstraint?.constant = 0
         
         UIView.animate(withDuration: 0.5) {
@@ -192,13 +194,14 @@ class SignUpViewController: UIViewController {
     private func setupViewModelObserver() {
         
        
+       
     }
     
     
     
     private func setupLayout() {
         
-        view.addSubviews([cardView, logInButton])
+        view.addSubviews([cardView, signUpButton])
         
         cardViewBottomConstraint = cardView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         cardViewBottomConstraint?.isActive = true
@@ -209,21 +212,36 @@ class SignUpViewController: UIViewController {
             cardView.widthAnchor.constraint(equalTo: view.widthAnchor),
             cardView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
             
-            logInButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20.0),
-            logInButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20.0),
+            signUpButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20.0),
+            signUpButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20.0),
             
         ])
     }
 }
 
 
+
 //MARK: - Extension -
 
 
-extension SignUpViewController: UITextFieldDelegate {
+extension LoginViewController: CountriesViewControllerDelegate {
     
-    
-    
-    
-    
+    func selectCountry(_ country: Country) {
+     
+        
+        
+        
+    }
 }
+
+
+
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        view.endEditing(true)
+        return true
+    }
+}
+

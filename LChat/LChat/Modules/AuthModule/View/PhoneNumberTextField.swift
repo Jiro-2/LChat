@@ -13,7 +13,7 @@ class PhoneNumberTextField: UITextField {
     
     var leftViewTapAction: (() -> ())?
     
-    //MARK: - Subviews
+    // Subviews
     
     private let chevronUp = UIImageView(image: UIImage(systemName: "chevron.up"))
     private let chevronDown = UIImageView(image: UIImage(systemName: "chevron.down"))
@@ -29,7 +29,7 @@ class PhoneNumberTextField: UITextField {
     }()
     
     
-    //MARK: - Init
+    //MARK: - Init -
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,17 +37,14 @@ class PhoneNumberTextField: UITextField {
         placeholder = "00 000 00 00"
         keyboardType = .numberPad
         
-        addLeftView(leftViewLabel)
-        
-        leftView?.addSubview(chevronUp)
-        leftView?.addSubview(chevronDown)
+        leftViewMode = .always
+        leftView = leftViewLabel
         
         chevronUp.isHidden = true
         
         configImages()
         layoutImages()
         addGestureToLeftView()
-        
     }
     
     
@@ -55,6 +52,9 @@ class PhoneNumberTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    //MARK: - Methods -
+
     
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         super.leftViewRect(forBounds: bounds)
@@ -64,7 +64,6 @@ class PhoneNumberTextField: UITextField {
     
     
     
-    //MARK: - Private
     
     private func addGestureToLeftView() {
         
@@ -96,14 +95,6 @@ class PhoneNumberTextField: UITextField {
     }
     
     
-    
-    private func addLeftView(_ leftView: UIView) {
-        
-        self.leftViewMode = .always
-        self.leftView = leftView
-    }
-    
-    
     private func configImages() {
         
         let configuration = UIImage.SymbolConfiguration(pointSize: 13.0, weight: .black)
@@ -117,8 +108,12 @@ class PhoneNumberTextField: UITextField {
     
     
     private func layoutImages() {
+        
         chevronUp.translatesAutoresizingMaskIntoConstraints = false
         chevronDown.translatesAutoresizingMaskIntoConstraints = false
+        
+        leftView?.addSubviews([chevronUp, chevronDown])
+        
         
         if let leftView = self.leftView {
             

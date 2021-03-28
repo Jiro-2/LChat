@@ -10,30 +10,29 @@ import Foundation
 protocol SignUpViewModelProtocol {
     
     func navigateToLogin()
-    func getLocaleCallingCode() -> String? 
+    func showCountries()
+    func getLocaleCallingCode() -> Int? 
 }
 
 
 final class SignUpViewModel: SignUpViewModelProtocol {
  
-   private let navigator: LoginNavigator
     private let countrySelector: CountrySelectable
     
-    init(navigator: LoginNavigator, countrySelector: CountrySelectable) {
-        self.navigator = navigator
+    init(countrySelector: CountrySelectable) {
         self.countrySelector = countrySelector
     }
     
     
     
-    func getLocaleCallingCode() -> String? {
+    func getLocaleCallingCode() -> Int? {
         
-        var code: String?
+        var code: Int?
         
         if let localeCode = Locale.current.regionCode?.uppercased() {
             
            let country = countrySelector.getCountry(localeCode)
-            code = String(describing: country.callingCode)
+            code = country.callingCode
         }
         
         return code
@@ -43,9 +42,14 @@ final class SignUpViewModel: SignUpViewModelProtocol {
     
     func navigateToLogin() {
         
-        navigator.navigate(to: .login, presented: false)
+        
         
     }
     
- 
+    
+    func showCountries() {
+        
+        
+        
+    }
 }

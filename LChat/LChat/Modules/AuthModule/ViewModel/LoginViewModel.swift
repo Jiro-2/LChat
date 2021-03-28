@@ -12,18 +12,17 @@ import Foundation
 protocol LoginViewModelProtocol {
     
     func navigateToSignUp()
-    func getLocaleCallingCode() -> String?
+    func showCountries()
+    func getLocaleCallingCode() -> Int?
 }
 
 
 final class LoginViewModel: LoginViewModelProtocol {
     
-    let navigator: LoginNavigator
     let loginService: FBLoginServiceProtocol
     let countrySelector: CountrySelectable
     
-    init(navigator: LoginNavigator, loginService: FBLoginServiceProtocol, countrySelector: CountrySelectable) {
-        self.navigator = navigator
+    init(loginService: FBLoginServiceProtocol, countrySelector: CountrySelectable) {
         self.loginService = loginService
         self.countrySelector = countrySelector
     }
@@ -49,14 +48,14 @@ final class LoginViewModel: LoginViewModelProtocol {
     
     
     
-    func getLocaleCallingCode() -> String? {
+    func getLocaleCallingCode() -> Int? {
         
-        var code: String?
+        var code: Int?
         
-        if let localeCode = Locale.current.regionCode?.uppercased() {
+        if let regionCode = Locale.current.regionCode?.uppercased() {
             
-           let country = countrySelector.getCountry(localeCode)
-            code = String(describing: country.callingCode)
+           let country = countrySelector.getCountry(regionCode)
+            code = country.callingCode
         }
         
         return code
@@ -65,6 +64,11 @@ final class LoginViewModel: LoginViewModelProtocol {
     
     func navigateToSignUp() {
         
-        navigator.navigate(to: .signUp, presented: false)
+    }
+    
+    
+    func showCountries() {
+
+        
     }
 }

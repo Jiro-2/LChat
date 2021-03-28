@@ -11,7 +11,6 @@ import Foundation
 protocol CountriesViewModelProtocol {
     
     var alphabet: [Character] { get }
-    func getISOCodes() -> [String]
     func getCountries() -> [Character:[Country]]
 }
 
@@ -19,23 +18,21 @@ protocol CountriesViewModelProtocol {
 
 class CountriesViewModel: CountriesViewModelProtocol {
     
+    //MARK: - Properties -
     
     var navigator: LoginNavigator?
     var countrySelector: CountrySelectable
     var alphabet: [Character] = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     
     
+    //MARK: - Init -
+    
     init(countrySelector: CountrySelectable) {
         self.countrySelector = countrySelector
     }
     
     
-    
-    func getISOCodes() -> [String] {
-        
-        countrySelector.getCountryCodes()
-    }
-    
+    //MARK: - Methods -
     
     func getCountries() -> [Character : [Country]] {
         

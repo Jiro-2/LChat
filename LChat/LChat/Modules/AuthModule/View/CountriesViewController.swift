@@ -15,49 +15,45 @@ protocol CountriesViewControllerDelegate: class {
 
 class CountriesViewController: UITableViewController {
     
-    //MARK: - Properties
+    //MARK: - Properties -
     
     var viewModel: CountriesViewModelProtocol?
     weak var delegate: CountriesViewControllerDelegate?
     var countries: [Character:[Country]]?
     
     
-    
-    //MARK: - Life Cycle
+    //MARK: - Lifecycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         countries = viewModel?.getCountries()
-        
-        subscribeDelegates()
-                
+        subscribeDelegate()
     }
     
+    //MARK: - Methods -
     
-    //MARK: - Private
     
-    
-    private func subscribeDelegates() {
-
-        if let navController = self.presentingViewController as? UINavigationController {
-
-            let vc = navController.viewControllers.last as? SignInViewController
+    func subscribeDelegate() {
         
-            self.delegate = vc
+        
+        if let previousVC = self.navigationController?.previousViewController() {
             
-//            for viewController in navController.viewControllers {
-//
-//                if let signinVC = viewController as? SignInViewController {
-//
-//                    self.delegate = signinVC
-//
-//                }
-//            }
+            if let loginVC = previousVC as? LoginViewController {
+                
+                delegate = loginVC
+            }
+            
+            if let signupVC = previousVC as? SignUpViewController {
+                
+                delegate = signupVC
+            }
         }
     }
     
-    //MARK: - Table
+    
+   
+    //MARK: - Table -
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -65,16 +61,7 @@ class CountriesViewController: UITableViewController {
             
             dismiss(animated: true) {
                 
-                if self.delegate != nil {
-                    
                     self.delegate?.selectCountry(countries[indexPath.row])
-                } else {
-                    
-                    let presentViewController = self.presentingViewController as? UINavigationController
-                    let signinViewController = presentViewController?.viewControllers[0] as? SignInViewController
-                    
-                    self.delegate = signinViewController
-                }
             }
         }
     }
@@ -84,19 +71,20 @@ class CountriesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell()
+        return UITableViewCell()
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         if let key = viewModel?.alphabet[indexPath.section],
            let countries = self.countries?[key],
            let flag = countries[indexPath.row].flag,
-           let name = countries[indexPath.row].name
-        {
+           let name = countries[indexPath.row].name {
+            
             cell.textLabel?.text = flag + " " + name
         }
-        
-        return cell
     }
-    
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
