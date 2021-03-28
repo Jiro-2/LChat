@@ -18,4 +18,16 @@ extension String {
         
         return Set(set).isSubset(of: digits)
     }
+    
+    var isValidPhone: Bool {
+        
+        // "[+]?[0-9]{3}[ -]?[0-9]{3}[ -]?[0-9]{2}[ -]?[0-9]{2}"
+        
+        let phonePattern = "[0-9]{2}[ -]?[0-9]{3}[ -]?[0-9]{2}[ -]?[0-9]{2}"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", phonePattern)
+        
+         return predicate.evaluate(with: self)
+    }
 }
+
+//96 951 88 03
