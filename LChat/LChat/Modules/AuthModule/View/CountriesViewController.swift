@@ -9,7 +9,7 @@ import UIKit
 
 protocol CountriesViewControllerDelegate: class {
     
-    func selectCountry(_ country: Country)
+    func viewController(_ viewController: UIViewController, didSelect country: Country)
 }
 
 
@@ -17,9 +17,23 @@ class CountriesViewController: UITableViewController {
     
     //MARK: - Properties -
     
-    var viewModel: CountriesViewModelProtocol?
+    var viewModel: CountriesViewModelProtocol
+    var coordinator: AuthCoordinator?
     weak var delegate: CountriesViewControllerDelegate?
     var countries: [Character:[Country]]?
+    
+    
+    //MARK: - Init -
+    
+    
+    init(viewModel: CountriesViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     //MARK: - Lifecycle -
@@ -27,7 +41,7 @@ class CountriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        countries = viewModel?.getCountries()
+        countries = viewModel.getCountries()
         subscribeDelegate()
     }
     
@@ -35,18 +49,18 @@ class CountriesViewController: UITableViewController {
     
     
     func subscribeDelegate() {
-        
-        
-        if let previousVC = self.navigationController?.previousViewController() {
+       
+        if let vc = self.coordinator?.navigationController.topViewController {
             
-            if let loginVC = previousVC as? LoginViewController {
+            if let loginVC = vc as? LoginViewController {
                 
+
                 delegate = loginVC
             }
             
-            if let signupVC = previousVC as? SignUpViewController {
+            if let signUp = vc as? SignUpViewController {
                 
-                delegate = signupVC
+                delegate = signUp
             }
         }
     }
@@ -57,11 +71,13 @@ class CountriesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let key = viewModel?.alphabet[indexPath.section], let countries = countries?[key] {
+        let key = viewModel.alphabet[indexPath.section]
+    
+        if let countries = countries?[key] {
             
             dismiss(animated: true) {
                 
-                    self.delegate?.selectCountry(countries[indexPath.row])
+                self.delegate?.viewController(self, didSelect: countries[indexPath.row])
             }
         }
     }
@@ -77,8 +93,9 @@ class CountriesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        if let key = viewModel?.alphabet[indexPath.section],
-           let countries = self.countries?[key],
+        let key = viewModel.alphabet[indexPath.section]
+        
+        if let countries = self.countries?[key],
            let flag = countries[indexPath.row].flag,
            let name = countries[indexPath.row].name {
             
@@ -98,8 +115,9 @@ class CountriesViewController: UITableViewController {
         
         var amountOfCountries: Int
         
-        if let key = viewModel?.alphabet[section], let countries = countries {
+        if let countries = countries {
             
+            let key = viewModel.alphabet[section]
             amountOfCountries = countries[key]?.count ?? 0
             
         } else {
@@ -114,14 +132,12 @@ class CountriesViewController: UITableViewController {
     
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         
-        viewModel?.alphabet.map() { "\($0)" }
+        viewModel.alphabet.map() { "\($0)" }
     }
     
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        guard let title = viewModel?.alphabet[section] else { return "Section" }
-        
-        return String(title).uppercased()
+                
+        return String(viewModel.alphabet[section]).uppercased()
     }
 }
