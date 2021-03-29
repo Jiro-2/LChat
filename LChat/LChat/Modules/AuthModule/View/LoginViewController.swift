@@ -13,14 +13,15 @@ final class LoginViewController: UIViewController {
     
     //MARK: - Properties -
     
+    
     var viewModel: LoginViewModelProtocol
     var coordinator: AuthCoordinator?
     var cardViewBottomConstraint: NSLayoutConstraint?
 
     
-   lazy var cardView: AuthFormView = {
+   lazy var cardView: AuthView = {
      
-        let view = AuthFormView()
+        let view = AuthView()
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -70,6 +71,9 @@ final class LoginViewController: UIViewController {
         setupViewModelObserver()
         configCardView()
         
+        viewModel.callingCode = cardView.phoneTxtField.leftViewLabel.text
+        viewModel.phoneNumber = cardView.phoneTxtField.text!
+        
         NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow(_:)),
                                                 name: UIResponder.keyboardWillShowNotification,
                                                 object: nil)
@@ -118,7 +122,7 @@ final class LoginViewController: UIViewController {
         cardView.button.setTitle("Get Login", for: .normal)
         
         cardView.phoneTxtField.delegate = self
-        cardView.userNameTxtField.delegate = self
+        cardView.userNameTxtField.isHidden = true
         
         if let code = viewModel.getLocaleCallingCode() {
             
@@ -130,11 +134,9 @@ final class LoginViewController: UIViewController {
     
     func configPhoneTxtFieldAction() {
        
-        cardView.phoneTxtField.leftViewTapAction = { [weak self] in
+        cardView.phoneTxtField.leftViewTapAction = {
 
-
-            print(#function)
-            
+            self.coordinator?.navigateToCountries()
         }
     }
     
@@ -145,8 +147,17 @@ final class LoginViewController: UIViewController {
         
         cardView.buttonAction = {
             
+            self.viewModel.login { isSuccess in
+             
+                if isSuccess {
+                    
+                    self.coordinator?.navigateToVerification()
             
-            print("Did tap")
+                } else {
+                    
+                    print("TODO:  Show alert with error in LoginVC")
+                }
+            }
         }
     }
     
@@ -213,8 +224,7 @@ final class LoginViewController: UIViewController {
             cardView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
             
             signUpButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20.0),
-            signUpButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20.0),
-            
+            signUpButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20.0)
         ])
     }
 }
@@ -226,11 +236,11 @@ final class LoginViewController: UIViewController {
 
 extension LoginViewController: CountriesViewControllerDelegate {
     
-    func selectCountry(_ country: Country) {
-     
-        
-        
-        
+    func viewController(_ viewController: UIViewController, didSelect country: Country) {
+                
+        if let code = country.callingCode {
+            self.cardView.phoneTxtField.leftViewLabel.text = "+" + String(code)
+        }
     }
 }
 
@@ -238,10 +248,36 @@ extension LoginViewController: CountriesViewControllerDelegate {
 
 extension LoginViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            
+                
+        if textField === cardView.phoneTxtField {
+                
+                if let text = textField.text {
+                    
+                    if !string.isEmpty {
+                        
+                        if text.count == 3 || text.count == 7 {
+                            
+                            textField.text! += " "
+                            
+                        } else if text.count == 11 {
+                            
+                            textField.text! += string
+                            view.endEditing(true)
+                        }
+                    }
+                }
+            }
+            
+            return true
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
         
-        view.endEditing(true)
-        return true
+            self.viewModel.callingCode = cardView.phoneTxtField.leftViewLabel.text
+            self.viewModel.phoneNumber = textField.text
     }
 }
 

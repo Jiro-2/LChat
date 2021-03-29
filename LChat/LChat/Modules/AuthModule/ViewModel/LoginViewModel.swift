@@ -11,17 +11,26 @@ import Foundation
 
 protocol LoginViewModelProtocol {
     
-    func navigateToSignUp()
-    func showCountries()
+    var callingCode: String? { get set }
+    var phoneNumber: String? { get set }
+    
     func getLocaleCallingCode() -> Int?
-    func login(WithCallingCode code: String, phoneNumber phone: String, completion: @escaping (_ isSuccess: Bool) -> ())
+    func login(completion: @escaping (_ isSuccess: Bool) -> ())
 }
 
 
 final class LoginViewModel: LoginViewModelProtocol {
     
+    //MARK: - Properties -
+    
     let loginService: FBLoginServiceProtocol
     let countrySelector: CountrySelectable
+    
+    var callingCode: String?
+    var phoneNumber: String?
+    
+    
+    //MARK: - Init -
     
     init(loginService: FBLoginServiceProtocol, countrySelector: CountrySelectable) {
         self.loginService = loginService
@@ -29,8 +38,12 @@ final class LoginViewModel: LoginViewModelProtocol {
     }
     
     
+    //MARK: - Methods -
     
-    func login(WithCallingCode code: String, phoneNumber phone: String, completion: @escaping (_ isSuccess: Bool) -> ()) {
+    func login(completion: @escaping (_ isSuccess: Bool) -> ()) {
+        
+        guard let code = self.callingCode else { completion(false); return }
+        guard let phone = self.phoneNumber else { completion(false); return }
         
         
         if code != "+000" && phone.isValidPhone {
@@ -66,16 +79,5 @@ final class LoginViewModel: LoginViewModelProtocol {
         }
         
         return code
-    }
-    
-    
-    func navigateToSignUp() {
-        
-    }
-    
-    
-    func showCountries() {
-
-        
     }
 }
