@@ -8,7 +8,7 @@
 import UIKit
 
 
-class AuthFormView: UIView {
+class AuthView: UIView {
     
     //MARK: - Properties -
     
@@ -16,16 +16,16 @@ class AuthFormView: UIView {
     
     
     //Subviews
+    
+    public lazy var titleLabel: UILabel = {
         
-   public lazy var titleLabel: UILabel = {
-       
         let label = UILabel(font: UIFont.systemFont(ofSize: 35.0, weight: .bold), textAlignment: .left)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Title"
         
         return label
     }()
-        
+    
     
     lazy var userNameTxtField: UITextField = {
         
@@ -33,7 +33,7 @@ class AuthFormView: UIView {
         txtField.backgroundColor = #colorLiteral(red: 0.9526441693, green: 0.9536944032, blue: 0.9636160731, alpha: 1)
         txtField.layer.cornerRadius = 10.0
         
-       return txtField
+        return txtField
     }()
     
     
@@ -44,13 +44,13 @@ class AuthFormView: UIView {
         txtField.backgroundColor = #colorLiteral(red: 0.9533203244, green: 0.9572271705, blue: 0.9638128877, alpha: 1)
         txtField.layer.cornerRadius = 10.0
         
-       return txtField
+        return txtField
     }()
     
     
     
     lazy var button: UIButton = {
-       
+        
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .primaryColor
@@ -60,7 +60,7 @@ class AuthFormView: UIView {
             self.buttonAction?()
             
         }), for: .touchUpInside)
-    
+        
         return button
     }()
     
@@ -68,7 +68,7 @@ class AuthFormView: UIView {
     
     
     lazy var stackView: UIStackView = {
-       
+        
         let stackView = UIStackView(arrangedSubviews: [userNameTxtField, phoneTxtField])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -77,8 +77,6 @@ class AuthFormView: UIView {
         
         return stackView
     }()
-    
-    
     
     
     
@@ -99,7 +97,7 @@ class AuthFormView: UIView {
     
     
     private func setupLayout() {
-     
+        
         addSubviews([titleLabel, stackView, button])
         
         NSLayoutConstraint.activate([
@@ -111,8 +109,8 @@ class AuthFormView: UIView {
             stackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8),
             stackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.28),
             stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20.0),
-
-        
+            
+            
             button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20.0),
             button.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             button.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15),
