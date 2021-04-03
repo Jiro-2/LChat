@@ -1,20 +1,24 @@
 //
-//  MainCoordinator.swift
+//  AppCoordinator.swift
 //  LChat
 //
-//  Created by Егор on 03.04.2021.
+//  Created by Егор on 04.04.2021.
 //
-
 
 import UIKit
 
-final class MainCoordinator: Coordinator {
+
+
+final class AppCoordinator: Coordinator {
+    
     
     //MARK: - Properties -
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
+    var isLoggedIn = false
     
+
     //MARK: - Init -
     
     init(navController: UINavigationController) {
@@ -24,27 +28,9 @@ final class MainCoordinator: Coordinator {
     
     //MARK: - Methods -
     
-    
     func start() {
         
-        let vc = MainAssembler.buildChatListModule()
-        self.navigationController.pushViewController(vc, animated: true)
-    }
-    
-    
-    
-    func navigateToSearch() {
-        
-       let vc = MainAssembler.buildSearchUserModule()
-       self.navigationController.pushViewController(vc, animated: true)
-    }
-    
-    
-    
-    func navigateToChat() {
-        
-        let vc = MainAssembler.buildChatModule()
-        self.navigationController.pushViewController(vc, animated: true)
+        isLoggedIn ? showHome() : showAuthentication()
     }
     
     
@@ -59,4 +45,22 @@ final class MainCoordinator: Coordinator {
             }
         }
     }
+
+    
+    
+    private func showAuthentication() {
+        
+        let authCoordinator = AuthCoordinator(navController: navigationController)
+        authCoordinator.start()
+        childCoordinators.append(authCoordinator)
+    }
+    
+    
+    private func showHome() {
+        
+        let mainCoordinator = MainCoordinator(navController: navigationController)
+        mainCoordinator.start()
+        childCoordinators.append(mainCoordinator)
+    }
+    
 }

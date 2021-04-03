@@ -11,6 +11,7 @@ final class AuthCoordinator: Coordinator {
     
     //MARK: - Properties -
     
+    weak var parentCoordinator: AppCoordinator?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -50,5 +51,10 @@ final class AuthCoordinator: Coordinator {
         guard let vc = AuthAssembler.buildCountriesModule() as? CountriesViewController else { return }
         vc.coordinator = self
         navigationController.present(vc, animated: true, completion: nil)
+    }
+    
+    func didFinishAuth() {
+        
+        parentCoordinator?.childDidFinish(self)
     }
 }
