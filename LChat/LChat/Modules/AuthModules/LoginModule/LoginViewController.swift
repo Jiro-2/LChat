@@ -2,34 +2,52 @@
 //  SignUpViewController.swift
 //  LChat
 //
-//  Created by Егор on 25.03.2021.
+//  Created by Егор on 23.03.2021.
 //
 
 import UIKit
 
-class SignUpViewController: UIViewController {
 
+final class LoginViewController: UIViewController {
+    
+    
     //MARK: - Properties -
     
-    var viewModel: SignUpViewModelProtocol
+    var viewModel: LoginViewModelProtocol
     var coordinator: AuthCoordinator?
     var cardViewBottomConstraint: NSLayoutConstraint?
 
-    //Subviews
     
-   lazy var cardView: AuthFormView = {
+   lazy var authView: AuthView = {
      
-        let view = AuthFormView()
+        let view = AuthView()
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
+    }()
+    
+   
+    lazy var signUpButton: UIButton = {
+       
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Sign Up", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20.0, weight: .bold)
+        
+        button.addAction(UIAction(handler: { _ in
+        
+            self.coordinator?.navigateToSignUp()
+        
+        }), for: .touchUpInside)
+        
+        return button
     }()
     
     
     
     //MARK: - Init -
     
-    init(viewModel: SignUpViewModelProtocol) {
+    init(viewModel: LoginViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -44,14 +62,15 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        self.navigationController?.navigationBar.isHidden = false
         
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        navigationController?.navigationBar.isHidden = true
         setBackgroundImage()
         setupLayout()
-        setupViewModelObserver()
         configCardView()
+        
+        viewModel.callingCode = authView.phoneTxtField.leftViewLabel.text
+        viewModel.phoneNumber = authView.phoneTxtField.text!
         
         NotificationCenter.default.addObserver( self, selector: #selector(keyboardWillShow(_:)),
                                                 name: UIResponder.keyboardWillShowNotification,
@@ -68,7 +87,7 @@ class SignUpViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        cardView.button.roundCorners(cardView.button.bounds.height / 2.0)
+        authView.button.roundCorners(authView.button.bounds.height / 2.0)
     }
     
     
@@ -84,7 +103,7 @@ class SignUpViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        cardView.roundCorners([.topLeft, .topRight], radius: 20.0)
+        authView.roundCorners([.topLeft, .topRight], radius: 20.0)
     }
     
     
@@ -92,45 +111,52 @@ class SignUpViewController: UIViewController {
     //MARK: - Methods -
     
     
-    private func configCardView() {
+    func configCardView() {
         
         configCardViewButtonAction()
         configPhoneTxtFieldAction()
         
-        cardView.phoneTxtField.delegate = self
-        cardView.userNameTxtField.delegate = self
+        authView.titleLabel.text = "Get Login"
+        authView.button.setTitle("Get Login", for: .normal)
         
-        cardView.titleLabel.text = "Sign Up"
-        cardView.button.setTitle("Signup Now", for: .normal)
+        authView.phoneTxtField.delegate = self
+        authView.usernameTxtField.isHidden = true
         
-                
         if let code = viewModel.getLocaleCallingCode() {
-                        
-            cardView.phoneTxtField.leftViewLabel.text = "+" + String(code)
-        }
-    }
-    
-    
-    
-   private func configPhoneTxtFieldAction() {
-        
-        cardView.phoneTxtField.leftViewTapAction = {
-           
-        
-            self.navigationController?.popToRootViewController(animated: true)
-           
-        }
-    }
-    
-    
-    
-    
-  private  func configCardViewButtonAction() {
-        
-        cardView.buttonAction = {
             
-            self.coordinator?.navigateToVerification()
-            print("Did tap")
+            authView.phoneTxtField.leftViewLabel.text = "+" + String(code)
+        }
+    }
+    
+    
+    
+    func configPhoneTxtFieldAction() {
+       
+        authView.phoneTxtField.leftViewTapAction = {
+
+            self.coordinator?.navigateToCountries()
+        }
+    }
+    
+    
+    
+    
+    func configCardViewButtonAction() {
+        
+        authView.buttonAction = {
+            
+            self.viewModel.verifyPhoneNumber { isSuccess in
+             
+                if isSuccess {
+                    
+                    self.coordinator?.navigateToVerification()
+                    self.subscribeDelegate()
+            
+                } else {
+                    
+                    print("TODO:  Show alert with error in LoginVC")
+                }
+            }
         }
     }
     
@@ -152,9 +178,9 @@ class SignUpViewController: UIViewController {
     }
     
     
+    
     @objc
     private func keyboardWillHide(_ notification: Notification) {
-        
         cardViewBottomConstraint?.constant = 0
         
         UIView.animate(withDuration: 0.5) {
@@ -175,49 +201,30 @@ class SignUpViewController: UIViewController {
     
     
     
-    private func setupViewModelObserver() {
+    
+    private func subscribeDelegate() {
         
-       
+        guard let vc = self.navigationController?.topViewController as? VerificationViewController else { return }
+        vc.delegate = self
     }
     
     
     
     private func setupLayout() {
         
-        view.addSubviews([cardView])
+        view.addSubviews([authView, signUpButton])
         
-        cardViewBottomConstraint = cardView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        cardViewBottomConstraint = authView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         cardViewBottomConstraint?.isActive = true
 
         NSLayoutConstraint.activate([
            
-            cardView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            cardView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            cardView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
-                        
+            authView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            authView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            authView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
+            
+            signUpButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20.0),
+            signUpButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20.0)
         ])
-    }
-}
-
-
-//MARK: - Extension -
-
-
-extension SignUpViewController: CountriesViewControllerDelegate {
-    
-    func selectCountry(_ country: Country) {
-        
-        cardView.phoneTxtField.leftViewLabel.text = "+" + String(country.callingCode!)
-        
-    }
-}
-
-
-extension SignUpViewController: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        view.endEditing(true)
-        return true
     }
 }

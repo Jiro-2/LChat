@@ -7,13 +7,11 @@
 
 import UIKit
 
-
 class AuthView: UIView {
     
     //MARK: - Properties -
     
     var buttonAction: (() -> ())?
-    
     
     //Subviews
     
@@ -27,9 +25,9 @@ class AuthView: UIView {
     }()
     
     
-    lazy var userNameTxtField: UITextField = {
+    lazy var usernameTxtField: UsernameTextField = {
         
-        let txtField = UITextField(placeholder: " User Name")
+        let txtField = UsernameTextField(placeholder: " User Name")
         txtField.backgroundColor = #colorLiteral(red: 0.9526441693, green: 0.9536944032, blue: 0.9636160731, alpha: 1)
         txtField.layer.cornerRadius = 10.0
         
@@ -69,7 +67,7 @@ class AuthView: UIView {
     
     lazy var stackView: UIStackView = {
         
-        let stackView = UIStackView(arrangedSubviews: [userNameTxtField, phoneTxtField])
+        let stackView = UIStackView(arrangedSubviews: [usernameTxtField, phoneTxtField])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillEqually

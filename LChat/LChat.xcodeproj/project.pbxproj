@@ -12,15 +12,18 @@
 		657901CEF1CE3288BAD0F93C /* Pods_LChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D7197217AAB63D1FA8310DA /* Pods_LChat.framework */; };
 		740D47CD2609E62C005C04A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D47CC2609E62C005C04A2 /* AppDelegate.swift */; };
 		740D47CF2609E62C005C04A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D47CE2609E62C005C04A2 /* SceneDelegate.swift */; };
-		740D47D12609E62C005C04A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D47D02609E62C005C04A2 /* ViewController.swift */; };
 		740D47D62609E62E005C04A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 740D47D52609E62E005C04A2 /* Assets.xcassets */; };
 		740D47D92609E62E005C04A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 740D47D72609E62E005C04A2 /* LaunchScreen.storyboard */; };
 		740D47E42609E62F005C04A2 /* LChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D47E32609E62F005C04A2 /* LChatTests.swift */; };
 		740D47EF2609E62F005C04A2 /* LChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D47EE2609E62F005C04A2 /* LChatUITests.swift */; };
+		7450139C260F7B7200539313 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7450139B260F7B7200539313 /* Coordinator.swift */; };
+		745013A1260F7E2200539313 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745013A0260F7E2200539313 /* AuthCoordinator.swift */; };
+		745013A9260FC14100539313 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745013A8260FC14100539313 /* VerificationViewController.swift */; };
+		745013B4260FC54F00539313 /* VerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745013B3260FC54F00539313 /* VerificationViewModel.swift */; };
+		7490AA3A261618CF00D078DE /* SignUpViewController+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490AA39261618CF00D078DE /* SignUpViewController+Delegates.swift */; };
+		7490AA4226166E4500D078DE /* LoginViewController+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490AA4126166E4500D078DE /* LoginViewController+Delegates.swift */; };
+		74A203F12613A0F700EC90FA /* UsernameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A203F02613A0F700EC90FA /* UsernameTextField.swift */; };
 		74F86CB12609F9BC00CA03EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74F86CB02609F9BC00CA03EC /* GoogleService-Info.plist */; };
-		74F86CC42609FFE700CA03EC /* ChatNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CC32609FFE700CA03EC /* ChatNavigator.swift */; };
-		74F86CC92609FFF200CA03EC /* LoginNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CC82609FFF200CA03EC /* LoginNavigator.swift */; };
-		74F86CCE2609FFFB00CA03EC /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CCD2609FFFB00CA03EC /* Navigator.swift */; };
 		74F86CF1260A007700CA03EC /* FBDatabaseLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CDF260A007600CA03EC /* FBDatabaseLoader.swift */; };
 		74F86CF2260A007700CA03EC /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CE0260A007600CA03EC /* ChatService.swift */; };
 		74F86CF3260A007700CA03EC /* ObserveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86CE1260A007600CA03EC /* ObserveService.swift */; };
@@ -39,14 +42,8 @@
 		74F86D40260A013600CA03EC /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D09260A013600CA03EC /* ChatViewController.swift */; };
 		74F86D41260A013600CA03EC /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D0C260A013600CA03EC /* SettingViewModel.swift */; };
 		74F86D42260A013600CA03EC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D0E260A013600CA03EC /* SettingViewController.swift */; };
-		74F86D43260A013600CA03EC /* AuthCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D11260A013600CA03EC /* AuthCodeViewModel.swift */; };
 		74F86D44260A013600CA03EC /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D12260A013600CA03EC /* CountriesViewModel.swift */; };
-		74F86D45260A013600CA03EC /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D13260A013600CA03EC /* SigninViewModel.swift */; };
-		74F86D46260A013600CA03EC /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D14260A013600CA03EC /* RegisterViewModel.swift */; };
-		74F86D47260A013600CA03EC /* AuthCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D16260A013600CA03EC /* AuthCodeViewController.swift */; };
 		74F86D48260A013600CA03EC /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D17260A013600CA03EC /* CountriesViewController.swift */; };
-		74F86D49260A013600CA03EC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D18260A013600CA03EC /* SignInViewController.swift */; };
-		74F86D4A260A013600CA03EC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D19260A013600CA03EC /* RegisterViewController.swift */; };
 		74F86D4B260A013600CA03EC /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D1C260A013600CA03EC /* ProfileViewModel.swift */; };
 		74F86D4C260A013600CA03EC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D1E260A013600CA03EC /* ProfileViewController.swift */; };
 		74F86D4D260A013600CA03EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D21260A013600CA03EC /* HomeViewModel.swift */; };
@@ -67,7 +64,7 @@
 		74F86D89260A101D00CA03EC /* UINavController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D7F260A101D00CA03EC /* UINavController+Extension.swift */; };
 		74F86D8A260A101D00CA03EC /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D80260A101D00CA03EC /* UIView+Extension.swift */; };
 		74F86D8B260A101D00CA03EC /* Character+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D81260A101D00CA03EC /* Character+Extension.swift */; };
-		74F86D8C260A101D00CA03EC /* Extension+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D82260A101D00CA03EC /* Extension+UILabel.swift */; };
+		74F86D8C260A101D00CA03EC /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D82260A101D00CA03EC /* UILabel+Extension.swift */; };
 		74F86D8D260A101D00CA03EC /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D83260A101D00CA03EC /* String+Extension.swift */; };
 		74F86D8E260A101D00CA03EC /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D84260A101D00CA03EC /* DateFormatter+Extension.swift */; };
 		74F86D8F260A101D00CA03EC /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D85260A101D00CA03EC /* UIStackView+Extension.swift */; };
@@ -77,13 +74,13 @@
 		74F86DA0260A115D00CA03EC /* FBWriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D9D260A115D00CA03EC /* FBWriteService.swift */; };
 		74F86DA1260A115D00CA03EC /* FBObserveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D9E260A115D00CA03EC /* FBObserveService.swift */; };
 		74F86DA2260A115D00CA03EC /* FBStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D9F260A115D00CA03EC /* FBStorageService.swift */; };
-		74F86DB3260A22FF00CA03EC /* FBLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DB2260A22FF00CA03EC /* FBLoginService.swift */; };
+		74F86DB3260A22FF00CA03EC /* FBAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DB2260A22FF00CA03EC /* FBAuthService.swift */; };
 		74F86DB8260A311F00CA03EC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DB7260A311F00CA03EC /* LoginViewController.swift */; };
 		74F86DD2260B912C00CA03EC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DD1260B912C00CA03EC /* LoginViewModel.swift */; };
-		74F86DDA260B9A6D00CA03EC /* AuthFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DD9260B9A6D00CA03EC /* AuthFormView.swift */; };
+		74F86DDA260B9A6D00CA03EC /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DD9260B9A6D00CA03EC /* AuthView.swift */; };
 		74F86DFA260D359C00CA03EC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DF9260D359C00CA03EC /* SignUpViewController.swift */; };
 		74F86DFF260D36CD00CA03EC /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DFE260D36CD00CA03EC /* SignUpViewModel.swift */; };
-		74F86E10260D3ECB00CA03EC /* LoginAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86E0F260D3ECB00CA03EC /* LoginAssembler.swift */; };
+		74F86E10260D3ECB00CA03EC /* AuthAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86E0F260D3ECB00CA03EC /* AuthAssembler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,7 +111,6 @@
 		740D47C92609E62C005C04A2 /* LChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		740D47CC2609E62C005C04A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		740D47CE2609E62C005C04A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		740D47D02609E62C005C04A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		740D47D52609E62E005C04A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		740D47D82609E62E005C04A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		740D47DA2609E62E005C04A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -124,10 +120,14 @@
 		740D47EA2609E62F005C04A2 /* LChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		740D47EE2609E62F005C04A2 /* LChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LChatUITests.swift; sourceTree = "<group>"; };
 		740D47F02609E62F005C04A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7450139B260F7B7200539313 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		745013A0260F7E2200539313 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		745013A8260FC14100539313 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
+		745013B3260FC54F00539313 /* VerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewModel.swift; sourceTree = "<group>"; };
+		7490AA39261618CF00D078DE /* SignUpViewController+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignUpViewController+Delegates.swift"; sourceTree = "<group>"; };
+		7490AA4126166E4500D078DE /* LoginViewController+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Delegates.swift"; sourceTree = "<group>"; };
+		74A203F02613A0F700EC90FA /* UsernameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameTextField.swift; sourceTree = "<group>"; };
 		74F86CB02609F9BC00CA03EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		74F86CC32609FFE700CA03EC /* ChatNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatNavigator.swift; sourceTree = "<group>"; };
-		74F86CC82609FFF200CA03EC /* LoginNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNavigator.swift; sourceTree = "<group>"; };
-		74F86CCD2609FFFB00CA03EC /* Navigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		74F86CDF260A007600CA03EC /* FBDatabaseLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBDatabaseLoader.swift; sourceTree = "<group>"; };
 		74F86CE0260A007600CA03EC /* ChatService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		74F86CE1260A007600CA03EC /* ObserveService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserveService.swift; sourceTree = "<group>"; };
@@ -146,14 +146,8 @@
 		74F86D09260A013600CA03EC /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		74F86D0C260A013600CA03EC /* SettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		74F86D0E260A013600CA03EC /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		74F86D11260A013600CA03EC /* AuthCodeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCodeViewModel.swift; sourceTree = "<group>"; };
 		74F86D12260A013600CA03EC /* CountriesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
-		74F86D13260A013600CA03EC /* SigninViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
-		74F86D14260A013600CA03EC /* RegisterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
-		74F86D16260A013600CA03EC /* AuthCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCodeViewController.swift; sourceTree = "<group>"; };
 		74F86D17260A013600CA03EC /* CountriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
-		74F86D18260A013600CA03EC /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		74F86D19260A013600CA03EC /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		74F86D1C260A013600CA03EC /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		74F86D1E260A013600CA03EC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		74F86D21260A013600CA03EC /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -174,7 +168,7 @@
 		74F86D7F260A101D00CA03EC /* UINavController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavController+Extension.swift"; sourceTree = "<group>"; };
 		74F86D80260A101D00CA03EC /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		74F86D81260A101D00CA03EC /* Character+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Character+Extension.swift"; sourceTree = "<group>"; };
-		74F86D82260A101D00CA03EC /* Extension+UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UILabel.swift"; sourceTree = "<group>"; };
+		74F86D82260A101D00CA03EC /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		74F86D83260A101D00CA03EC /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		74F86D84260A101D00CA03EC /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		74F86D85260A101D00CA03EC /* UIStackView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
@@ -184,13 +178,13 @@
 		74F86D9D260A115D00CA03EC /* FBWriteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBWriteService.swift; sourceTree = "<group>"; };
 		74F86D9E260A115D00CA03EC /* FBObserveService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBObserveService.swift; sourceTree = "<group>"; };
 		74F86D9F260A115D00CA03EC /* FBStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBStorageService.swift; sourceTree = "<group>"; };
-		74F86DB2260A22FF00CA03EC /* FBLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBLoginService.swift; sourceTree = "<group>"; };
+		74F86DB2260A22FF00CA03EC /* FBAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAuthService.swift; sourceTree = "<group>"; };
 		74F86DB7260A311F00CA03EC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		74F86DD1260B912C00CA03EC /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		74F86DD9260B9A6D00CA03EC /* AuthFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFormView.swift; sourceTree = "<group>"; };
+		74F86DD9260B9A6D00CA03EC /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		74F86DF9260D359C00CA03EC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		74F86DFE260D36CD00CA03EC /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
-		74F86E0F260D3ECB00CA03EC /* LoginAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAssembler.swift; sourceTree = "<group>"; };
+		74F86E0F260D3ECB00CA03EC /* AuthAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAssembler.swift; sourceTree = "<group>"; };
 		AC207C6CA9B66BA72A81161E /* Pods-LChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LChat.release.xcconfig"; path = "Target Support Files/Pods-LChat/Pods-LChat.release.xcconfig"; sourceTree = "<group>"; };
 		FD6279072B7B6ADB04DB401A /* Pods_LChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -258,18 +252,17 @@
 		740D47CB2609E62C005C04A2 /* LChat */ = {
 			isa = PBXGroup;
 			children = (
+				74F86CB52609FEA000CA03EC /* Models */,
 				74F86D9C260A115D00CA03EC /* Services */,
-				74F86D94260A10F100CA03EC /* Views */,
-				74F86D7C260A101D00CA03EC /* Extensions */,
-				74F86D69260A0F3400CA03EC /* Cells */,
-				74F86D02260A013600CA03EC /* Modules */,
-				74F86CC22609FFA600CA03EC /* Navigators */,
+				7450139A260F7AF900539313 /* Coordinator */,
 				74F86CE6260A007700CA03EC /* Assembly */,
 				74F86CEF260A007700CA03EC /* Bind */,
-				74F86CB52609FEA000CA03EC /* Models */,
+				74F86D94260A10F100CA03EC /* Views */,
+				74F86D02260A013600CA03EC /* Modules */,
+				74F86D7C260A101D00CA03EC /* Extensions */,
+				74F86D69260A0F3400CA03EC /* Cells */,
 				740D47CC2609E62C005C04A2 /* AppDelegate.swift */,
 				740D47CE2609E62C005C04A2 /* SceneDelegate.swift */,
-				740D47D02609E62C005C04A2 /* ViewController.swift */,
 				740D47D52609E62E005C04A2 /* Assets.xcassets */,
 				740D47D72609E62E005C04A2 /* LaunchScreen.storyboard */,
 				740D47DA2609E62E005C04A2 /* Info.plist */,
@@ -296,6 +289,53 @@
 			path = LChatUITests;
 			sourceTree = "<group>";
 		};
+		7450139A260F7AF900539313 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				7450139B260F7B7200539313 /* Coordinator.swift */,
+				745013A0260F7E2200539313 /* AuthCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		7490AA492618C5EB00D078DE /* SignUpModule */ = {
+			isa = PBXGroup;
+			children = (
+				74F86DFE260D36CD00CA03EC /* SignUpViewModel.swift */,
+				74F86DF9260D359C00CA03EC /* SignUpViewController.swift */,
+				7490AA39261618CF00D078DE /* SignUpViewController+Delegates.swift */,
+			);
+			path = SignUpModule;
+			sourceTree = "<group>";
+		};
+		7490AA4A2618C5FB00D078DE /* LoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				74F86DD1260B912C00CA03EC /* LoginViewModel.swift */,
+				74F86DB7260A311F00CA03EC /* LoginViewController.swift */,
+				7490AA4126166E4500D078DE /* LoginViewController+Delegates.swift */,
+			);
+			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		7490AA4B2618C60800D078DE /* VerificationModule */ = {
+			isa = PBXGroup;
+			children = (
+				745013A8260FC14100539313 /* VerificationViewController.swift */,
+				745013B3260FC54F00539313 /* VerificationViewModel.swift */,
+			);
+			path = VerificationModule;
+			sourceTree = "<group>";
+		};
+		7490AA4C2618C6E100D078DE /* CountriesModule */ = {
+			isa = PBXGroup;
+			children = (
+				74F86D17260A013600CA03EC /* CountriesViewController.swift */,
+				74F86D12260A013600CA03EC /* CountriesViewModel.swift */,
+			);
+			path = CountriesModule;
+			sourceTree = "<group>";
+		};
 		74F86CB52609FEA000CA03EC /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,16 +347,6 @@
 				74F86CE5260A007700CA03EC /* User.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		74F86CC22609FFA600CA03EC /* Navigators */ = {
-			isa = PBXGroup;
-			children = (
-				74F86CC32609FFE700CA03EC /* ChatNavigator.swift */,
-				74F86CC82609FFF200CA03EC /* LoginNavigator.swift */,
-				74F86CCD2609FFFB00CA03EC /* Navigator.swift */,
-			);
-			path = Navigators;
 			sourceTree = "<group>";
 		};
 		74F86CDE260A007600CA03EC /* ChatService */ = {
@@ -342,7 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				74F86CE7260A007700CA03EC /* MainAssembler.swift */,
-				74F86E0F260D3ECB00CA03EC /* LoginAssembler.swift */,
+				74F86E0F260D3ECB00CA03EC /* AuthAssembler.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -369,11 +399,11 @@
 		74F86D02260A013600CA03EC /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				74F86D0F260A013600CA03EC /* AuthModules */,
+				74F86D1F260A013600CA03EC /* HomeModule */,
+				74F86D1A260A013600CA03EC /* ProfileModule */,
 				74F86D03260A013600CA03EC /* ChatModule */,
 				74F86D0A260A013600CA03EC /* SettingModule */,
-				74F86D0F260A013600CA03EC /* LoginModule */,
-				74F86D1A260A013600CA03EC /* ProfileModule */,
-				74F86D1F260A013600CA03EC /* HomeModule */,
 				74F86D29260A013600CA03EC /* ChatListModule */,
 				74F86D39260A013600CA03EC /* SearchModule */,
 			);
@@ -430,40 +460,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		74F86D0F260A013600CA03EC /* LoginModule */ = {
+		74F86D0F260A013600CA03EC /* AuthModules */ = {
 			isa = PBXGroup;
 			children = (
-				74F86D10260A013600CA03EC /* ViewModels */,
-				74F86D15260A013600CA03EC /* View */,
+				7490AA4C2618C6E100D078DE /* CountriesModule */,
+				7490AA4B2618C60800D078DE /* VerificationModule */,
+				7490AA4A2618C5FB00D078DE /* LoginModule */,
+				7490AA492618C5EB00D078DE /* SignUpModule */,
 			);
-			path = LoginModule;
-			sourceTree = "<group>";
-		};
-		74F86D10260A013600CA03EC /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				74F86D11260A013600CA03EC /* AuthCodeViewModel.swift */,
-				74F86D12260A013600CA03EC /* CountriesViewModel.swift */,
-				74F86D13260A013600CA03EC /* SigninViewModel.swift */,
-				74F86D14260A013600CA03EC /* RegisterViewModel.swift */,
-				74F86DD1260B912C00CA03EC /* LoginViewModel.swift */,
-				74F86DFE260D36CD00CA03EC /* SignUpViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		74F86D15260A013600CA03EC /* View */ = {
-			isa = PBXGroup;
-			children = (
-				74F86D16260A013600CA03EC /* AuthCodeViewController.swift */,
-				74F86D17260A013600CA03EC /* CountriesViewController.swift */,
-				74F86D18260A013600CA03EC /* SignInViewController.swift */,
-				74F86D19260A013600CA03EC /* RegisterViewController.swift */,
-				74F86DB7260A311F00CA03EC /* LoginViewController.swift */,
-				74F86DF9260D359C00CA03EC /* SignUpViewController.swift */,
-				74F86DD9260B9A6D00CA03EC /* AuthFormView.swift */,
-			);
-			path = View;
+			path = AuthModules;
 			sourceTree = "<group>";
 		};
 		74F86D1A260A013600CA03EC /* ProfileModule */ = {
@@ -596,7 +601,7 @@
 				74F86D7F260A101D00CA03EC /* UINavController+Extension.swift */,
 				74F86D80260A101D00CA03EC /* UIView+Extension.swift */,
 				74F86D81260A101D00CA03EC /* Character+Extension.swift */,
-				74F86D82260A101D00CA03EC /* Extension+UILabel.swift */,
+				74F86D82260A101D00CA03EC /* UILabel+Extension.swift */,
 				74F86D83260A101D00CA03EC /* String+Extension.swift */,
 				74F86D84260A101D00CA03EC /* DateFormatter+Extension.swift */,
 				74F86D85260A101D00CA03EC /* UIStackView+Extension.swift */,
@@ -608,8 +613,10 @@
 		74F86D94260A10F100CA03EC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				74F86D95260A10F100CA03EC /* UnSeenMessageBadgeLabel.swift */,
+				74F86DD9260B9A6D00CA03EC /* AuthView.swift */,
 				74F86D96260A10F100CA03EC /* PhoneNumberTextField.swift */,
+				74A203F02613A0F700EC90FA /* UsernameTextField.swift */,
+				74F86D95260A10F100CA03EC /* UnSeenMessageBadgeLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -620,7 +627,7 @@
 				74F86D9D260A115D00CA03EC /* FBWriteService.swift */,
 				74F86D9E260A115D00CA03EC /* FBObserveService.swift */,
 				74F86D9F260A115D00CA03EC /* FBStorageService.swift */,
-				74F86DB2260A22FF00CA03EC /* FBLoginService.swift */,
+				74F86DB2260A22FF00CA03EC /* FBAuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -877,36 +884,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				74F86D90260A101D00CA03EC /* UITextField+Extension.swift in Sources */,
-				740D47D12609E62C005C04A2 /* ViewController.swift in Sources */,
+				745013A9260FC14100539313 /* VerificationViewController.swift in Sources */,
 				74F86D51260A013600CA03EC /* ChatListViewModel.swift in Sources */,
 				74F86D48260A013600CA03EC /* CountriesViewController.swift in Sources */,
 				74F86D88260A101D00CA03EC /* UIColor+extension.swift in Sources */,
 				74F86D3E260A013600CA03EC /* ChatViewModel.swift in Sources */,
-				74F86CCE2609FFFB00CA03EC /* Navigator.swift in Sources */,
+				745013A1260F7E2200539313 /* AuthCoordinator.swift in Sources */,
 				74F86D44260A013600CA03EC /* CountriesViewModel.swift in Sources */,
-				74F86CC42609FFE700CA03EC /* ChatNavigator.swift in Sources */,
 				74F86DFA260D359C00CA03EC /* SignUpViewController.swift in Sources */,
 				74F86D72260A0F3400CA03EC /* ChatTableViewCell.swift in Sources */,
 				74F86DB8260A311F00CA03EC /* LoginViewController.swift in Sources */,
 				74F86D8B260A101D00CA03EC /* Character+Extension.swift in Sources */,
 				74F86CF5260A007700CA03EC /* FirebasePath.swift in Sources */,
-				74F86E10260D3ECB00CA03EC /* LoginAssembler.swift in Sources */,
+				74F86E10260D3ECB00CA03EC /* AuthAssembler.swift in Sources */,
 				74F86D52260A013600CA03EC /* ChatListViewController.swift in Sources */,
 				74F86CFD260A007800CA03EC /* UserRegisterData.swift in Sources */,
-				74F86CC92609FFF200CA03EC /* LoginNavigator.swift in Sources */,
 				74F86CF1260A007700CA03EC /* FBDatabaseLoader.swift in Sources */,
+				7490AA3A261618CF00D078DE /* SignUpViewController+Delegates.swift in Sources */,
 				74F86DFF260D36CD00CA03EC /* SignUpViewModel.swift in Sources */,
+				745013B4260FC54F00539313 /* VerificationViewModel.swift in Sources */,
 				74F86CF7260A007800CA03EC /* MainAssembler.swift in Sources */,
 				74F86CFC260A007800CA03EC /* CountrySelector.swift in Sources */,
-				74F86D4A260A013600CA03EC /* RegisterViewController.swift in Sources */,
 				74F86D73260A0F3400CA03EC /* UserTableViewCell.swift in Sources */,
-				74F86DB3260A22FF00CA03EC /* FBLoginService.swift in Sources */,
+				74F86DB3260A22FF00CA03EC /* FBAuthService.swift in Sources */,
 				74F86D4E260A013600CA03EC /* HomeTabBarController.swift in Sources */,
 				74F86DA1260A115D00CA03EC /* FBObserveService.swift in Sources */,
 				74F86D42260A013600CA03EC /* SettingViewController.swift in Sources */,
-				74F86DDA260B9A6D00CA03EC /* AuthFormView.swift in Sources */,
+				74F86DDA260B9A6D00CA03EC /* AuthView.swift in Sources */,
 				74F86D5C260A013600CA03EC /* SearchUserViewController.swift in Sources */,
-				74F86D8C260A101D00CA03EC /* Extension+UILabel.swift in Sources */,
+				74F86D8C260A101D00CA03EC /* UILabel+Extension.swift in Sources */,
 				74F86CF3260A007700CA03EC /* ObserveService.swift in Sources */,
 				74F86CFE260A007800CA03EC /* Bindable.swift in Sources */,
 				74F86CF2260A007700CA03EC /* ChatService.swift in Sources */,
@@ -914,8 +920,8 @@
 				74F86CF8260A007800CA03EC /* Chat.swift in Sources */,
 				74F86CF6260A007700CA03EC /* User.swift in Sources */,
 				74F86D8F260A101D00CA03EC /* UIStackView+Extension.swift in Sources */,
+				7490AA4226166E4500D078DE /* LoginViewController+Delegates.swift in Sources */,
 				74F86D4D260A013600CA03EC /* HomeViewModel.swift in Sources */,
-				74F86D47260A013600CA03EC /* AuthCodeViewController.swift in Sources */,
 				74F86D78260A0F3500CA03EC /* NotificationTableViewCell.swift in Sources */,
 				74F86CF4260A007700CA03EC /* FIRDatabaseSearcher.swift in Sources */,
 				74F86D40260A013600CA03EC /* ChatViewController.swift in Sources */,
@@ -928,23 +934,21 @@
 				74F86D98260A10F100CA03EC /* PhoneNumberTextField.swift in Sources */,
 				74F86D75260A0F3400CA03EC /* ChatCustomizeTableViewCell.swift in Sources */,
 				740D47CF2609E62C005C04A2 /* SceneDelegate.swift in Sources */,
-				74F86D45260A013600CA03EC /* SigninViewModel.swift in Sources */,
-				74F86D49260A013600CA03EC /* SignInViewController.swift in Sources */,
 				74F86D4B260A013600CA03EC /* ProfileViewModel.swift in Sources */,
 				74F86D74260A0F3400CA03EC /* DeleteAccountTableViewCell.swift in Sources */,
-				74F86D46260A013600CA03EC /* RegisterViewModel.swift in Sources */,
 				74F86DD2260B912C00CA03EC /* LoginViewModel.swift in Sources */,
 				74F86D8D260A101D00CA03EC /* String+Extension.swift in Sources */,
 				74F86DA0260A115D00CA03EC /* FBWriteService.swift in Sources */,
 				74F86D87260A101D00CA03EC /* UIImageView+Extension.swift in Sources */,
 				74F86D77260A0F3500CA03EC /* LanguageTableViewCell.swift in Sources */,
+				7450139C260F7B7200539313 /* Coordinator.swift in Sources */,
 				74F86D89260A101D00CA03EC /* UINavController+Extension.swift in Sources */,
 				74F86D76260A0F3500CA03EC /* DarkModeTableViewCell.swift in Sources */,
+				74A203F12613A0F700EC90FA /* UsernameTextField.swift in Sources */,
 				74F86DA2260A115D00CA03EC /* FBStorageService.swift in Sources */,
 				74F86D4C260A013600CA03EC /* ProfileViewController.swift in Sources */,
 				74F86CFA260A007800CA03EC /* PhoneNumber.swift in Sources */,
 				74F86D8E260A101D00CA03EC /* DateFormatter+Extension.swift in Sources */,
-				74F86D43260A013600CA03EC /* AuthCodeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

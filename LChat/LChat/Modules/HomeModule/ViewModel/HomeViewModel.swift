@@ -15,13 +15,11 @@ protocol HomeViewModelProtocol {
 
 class HomeViewModel: HomeViewModelProtocol {
     
-    let navigator: ChatNavigator
     
-    init(navigator: ChatNavigator) {
-        self.navigator = navigator
-    }
     
     func search() {
-        navigator.navigate(to: .search, presented: false)
+        
+        
+        
     }
 }

@@ -45,10 +45,10 @@ final class AuthCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func navigateToCountriesList() {
+    func navigateToCountries() {
         
         guard let vc = AuthAssembler.buildCountriesModule() as? CountriesViewController else { return }
         vc.coordinator = self
-        navigationController.pushViewController(vc, animated: true)
+        navigationController.present(vc, animated: true, completion: nil)
     }
 }

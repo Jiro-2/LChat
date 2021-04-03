@@ -9,12 +9,11 @@ import UIKit
 
 final class MainAssembler {
     
-    static func buildSearchUserModule(navigator: ChatNavigator) -> UIViewController {
+    static func buildSearchUserModule() -> UIViewController {
         
         let searcher = FIRDatabaseSearcher()
         let viewModel = SearchUserViewModel(databaseSearcher: searcher)
         let viewController = SearchUserViewController(viewModel: viewModel)
-        viewModel.navigator = navigator
         
         return viewController
     }
@@ -30,16 +29,14 @@ final class MainAssembler {
         return viewController
     }
     
-    static func buildChatListModule(navigator: ChatNavigator) -> UIViewController {
+    static func buildChatListModule() -> UIViewController {
         
         let chatManager = ChatService()
         let viewModel = ChatListViewModel(chatManager: chatManager)
-        
-        viewModel.navigator = navigator
-        
+                
         let viewController = ChatListViewController(viewModel: viewModel)
         
-        let homeViewModel = HomeViewModel(navigator: navigator)
+        let homeViewModel = HomeViewModel()
         let tabBarController = HomeTabBarController(viewModel: homeViewModel)
         tabBarController.setViewControllers([viewController], animated: true)
                 

@@ -13,9 +13,9 @@ class AuthAssembler {
     static func buildLoginModule() -> UIViewController {
         
         let countrySelector = CountrySelector()
-        let loginService = FBLoginService()
+        let authService = FBAuthService()
         
-        let viewModel = LoginViewModel(loginService: loginService, countrySelector: countrySelector)
+        let viewModel = LoginViewModel(authService: authService, countrySelector: countrySelector)
         let viewController = LoginViewController(viewModel: viewModel)
         
         return viewController
@@ -25,7 +25,8 @@ class AuthAssembler {
     static func buildSignUpModule() -> UIViewController {
     
         let countrySelector = CountrySelector()
-        let viewModel = SignUpViewModel(countrySelector: countrySelector)
+        let authService = FBAuthService()
+        let viewModel = SignUpViewModel(countrySelector: countrySelector, authService: authService)
         let viewController = SignUpViewController(viewModel: viewModel)
         
         return viewController
@@ -33,7 +34,8 @@ class AuthAssembler {
     
     static func buildVerificationModule() -> UIViewController {
      
-        let viewModel = VerificationViewModel()
+        let authService = FBAuthService()
+        let viewModel = VerificationViewModel(authService: authService)
         let viewController = VerificationViewController(viewModel: viewModel)
         
         return viewController

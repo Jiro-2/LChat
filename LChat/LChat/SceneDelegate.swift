@@ -11,56 +11,34 @@ import Firebase
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    
+    var coordinator: Coordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let window  = UIWindow(windowScene: windowScene)
         let navController = UINavigationController()
-        let navigator = LoginNavigator(navigationController: navController)
-        let authManager = FBAuthManager()
-        window.makeKeyAndVisible()
-        navigator.navigate(to: .signUp, presented: false)
-        self.window = window
-        
-        self.window?.rootViewController = navController
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = navController
+        window?.makeKeyAndVisible()
         
         
-        
-        
-//        Auth.auth().addStateDidChangeListener { auth, user in
-//
-//            if user == nil {
-//
-//                print("User nil")
-//                navigator.navigate(to: .signin, presented: false)
-//                self.window?.rootViewController = navController
-//
-//
-//            } else {
-//
-//                authManager.checkPresenceUserInDataBase { isPresence in
-//
-//                    if isPresence {
-//
-////                        let navigator = ChatNavigator(navigationController: navController)
-////                        navigator.navigate(to: .chatList, presented: false)
-////
-//                        navigator.navigate(to: .signUp, presented: false)
-//                        self.window?.rootViewController = navController
-//
-//                        print("Юзер существует в базе, перейти в его чаты", #function)
-//
-//
-//                    } else {
-//
-//                        navigator.navigate(to: .register, presented: false)
-//                    }
-//                }
-//            }
-//        }
+        Auth.auth().addStateDidChangeListener { auth, user in
+
+            if user == nil {
+
+                self.coordinator = AuthCoordinator(navController: navController)
+                self.coordinator?.start()
+
+            } else {
+
+                
+                
+                print("User logged in")
+                
+            }
+        }
     }
     
     

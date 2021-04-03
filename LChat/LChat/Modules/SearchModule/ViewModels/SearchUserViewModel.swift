@@ -22,7 +22,6 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
     //MARK: - Properties
     
     private var databaseSearcher: DatabaseSearchable
-    var navigator: ChatNavigator?
     var selectedUser: User? = nil
     var searchResult = Bindable<[User]>()
 
@@ -37,7 +36,7 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
     //MARK: - Methods
     
     func navigateToChat(_ user: User) {
-        navigator?.navigate(to: .chat, presented: false)
+        
     }
     
     

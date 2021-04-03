@@ -7,11 +7,19 @@
 
 import UIKit
 
+
+protocol VerificationViewControllerDelegate: class {
+    
+    func viewController(_ viewController: UIViewController, didConfirmCode code: String)
+}
+
+
 class VerificationViewController: UIViewController {
     
     //MARK: - Properties -
     
     var viewModel: VerificationViewModelProtocol
+    weak var delegate: VerificationViewControllerDelegate?
     var coordinator: AuthCoordinator?
     
     //Subviews
@@ -21,6 +29,7 @@ class VerificationViewController: UIViewController {
         let label = UILabel(text: "Verification Security Code",
                             font: UIFont.systemFont(ofSize: 40.0, weight: .bold),
                             textColor: .black)
+        
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         
@@ -30,12 +39,28 @@ class VerificationViewController: UIViewController {
     
     private let explainLabel: UILabel = {
         
-        let label = UILabel(text: "Enter the 6-digit code sent to your phone number", font: UIFont.systemFont(ofSize: 18.0), textColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        let label = UILabel(text: "Enter the 6-digit code sent to your phone number",
+                            font: UIFont.systemFont(ofSize: 18.0),
+                            textColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         
         return label
     }()
+    
+    
+    private lazy var resendLabel: UILabel = {
+       
+        let label = UILabel(text: "Didn't Get Code? ",
+                            font: UIFont.systemFont(ofSize: 18.0),
+                            textColor: #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1))
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
     
     
     private let firstCodeTextField = UITextField(backgroundColor: #colorLiteral(red: 0.9493990541, green: 0.9533054233, blue: 0.9598917365, alpha: 1), cornerRadius: 10.0, textAlignment: .center)
@@ -44,6 +69,24 @@ class VerificationViewController: UIViewController {
     private let firthCodeTextField = UITextField(backgroundColor: #colorLiteral(red: 0.9493990541, green: 0.9533054233, blue: 0.9598917365, alpha: 1), cornerRadius: 10.0, textAlignment: .center)
     private let fifthCodeTextField = UITextField(backgroundColor: #colorLiteral(red: 0.9493990541, green: 0.9533054233, blue: 0.9598917365, alpha: 1), cornerRadius: 10.0, textAlignment: .center)
     private let sixthCodeTextField = UITextField(backgroundColor: #colorLiteral(red: 0.9493990541, green: 0.9533054233, blue: 0.9598917365, alpha: 1), cornerRadius: 10.0, textAlignment: .center)
+    
+    
+    private lazy var resendButton: UIButton = {
+        
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Resend", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.0)
+        button.setTitleColor(#colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1), for: .normal)
+        
+        button.addAction(UIAction(handler: { _ in
+            
+            
+            
+        }), for: .touchUpInside)
+        
+        return button
+    }()
     
     
     
@@ -122,25 +165,37 @@ class VerificationViewController: UIViewController {
             
             case firstCodeTextField:
                 
+                self.addDigitToVerificationCode(digit: textField.text!)
                 secondCodeTextField.becomeFirstResponder()
                 
             case secondCodeTextField:
                 
+                self.addDigitToVerificationCode(digit: textField.text!)
                 thirdCodeTextField.becomeFirstResponder()
                 
             case thirdCodeTextField:
                 
+                self.addDigitToVerificationCode(digit: textField.text!)
                 firthCodeTextField.becomeFirstResponder()
                 
             case firthCodeTextField:
                 
+                self.addDigitToVerificationCode(digit: textField.text!)
                 fifthCodeTextField.becomeFirstResponder()
                 
             case fifthCodeTextField:
                 
+                self.addDigitToVerificationCode(digit: textField.text!)
                 sixthCodeTextField.becomeFirstResponder()
                 
             case sixthCodeTextField:
+                
+                self.addDigitToVerificationCode(digit: textField.text!)
+                
+                if let code = self.viewModel.verificationCode {
+                    
+                    self.delegate?.viewController(self, didConfirmCode: code)
+                }
                 
                 view.endEditing(true)
             default:
@@ -150,11 +205,23 @@ class VerificationViewController: UIViewController {
     }
     
     
+    private func addDigitToVerificationCode(digit: String) {
+        
+        if viewModel.verificationCode != nil {
+            
+            viewModel.verificationCode! += digit
+            
+        } else {
+            
+            self.viewModel.verificationCode = digit
+        }
+    }
+    
     
     
     private func setupLayout() {
         
-        view.addSubviews([titleLabel, explainLabel, txtFieldsStackView])
+        view.addSubviews([titleLabel, explainLabel, txtFieldsStackView, resendLabel, resendButton])
         
         NSLayoutConstraint.activate([
             
@@ -169,7 +236,13 @@ class VerificationViewController: UIViewController {
             txtFieldsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             txtFieldsStackView.bottomAnchor.constraint(equalTo: view.centerYAnchor),
             txtFieldsStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            txtFieldsStackView.heightAnchor.constraint(equalToConstant: (view.bounds.width * 0.8) / 6)
+            txtFieldsStackView.heightAnchor.constraint(equalToConstant: (view.bounds.width * 0.8) / 6),
+            
+            resendLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            resendLabel.topAnchor.constraint(equalTo: txtFieldsStackView.bottomAnchor, constant: 20.0),
+            
+            resendButton.leftAnchor.constraint(equalTo: resendLabel.rightAnchor, constant: 5.0),
+            resendButton.centerYAnchor.constraint(equalTo: resendLabel.centerYAnchor)
         ])
     }
 }

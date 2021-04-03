@@ -28,7 +28,6 @@ class ChatListViewModel: ChatListViewModelProtocol {
     //MARK: - Properties -
     
     let chatManager: ChatServiceProtocol
-    var navigator: ChatNavigator?
     var chats = Bindable<[Chat]>()
     var downloadedMessages = [String : [Message]]()
     var selectedChat: Chat?
@@ -94,7 +93,6 @@ class ChatListViewModel: ChatListViewModelProtocol {
         
         self.selectedChat = chat
         selectedChat?.messages = downloadedMessages[chat.id]
-        navigator?.navigate(to: .chat, presented: false)
     }
     
     

@@ -72,7 +72,7 @@ final class SearchUserViewController: UIViewController {
     
     private lazy var descriptionLabel: UILabel = {
        
-        let lbl = UILabel(text: "Find a friend by entering his username.", fontSize: 17.0, textColor: .white)
+        let lbl = UILabel()
         lbl.backgroundColor = view.backgroundColor
         lbl.numberOfLines = 0
         

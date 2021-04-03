@@ -19,12 +19,20 @@ extension String {
         return Set(set).isSubset(of: digits)
     }
     
+    
     var isValidPhone: Bool {
-                
+        
         let phonePattern = "[0-9]{3}[ -]?[0-9]{3}[ -]?[0-9]{4}"
         let predicate = NSPredicate(format:"SELF MATCHES %@", phonePattern)
         
-         return predicate.evaluate(with: self)
+        return predicate.evaluate(with: self)
+    }
+    
+    
+    
+    func removingWhitespaces() -> String {
+        
+        return components(separatedBy: .whitespaces).joined()
     }
 }
 
