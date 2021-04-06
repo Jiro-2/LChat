@@ -13,7 +13,9 @@ extension SignUpViewController: CountriesViewControllerDelegate {
         
         if let code = country.callingCode {
             
-            authView.phoneTxtField.leftViewLabel.text = "+" + String(code)
+            let codeWithPlus = "+" + String(code)
+            authView.phoneTxtField.leftViewLabel.text = codeWithPlus
+            viewModel.callingCode = codeWithPlus
         }
     }
 }
@@ -95,11 +97,11 @@ extension SignUpViewController: VerificationViewControllerDelegate {
     
     func viewController(_ viewController: UIViewController, didConfirmCode code: String) {
 
-        self.viewModel.signUp(WithVerificationCode: code) { isSignUp in
+        self.viewModel.signUp(WithVerificationCode: code) { isSignedUp in
          
-            if isSignUp {
+            if isSignedUp {
                 
-                print("Navigate to chat")
+                self.coordinator?.didFinishAuth()
                 
             } else {
                 

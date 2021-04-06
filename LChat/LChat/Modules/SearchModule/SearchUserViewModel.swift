@@ -9,7 +9,7 @@ import Foundation
 
 protocol SearchUserViewModelProtocol: class {
     
-    var selectedUser: User? { get set }
+    //   var selectedUser: User? { get set }
     var searchResult: Bindable<[User]> { get set }
     
     func searchUserBy(_ username: String?)
@@ -21,7 +21,7 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
     //MARK: - Properties -
     
     private var searcher: FBSearchable
-    var selectedUser: User? = nil
+    // var selectedUser: User? = nil
     var searchResult = Bindable<[User]>()
     
     
@@ -34,7 +34,7 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
     
     
     //MARK: - Methods -
-
+    
     
     func searchUserBy(_ username: String?) {
         
@@ -44,16 +44,16 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
                 
                 self.searcher.search(username, in: .username) { [weak self] result in
                     
-                    
                     let dictResult = result as? [String: Any]
                     var users = [User]()
                     
                     dictResult?.forEach({ key, value in
-                                                
-                        guard let dict = value as? [String:String],
-                              let username = dict["username"] else { assertionFailure(); return }
                         
-                        let user = User(id: key, userName: username)
+                        guard let dict = value as? [String:String],
+                              let phone = dict["phone"],
+                              let id = dict["id"] else { assertionFailure(); return }
+                        
+                        let user = User(id: id, userName: key, phone: phone)
                         users.append(user)
                     })
                     

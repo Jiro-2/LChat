@@ -54,7 +54,7 @@ class SignUpViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
-        
+        viewModel.callingCode = authView.phoneTxtField.leftViewLabel.text
     }
     
     

@@ -65,9 +65,9 @@ extension LoginViewController: VerificationViewControllerDelegate {
         self.viewModel.login(WithVerificationCode: code) { isLoggedIn in
             
             if isLoggedIn {
+
+                self.coordinator?.didFinishAuth()
                 
-                
-                print("Navigate to chat")
             } else {
                 
                 print("Alert with error")

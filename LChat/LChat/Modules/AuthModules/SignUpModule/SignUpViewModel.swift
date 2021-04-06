@@ -60,10 +60,10 @@ final class SignUpViewModel: SignUpViewModelProtocol {
             let fullPhoneNumber = (callingCode + phone).removingWhitespaces()
             
             
-            authService.signUp(WithVerificationId: id,
-                               verificationCode: code,
-                               username: username,
-                               phoneNumber: fullPhoneNumber) { error in
+            self.authService.signUp(WithVerificationId: id,
+                                    verificationCode: code,
+                                    username: username,
+                                    phoneNumber: fullPhoneNumber) { error in
                 
                 if let error = error {
                     
@@ -81,8 +81,6 @@ final class SignUpViewModel: SignUpViewModelProtocol {
     
     
     
-    
-    
     func verifyPhoneNumber(completion: @escaping (_ isSucces: Bool) -> ()) {
         
         guard let code = self.callingCode else { return }
@@ -91,25 +89,38 @@ final class SignUpViewModel: SignUpViewModelProtocol {
         
         if code != "+000" && phone.isValidPhone {
             
-            authService.verify(PhoneNumber: code + phone) { result in
+            let fullPhoneNumber = (code + phone).removingWhitespaces()
+            
+            self.authService.isDuplicate(fullPhoneNumber, in: .phone) { isDuplicate in
                 
-                switch result {
-                
-                case .failure(let error):
+                if isDuplicate {
                     
-                    print(error.localizedDescription)
                     completion(false)
                     
-                case .success(let id):
+                } else {
                     
-                    if let id = id {
+                    
+                    self.authService.verify(PhoneNumber: code + phone) { result in
                         
-                        self.authService.save(verificationId: id)
-                        completion(true)
+                        switch result {
                         
-                    } else {
-                        
-                        completion(false)
+                        case .failure(let error):
+                            
+                            print(error.localizedDescription)
+                            completion(false)
+                            
+                        case .success(let id):
+                            
+                            if let id = id {
+                                
+                                self.authService.save(verificationId: id)
+                                completion(true)
+                                
+                            } else {
+                                
+                                completion(false)
+                            }
+                        }
                     }
                 }
             }
@@ -121,7 +132,7 @@ final class SignUpViewModel: SignUpViewModelProtocol {
     
     func checkDuplicate(username: String) {
         
-        authService.checkDuplicate(username: username) { [weak self] isDuplicate in
+        authService.isDuplicate(username, in: .username) { [weak self] isDuplicate in
             
             self?.isTakenUsername.value = isDuplicate
         }
