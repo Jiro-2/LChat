@@ -81,4 +81,15 @@ extension DateFormatter {
             return nil
         }
     }
+    
+    
+    
+    func todaysDate(in format: String) -> String {
+        
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+    
+        return dateFormatter.string(from: date)
+    }
 }
