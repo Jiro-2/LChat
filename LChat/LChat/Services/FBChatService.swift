@@ -97,8 +97,11 @@ final class FBChatService: FBChatServiceProtocol {
         if let username = currentUser.displayName {
             
             let value = ["0" : username, "1" : user.username]
+            let timeStamp = Int(NSDate.timeIntervalSinceReferenceDate * 1000)
 
             databaseReference.child("chats/\(chatId)").setValue(value)
+            databaseReference.child("userChats/\(username)/\(timeStamp)").setValue(chatId)
+            databaseReference.child("userChats/\(user.username)/\(timeStamp)").setValue(chatId)
             completion(nil, chatId)
             
         } else {
