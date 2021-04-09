@@ -13,7 +13,7 @@ protocol ChatViewModelProtocol {
     
     var interLocutor: User? { get set }
     var currentUser: User? { get }
-    var isChatExists: Bindable<Bool>  { get set }
+    var isChatExists: Bindable<Bool>  { get }
     var messages: Bindable<[Message]> { get }
 
     func startChat()
@@ -82,6 +82,7 @@ final class ChatViewModel: ChatViewModelProtocol {
                 
             } else {
                 
+                self?.isChatExists.value = true
                 self?.currentChatId = chatId
                 self?.observeChat()
             }
