@@ -19,7 +19,7 @@ enum UserProperty: String {
 struct User: Identifiable {
     
     let id: String
-    var userName: String
+    var username: String
     var location: String?
     var phone: String?
     var bio: String?

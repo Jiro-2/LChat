@@ -27,24 +27,33 @@ final class MainCoordinator: Coordinator {
     
     func start() {
         
-        let vc = MainAssembler.buildChatListModule()
+        guard let vc = MainAssembler.buildHomeModule() as? HomeTabBarController else { assertionFailure(); return }
+        vc.coordinator = self
         self.navigationController.pushViewController(vc, animated: true)
     }
     
     
     
-    func navigateToSearch() {
+    func showSearch() {
         
-       let vc = MainAssembler.buildSearchUserModule()
+        guard let vc = MainAssembler.buildSearchUserModule() as? SearchUserViewController else { assertionFailure(); return }
+        vc.coordinator = self
        self.navigationController.pushViewController(vc, animated: true)
     }
     
     
     
-    func navigateToChat() {
+    func showChat() {
         
         let vc = MainAssembler.buildChatModule()
         self.navigationController.pushViewController(vc, animated: true)
+    }
+    
+    
+    func showProfile() {
+
+        
+        
     }
     
     

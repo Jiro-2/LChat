@@ -7,17 +7,12 @@
 
 import UIKit
 
-class ChatListViewController: UIViewController {
+class ChatRoomsViewController: UIViewController {
     
     //MARK: - Properties -
     
-    var viewModel: ChatListViewModelProtocol
-    var chatRooms: [Chat]? {
-        
-        didSet {
-            chatRoomsTableView.reloadData()
-        }
-    }
+    var viewModel: ChatRoomsViewModelProtocol
+    var chatRooms: [Chat]?
     
     
     //MARK: - Subviews
@@ -35,7 +30,7 @@ class ChatListViewController: UIViewController {
     //MARK: - Init -
     
     
-    init(viewModel: ChatListViewModelProtocol) {
+    init(viewModel: ChatRoomsViewModelProtocol) {
         
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -58,8 +53,11 @@ class ChatListViewController: UIViewController {
         chatRoomsTableView.dataSource = self
         
         setupChatListViewModelObserver()
-        viewModel.getChatRooms()
-        viewModel.observeChats()
+        
+        DispatchQueue.global(qos: .background).async {
+            
+            self.viewModel.startObservingUserChatRooms()
+        }
     }
     
     
@@ -77,12 +75,16 @@ class ChatListViewController: UIViewController {
     
     //MARK: - Methods -
     
-    
     private func setupChatListViewModelObserver() {
         
-        viewModel.chats.bind { [weak self] chats in
+        viewModel.chatRooms.bind { [weak self] chats in
             
             self?.chatRooms = chats
+            
+            DispatchQueue.main.async {
+                
+                self?.chatRoomsTableView.reloadData()
+            }
         }
     }
     
@@ -114,7 +116,7 @@ class ChatListViewController: UIViewController {
 //MARK: - Extension -
 
 
-extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
+extension ChatRoomsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -139,21 +141,21 @@ extension ChatListViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        let chatCell = cell as? ChatTableViewCell
-        
-        guard let chatRooms = chatRooms else { return }
-        
-        viewModel.downloadMessages(fromChat: chatRooms[indexPath.row].id, limit: 100)
 
+        let chatCell = cell as? ChatTableViewCell
+
+        guard let chatRooms = chatRooms,
+              let currentUser = viewModel.currentUser  else { return }
+
+        let interLocutor = chatRooms[indexPath.row].members.first(where:) { $0.id != currentUser.id }
         
-        chatCell?.userNameLabel.text = chatRooms[indexPath.row].member.userName
-        chatCell?.lastMessageLabel.text = chatRooms[indexPath.row].lastMessage
-        
+        chatCell?.userNameLabel.text = "\(interLocutor?.username ?? "username")"
+        chatCell?.lastMessageLabel.text = "\(chatRooms[indexPath.row])"
+
         if let count = chatRooms[indexPath.row].countUnSeenMessages {
-            
+
             if count > 0 {
-                
+
                 chatCell?.unSeenMessagesLabel.text = "\(count)"
                 chatCell?.unSeenMessagesLabel.isHidden = false
             }

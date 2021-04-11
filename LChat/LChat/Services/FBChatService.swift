@@ -11,7 +11,7 @@ import Firebase
 
 protocol FBChatServiceProtocol {
     
-    func checkExistenceChat(WithUser user: User, completion: @escaping (_ chatId: String?) -> ())
+    func isExistsChat(WithUser user: User, completion: @escaping (_ chatId: String?) -> ())
     func createChat(with user: User, completion: @escaping (ChatError?, String?) -> ())
     func sendMessageBy(user: User, text: String, chatId: String, completion: (() -> ())?)
     
@@ -114,7 +114,7 @@ final class FBChatService: FBChatServiceProtocol {
     
     
     
-    func checkExistenceChat(WithUser user: User, completion: @escaping (_ chatId: String?) -> ()) {
+    func isExistsChat(WithUser user: User, completion: @escaping (_ chatId: String?) -> ()) {
         
         guard let currentUser  = Auth.auth().currentUser else { return }
        
