@@ -16,6 +16,7 @@ protocol FBChatServiceProtocol {
     func sendMessageBy(user: User, text: String, chatId: String, completion: (() -> ())?)
     
     func startObserving(chatRoom id: String, completion: @escaping (_ receivedMessage: Message?) -> ())
+    func startObservingOnlyNewMessagesIn(chatRoom id: String, completion: @escaping (_ receivedMessage: Message?) -> ())
     func stopObserving(ChatRoom id: String)
 }
 
@@ -76,6 +77,40 @@ final class FBChatService: FBChatServiceProtocol {
             }
         }
     }
+    
+    
+    
+    
+    func startObservingOnlyNewMessagesIn(chatRoom id: String, completion: @escaping (_ receivedMessage: Message?) -> ()) {
+        
+        let pathToChat = databaseReference.child("messages/\(id)")
+        
+        pathToChat.queryOrderedByKey().queryLimited(toLast: 1).observe(.childAdded) { snap in
+            
+            if snap.exists() {
+                
+                let messageDict = snap.value as? [String: Any]
+                
+                if let dict = messageDict {
+                    
+                    guard let date = dict["date"] as? String,
+                          let senderId = dict["sentBy"] as? String,
+                          let text = dict["text"] as? String,
+                          let isSeen = dict["isSeen"] as? Bool else {assertionFailure(); return }
+                    
+                    let message = Message(memberId: senderId, text: text, id: snap.key, date: date, isSeen: isSeen)
+
+                    completion(message)
+                    
+                } else {
+                    
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    
     
     
     

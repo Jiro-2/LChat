@@ -13,14 +13,14 @@ protocol ChatRoomsViewModelProtocol: class {
     
     var chatRooms: Bindable<[Chat]> { get }
     var currentUser: User? { get }
-    var selectedChat: Chat? { get }
+  //  var selectedChat: Chat? { get }
     
     func selectChat(_ chat: Chat)
     func startObservingUserChatRooms()
-
 }
 
-class ChatRoomsViewModel: ChatRoomsViewModelProtocol {
+
+final class ChatRoomsViewModel: ChatRoomsViewModelProtocol {
     
     
     //MARK: - Properties -
@@ -28,7 +28,7 @@ class ChatRoomsViewModel: ChatRoomsViewModelProtocol {
    private let chatManager: FBChatServiceProtocol
    private let databaseService: FBDatabaseServiceProtocol
     
-    var selectedChat: Chat?
+ //   var selectedChat: Chat?
     var chatRooms = Bindable<[Chat]>()
     var currentUser: User?
     
@@ -38,10 +38,13 @@ class ChatRoomsViewModel: ChatRoomsViewModelProtocol {
                         
             if let id = newValue.first {
                 
-                getChatBy(id: id) { chat in
+                DispatchQueue.global(qos: .background).async {
                     
-                    self.chatRooms.value?.append(chat)
-                    self.observeMessagesIn(chat: chat)
+                    self.getChatBy(id: id) { chat in
+                        
+                        self.chatRooms.value?.append(chat)
+                        self.observeMessagesIn(chat: chat)
+                    }
                 }
             }
         }
@@ -63,9 +66,8 @@ class ChatRoomsViewModel: ChatRoomsViewModelProtocol {
     //MARK: - Methods -
     
     
-    
     func selectChat(_ chat: Chat) {
-        self.selectedChat = chat
+   //     self.selectedChat = chat
     }
     
     

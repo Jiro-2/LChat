@@ -7,15 +7,24 @@
 
 import UIKit
 
+
+protocol ChatRoomsViewControllerDelegate: class {
+    
+    func viewController(_ viewController: ChatRoomsViewController, didSelect chat: Chat)
+}
+
+
+
+
 class ChatRoomsViewController: UIViewController {
     
     //MARK: - Properties -
     
-    var viewModel: ChatRoomsViewModelProtocol
-    var chatRooms: [Chat]?
+    let viewModel: ChatRoomsViewModelProtocol
+    weak var delegate: ChatRoomsViewControllerDelegate?
     
     
-    //MARK: - Subviews
+    //MARK: - Subviews -
     
     private lazy var chatRoomsTableView: UITableView = {
         
@@ -45,7 +54,7 @@ class ChatRoomsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubviews([chatRoomsTableView])
         
@@ -79,7 +88,7 @@ class ChatRoomsViewController: UIViewController {
         
         viewModel.chatRooms.bind { [weak self] chats in
             
-            self?.chatRooms = chats
+       //     self?.chatRooms = chats
             
             DispatchQueue.main.async {
                 
@@ -97,6 +106,7 @@ class ChatRoomsViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor : UIColor.white,
                                                                                       .font : UIFont.systemFont(ofSize: 25.0, weight: .semibold)]
     }
+    
     
     
     
@@ -119,16 +129,20 @@ class ChatRoomsViewController: UIViewController {
 extension ChatRoomsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        chatRooms?.count ?? 0
+       
+        viewModel.chatRooms.value?.count ?? 0
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let chat = chatRooms?[indexPath.row] {
+        if let chat = viewModel.chatRooms.value?[indexPath.row],
+           let tabbar = tabBarController as? HomeTabBarController {
             
-            viewModel.selectChat(chat)
+            tabbar.coordinator?.showChat()
+           let vc = tabbar.coordinator?.navigationController.topViewController as? ChatViewController
+            delegate = vc
+            delegate?.viewController(self, didSelect: chat)
         }
     }
     
@@ -144,7 +158,7 @@ extension ChatRoomsViewController: UITableViewDelegate, UITableViewDataSource {
 
         let chatCell = cell as? ChatTableViewCell
 
-        guard let chatRooms = chatRooms,
+        guard let chatRooms = viewModel.chatRooms.value,
               let currentUser = viewModel.currentUser  else { return }
 
         let interLocutor = chatRooms[indexPath.row].members.first(where:) { $0.id != currentUser.id }

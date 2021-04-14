@@ -11,7 +11,7 @@ final class MainAssembler {
     
     static func buildSearchUserModule() -> UIViewController {
         
-        let searcher = FIRDatabaseSearcher()
+        let searcher = FBSearchService()
         let viewModel = SearchUserViewModel(databaseSearcher: searcher)
         let viewController = SearchUserViewController(viewModel: viewModel)
         
@@ -21,20 +21,21 @@ final class MainAssembler {
     
     static func buildChatModule() -> UIViewController {
         
-        let chatManager = ChatService()
-        let searcher = FIRDatabaseSearcher()
-        let viewModel = ChatViewModel(chatManager: chatManager, searcher: searcher)
+        let chatManager = FBChatService()
+        let viewModel = ChatViewModel(chatManager: chatManager)
         let viewController = ChatViewController(viewModel: viewModel)
         
         return viewController
     }
     
-    static func buildChatListModule() -> UIViewController {
+    static func buildHomeModule() -> UIViewController {
         
-        let chatManager = ChatService()
-        let viewModel = ChatListViewModel(chatManager: chatManager)
+        let chatManager = FBChatService()
+        let databaseService = FBDatabaseService()
+        let viewModel = ChatRoomsViewModel(chatManager: chatManager,
+                                          databaseService: databaseService)
                 
-        let viewController = ChatListViewController(viewModel: viewModel)
+        let viewController = ChatRoomsViewController(viewModel: viewModel)
         
         let homeViewModel = HomeViewModel()
         let tabBarController = HomeTabBarController(viewModel: homeViewModel)

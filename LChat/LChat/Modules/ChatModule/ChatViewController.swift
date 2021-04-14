@@ -41,11 +41,8 @@ final class ChatViewController: MessagesViewController {
         setupDelegates()
         messagesCollectionView.messagesDataSource = self
         
-        getSelectedChat()
-        checkChatExistenceWithSelectedUser()
         setupChatViewModelObserver()
-        
-        viewModel.checkExistenceChat()
+     //   viewModel.isExistsChat()
     }
     
     
@@ -101,46 +98,7 @@ final class ChatViewController: MessagesViewController {
     
     
     
-    private func getSelectedChat() {
-        
-        if let tabBarController = navigationController?.previousViewController() as? UITabBarController,
-           let chatListViewController = tabBarController.selectedViewController as? ChatListViewController {
-            
-        //    member = chatListViewController.viewModel.selectedChat?.member
-        //    viewModel.currentChat.value = chatListViewController.viewModel.selectedChat
-            
-          //  viewModel.getMessages() // ????????
-          //  viewModel.setObserve()
-        }
-    }
-    
-    
-    
-    
-    
-    private func checkChatExistenceWithSelectedUser() {
-        
-//        if let vc = navigationController?.previousViewController() as? SearchUserViewController {
-//
-//            if let selectedUser = vc.viewModel.selectedUser {
-//
-//                member = selectedUser
-//
-////                viewModel.checkExistenceChatWith(user: selectedUser) { isExist in
-////
-////                    if isExist {
-////
-////                        self.startChatButton.isHidden = true
-////
-////                    } else {
-////
-////                        self.startChatButton.isHidden = false
-////                        self.inputAccessoryView?.isHidden = true
-////                    }
-////                }
-//            }
-//        }
-    }
+
     
     
     private func setupChatViewModelObserver() {

@@ -3,7 +3,6 @@
 //  LingoChat
 //
 //  Created by Егор on 15.02.2021.
-//
 
 
 import Foundation
@@ -14,10 +13,12 @@ protocol ChatViewModelProtocol {
     var interLocutor: User? { get set }
     var currentUser: User? { get }
     var isChatExists: Bindable<Bool>  { get }
-    var messages: Bindable<[Message]> { get }
-
+    var messages: Bindable<[Message]> { get set }
+    var chatRoomId: String? { get set }
+    var isDownloadedMessages: Bool { get set }
+    
     func startChat()
-    func checkExistenceChat()
+    func isExistsChat()
     func sendMessage(text: String)
     func stopObservingChat()
 }
@@ -27,12 +28,19 @@ protocol ChatViewModelProtocol {
 final class ChatViewModel: ChatViewModelProtocol {
     
     var chatManager: FBChatServiceProtocol
-    var currentChatId: String?
+    var chatRoomId: String? {
+        
+        didSet {
+            
+            observeChat()
+        }
+    }
+    
     var isChatExists = Bindable<Bool>()
     var messages = Bindable<[Message]>()
     var currentUser: User?
     var interLocutor: User?
-    
+    var isDownloadedMessages = false
     
     //MARK: - Init -
     
@@ -46,21 +54,20 @@ final class ChatViewModel: ChatViewModelProtocol {
     //MARK: - Methods -
     
     
-    func checkExistenceChat() {
+    func isExistsChat() {
         
         guard let user = self.interLocutor else { return }
         
-        chatManager.checkExistenceChat(WithUser: user) { [weak self] chatId in
+        chatManager.isExistsChat(WithUser: user) { [weak self] chatId in
             
             if let id = chatId {
                 
                 self?.isChatExists.value = true
-                self?.currentChatId = id
-                self?.observeChat()
+                self?.chatRoomId = id
                 
             } else {
                 
-                self?.currentChatId = nil
+                self?.chatRoomId = nil
                 self?.isChatExists.value = false
             }
         }
@@ -83,7 +90,7 @@ final class ChatViewModel: ChatViewModelProtocol {
             } else {
                 
                 self?.isChatExists.value = true
-                self?.currentChatId = chatId
+                self?.chatRoomId = chatId
                 self?.observeChat()
             }
         }
@@ -95,38 +102,68 @@ final class ChatViewModel: ChatViewModelProtocol {
     func sendMessage(text: String) {
         
         guard let currentUser = self.currentUser else { assertionFailure(); return }
-        guard let id = self.currentChatId else { assertionFailure(); return }
+        guard let id = self.chatRoomId else { assertionFailure(); return }
         chatManager.sendMessageBy(user: currentUser, text: text, chatId: id, completion: nil)
     }
     
     
-    func stopObservingChat() {
-        
-        guard let id = self.currentChatId else { assertionFailure(); return }
-        chatManager.stopObserving(ChatRoom: id)
-    }
     
     
     
     private  func observeChat() {
         
-        guard let id = self.currentChatId else { assertionFailure(); return }
+        guard let id = self.chatRoomId else { assertionFailure(); return }
         
-        chatManager.startObserving(chatRoom: id) { [weak self] message in
-            
-            guard let message = message else { return }
-            
-            if self?.messages.value == nil {
+        
+        if isDownloadedMessages {
+        
+            chatManager.startObservingOnlyNewMessagesIn(chatRoom: id) { [weak self] message in
                 
-                self?.messages.value = [message]
+                guard let message = message else { return }
                 
-            } else {
+                if ((self?.messages.value?.contains(message)) != nil) {
+                    
+                    self?.messages.value?.removeLast()
+                }
                 
-                self?.messages.value?.append(message)
+                
+                if self?.messages.value == nil {
+                    
+                    self?.messages.value = [message]
+                    
+                } else {
+                    
+                    self?.messages.value?.append(message)
+                }
             }
+            
+            
+        } else {
+            
+            chatManager.startObserving(chatRoom: id) { [weak self] message in
+                
+                guard let message = message else { return }
+                
+                if self?.messages.value == nil {
+                    
+                    self?.messages.value = [message]
+                    
+                } else {
+                    
+                    self?.messages.value?.append(message)
+                }
+            }
+            
         }
     }
     
+    
+    
+    func stopObservingChat() {
+        
+        guard let id = self.chatRoomId else { assertionFailure(); return }
+        chatManager.stopObserving(ChatRoom: id)
+    }
     
     
     

@@ -15,9 +15,20 @@ extension ChatViewController: SearchUserViewControllerDelegate {
     func viewController(_ viewController: UIViewController, foundUser user: User) {
         
         viewModel.interLocutor = user
+        viewModel.isExistsChat()
     }
 }
 
+
+extension ChatViewController: ChatRoomsViewControllerDelegate {
+    
+    func viewController(_ viewController: ChatRoomsViewController, didSelect chat: Chat) {
+        
+        viewModel.isDownloadedMessages = true
+        viewModel.messages.value = chat.messages
+        viewModel.chatRoomId = chat.id
+    }
+}
 
 
 
