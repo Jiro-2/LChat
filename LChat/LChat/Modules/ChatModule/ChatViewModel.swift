@@ -1,8 +1,3 @@
-//
-//  ChatViewModel.swift
-//  LingoChat
-//
-//  Created by Егор on 15.02.2021.
 
 
 import Foundation
@@ -20,6 +15,7 @@ protocol ChatViewModelProtocol {
     func startChat()
     func isExistsChat()
     func sendMessage(text: String)
+    func startObservingChat()
     func stopObservingChat()
 }
 
@@ -28,19 +24,21 @@ protocol ChatViewModelProtocol {
 final class ChatViewModel: ChatViewModelProtocol {
     
     var chatManager: FBChatServiceProtocol
-    var chatRoomId: String? {
-        
-        didSet {
-            
-            observeChat()
-        }
-    }
-    
+    var chatRoomId: String?
     var isChatExists = Bindable<Bool>()
     var messages = Bindable<[Message]>()
     var currentUser: User?
     var interLocutor: User?
-    var isDownloadedMessages = false
+    var isDownloadedMessages = false {
+        
+        didSet {
+            
+            if  isDownloadedMessages {
+                
+                self.isChatExists.value = true
+            }
+        }
+    }
     
     //MARK: - Init -
     
@@ -84,14 +82,13 @@ final class ChatViewModel: ChatViewModelProtocol {
             
             if let error = error {
                 
-                print(error.errorDescription ?? "Error - \(#function)")
-                assertionFailure()
+                assertionFailure(error.errorDescription ?? "Error - \(#function)")
                 
             } else {
                 
                 self?.isChatExists.value = true
                 self?.chatRoomId = chatId
-                self?.observeChat()
+                self?.startObservingChat()
             }
         }
     }
@@ -110,7 +107,7 @@ final class ChatViewModel: ChatViewModelProtocol {
     
     
     
-    private  func observeChat() {
+      func startObservingChat() {
         
         guard let id = self.chatRoomId else { assertionFailure(); return }
         
@@ -119,11 +116,12 @@ final class ChatViewModel: ChatViewModelProtocol {
         
             chatManager.startObservingOnlyNewMessagesIn(chatRoom: id) { [weak self] message in
                 
-                guard let message = message else { return }
+                guard let message = message,
+                      let messages = self?.messages.value else { assertionFailure(); return }
                 
-                if ((self?.messages.value?.contains(message)) != nil) {
+                if messages.contains(message) {
                     
-                    self?.messages.value?.removeLast()
+                    self?.messages.value?.removeLast() // remove duplicate
                 }
                 
                 

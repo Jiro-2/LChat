@@ -13,9 +13,7 @@ protocol ChatRoomsViewModelProtocol: class {
     
     var chatRooms: Bindable<[Chat]> { get }
     var currentUser: User? { get }
-  //  var selectedChat: Chat? { get }
     
-    func selectChat(_ chat: Chat)
     func startObservingUserChatRooms()
 }
 
@@ -28,7 +26,6 @@ final class ChatRoomsViewModel: ChatRoomsViewModelProtocol {
    private let chatManager: FBChatServiceProtocol
    private let databaseService: FBDatabaseServiceProtocol
     
- //   var selectedChat: Chat?
     var chatRooms = Bindable<[Chat]>()
     var currentUser: User?
     
@@ -65,11 +62,7 @@ final class ChatRoomsViewModel: ChatRoomsViewModelProtocol {
     
     //MARK: - Methods -
     
-    
-    func selectChat(_ chat: Chat) {
-   //     self.selectedChat = chat
-    }
-    
+
     
     func startObservingUserChatRooms() {
        

@@ -88,7 +88,6 @@ class ChatRoomsViewController: UIViewController {
         
         viewModel.chatRooms.bind { [weak self] chats in
             
-       //     self?.chatRooms = chats
             
             DispatchQueue.main.async {
                 
@@ -164,7 +163,12 @@ extension ChatRoomsViewController: UITableViewDelegate, UITableViewDataSource {
         let interLocutor = chatRooms[indexPath.row].members.first(where:) { $0.id != currentUser.id }
         
         chatCell?.userNameLabel.text = "\(interLocutor?.username ?? "username")"
-        chatCell?.lastMessageLabel.text = "\(chatRooms[indexPath.row])"
+        
+        if let lastMessage = chatRooms[indexPath.row].lastMessage {
+            
+            chatCell?.lastMessageLabel.text = lastMessage
+        }
+        
 
         if let count = chatRooms[indexPath.row].countUnSeenMessages {
 

@@ -1,8 +1,3 @@
-//
-//  ChatViewController.swift
-//  LingoChat
-//
-//  Created by Егор on 15.02.2021.
 
 
 import UIKit
@@ -42,7 +37,6 @@ final class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesDataSource = self
         
         setupChatViewModelObserver()
-     //   viewModel.isExistsChat()
     }
     
     
@@ -62,7 +56,6 @@ final class ChatViewController: MessagesViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
         viewModel.stopObservingChat()
     }
     

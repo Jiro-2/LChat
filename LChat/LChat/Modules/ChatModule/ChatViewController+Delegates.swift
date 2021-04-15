@@ -24,9 +24,10 @@ extension ChatViewController: ChatRoomsViewControllerDelegate {
     
     func viewController(_ viewController: ChatRoomsViewController, didSelect chat: Chat) {
         
-        viewModel.isDownloadedMessages = true
         viewModel.messages.value = chat.messages
         viewModel.chatRoomId = chat.id
+        viewModel.isDownloadedMessages = true
+        viewModel.startObservingChat()
     }
 }
 
@@ -41,7 +42,6 @@ extension ChatViewController: MessagesDisplayDelegate {
         let borderColor: UIColor = isFromCurrentSender(message: message) ? .clear : .clear
         return .bubbleTailOutline(borderColor, corner, .pointedEdge)
     }
-    
     
     
     func cellBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
