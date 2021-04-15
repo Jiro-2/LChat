@@ -75,7 +75,7 @@ final class ChatRoomsViewModel: ChatRoomsViewModelProtocol {
        
        guard let username = Auth.auth().currentUser?.displayName else { assertionFailure(); return }
        
-       databaseService.observe(path: "userChats/\(username)") { [weak self] result in
+        databaseService.observe(path: "userChats/\(username)", eventType: .childAdded) { [weak self] result in
            
            switch result {
            

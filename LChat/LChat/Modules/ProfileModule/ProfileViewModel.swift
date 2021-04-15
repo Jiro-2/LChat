@@ -10,12 +10,13 @@ import Firebase
 
 protocol ProfileViewModelProtocol {
     
-    var dataProfile: Bindable<[UserProperty: String]> { get set }
+    var user: Bindable<User> { get set }
+    var oldModelUser: User? { get }
     var isChanged: Bool { get set }
     
     func uploadAvatarImage(ImageData data: Data)
     func getUserAvatarImageURL(completion: @escaping (URL?) -> ())
-    func getDataProfile()
+    func observeDataProfile()
     func updateProfile()
 }
 
@@ -25,74 +26,64 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     //MARK: - Properties -
     
     private let storageService: FBStorageServiceProtocol
-    private let observeService: FBObserveServiceProtocol
-    private let writeService: FBWriteServiceProtocol
+    private let databaseService: FBDatabaseServiceProtocol
     
-    private let currentUserId = Auth.auth().currentUser?.uid
-
-    var dataProfile = Bindable<[UserProperty : String]>()
-    var isChanged = false
-
+    var isChanged = false {
+        
+        willSet {
+            
+            if newValue {
+                
+                oldModelUser = user.value
+            } else {
+                
+                oldModelUser = nil
+            }
+        }
+    }
+    
+    var oldModelUser: User?
+    var user =  Bindable<User>()
     
     
     //MARK: - Init -
     
-    init(storageService: FBStorageServiceProtocol,
-         observeService: FBObserveServiceProtocol,
-         writeService: FBWriteServiceProtocol) {
+    init(storageService: FBStorageServiceProtocol, databaseService: FBDatabaseServiceProtocol) {
         
         self.storageService = storageService
-        self.observeService = observeService
-        self.writeService = writeService
+        self.databaseService = databaseService
         
-        self.dataProfile.value = [:]
     }
     
     
     //MARK: - Methods -
     
     
-    func set(newValue: String, profileDataKey key: UserProperty) {
-        
-        switch key {
-        
-        case .userName:
-            dataProfile.value?[.userName] = newValue
-            
-        case .phone:
-            dataProfile.value?[.phone] = newValue
-            
-        case .location:
-            dataProfile.value?[.location] = newValue
-            
-        case .bio:
-            dataProfile.value?[.bio] = newValue
-            
-        default:
-            break
-        }
-    }
-    
-    
-    
     func updateProfile() {
         
-        if let data = dataProfile.value {
-         
-            if !data.isEmpty && isChanged {
+        if isChanged {
+            
+            guard let user = user.value else { return }
+            let mirror = Mirror(reflecting: user)
+            var dict = [String:Any]()
+            
+            
+            for child in mirror.children {
                 
-                if let id = currentUserId {
-                     
-                    data.forEach { key, value in
-                        print(key, value)
-                        writeService.write(data: value, in: "\(FirebasePath.Path.users.rawValue)/\(id)/\(key)") { error in
-                         
-                            if let error = error {
-                             
-                                print(error.localizedDescription)
-                            }
-                        }
-                    }
+                if child.label == "username" {
+                    continue
+                }
+                
+                guard let key = child.label else { assertionFailure(); return }
+                dict[key] = child.value
+            }
+            
+            
+            databaseService.put(dict, in: "users/\(user.username)") { error in
+                
+                if let error = error {
+                    
+                    assertionFailure(error.localizedDescription)
                 }
             }
         }
@@ -100,40 +91,50 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     
     
-    func getDataProfile() {
+    
+    func observeDataProfile() {
         
-        if let currentUserId = Auth.auth().currentUser?.uid {
-         
-            observeService.setObserve(for: "\(FirebasePath.Path.users.rawValue)/\(currentUserId)") { [weak self] data in
-                             
-                guard let userName = data?["userName"],
-                      let phone = data?["phone"],
-                      let bio = data?["bio"],
-                      let location = data?["location"] else { assertionFailure()
-                                                                                 return }
+        if let username = Auth.auth().currentUser?.displayName {
+            
+            databaseService.observe(path: "users/\(username)", eventType: .value) { [weak self] result in
                 
                 
-                self?.dataProfile.value?[.userName] = userName
-                self?.dataProfile.value?[.phone] = phone
-                self?.dataProfile.value?[.bio] = bio
-                self?.dataProfile.value?[.location] = location
+                switch result {
+                
+                case .success(let data):
+                    
+                    guard let data = data as? [String:String],
+                          let id = data["id"] else { assertionFailure(); return }
+                    
+                    self?.user.value = User(id: id,
+                                            username: username,
+                                            location: data["location"],
+                                            phone: data["phone"],
+                                            bio: data["bio"])
+                    
+                    
+                case .failure(let error):
+                    
+                    assertionFailure(error.localizedDescription)
+                }
             }
         }
     }
     
     
     
+    
     func getUserAvatarImageURL(completion: @escaping (URL?) -> ()) {
         
-        if let currentUserId = Auth.auth().currentUser?.uid {
-                        
-            self.storageService.getURL(from: "avatars/\(currentUserId)") { result in
+        if let username = Auth.auth().currentUser?.displayName {
+            
+            self.storageService.getURL(from: "avatars/\(username)") { result in
                 
                 switch result {
                 
                 case .failure(let error):
                     
-                    print(error.localizedDescription)
+                    print("ERROR: ", error.localizedDescription)
                     completion(nil)
                     
                 case .success(let url):
@@ -145,9 +146,11 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     }
     
     
+    
+    
     func uploadAvatarImage(ImageData data: Data) {
         
-        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
-        self.storageService.upload(data: data, path: "avatars/\(currentUserId)")
+        guard let username = Auth.auth().currentUser?.displayName else { assertionFailure(); return }
+        self.storageService.upload(data: data, path: "avatars/\(username)")
     }
 }

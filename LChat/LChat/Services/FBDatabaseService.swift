@@ -12,7 +12,8 @@ import FirebaseDatabase
 protocol FBDatabaseServiceProtocol {
     
     func getData(for path: String, completion: @escaping (Result<Any, DBError>) -> ())
-    func observe(path: String, completion: @escaping (Result<Any, DBError>) -> ())
+    func put(_ data: Any, in path: String, completion: @escaping (Error?) -> ())
+    func observe(path: String, eventType: DataEventType, completion: @escaping (Result<Any, DBError>) -> ())
     func stopObserving(for path: String)
 }
 
@@ -26,9 +27,9 @@ final class FBDatabaseService: FBDatabaseServiceProtocol {
     //MARK: - Methods -
     
     
-    func observe(path: String, completion: @escaping (Result<Any, DBError>) -> ()) {
+    func observe(path: String, eventType: DataEventType, completion: @escaping (Result<Any, DBError>) -> ()) {
         
-        databaseReference.child(path).observe(.childAdded) { snap in
+        databaseReference.child(path).observe(eventType) { snap in
             
             if let value = snap.value {
                 
@@ -43,11 +44,12 @@ final class FBDatabaseService: FBDatabaseServiceProtocol {
     }
     
     
+    
+    
     func stopObserving(for path: String) {
         
         databaseReference.child(path).removeAllObservers()
     }
-    
     
     
     
@@ -64,6 +66,16 @@ final class FBDatabaseService: FBDatabaseServiceProtocol {
                 completion(.failure(.failedToFetch))
                 
             }
+        }
+    }
+    
+    
+    
+    func put(_ data: Any, in path: String, completion: @escaping (Error?) -> ()) {
+        
+        self.databaseReference.child(path).setValue(data) { error, _ in
+            
+            completion(error)
         }
     }
 }

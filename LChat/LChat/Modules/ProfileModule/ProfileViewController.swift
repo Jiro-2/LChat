@@ -13,19 +13,31 @@ final class ProfileViewController: UIViewController {
     
     var viewModel: ProfileViewModelProtocol
     
-    //MARK: Subviews
+    
+    //MARK: subviews
     
     
-    private lazy var userNameTextField = UITextField(placeholder: "Name")
+    private lazy var usernameTextField = UITextField(placeholder: "Name")
     private lazy var phoneTextField = UITextField(placeholder: "Phone")
     private lazy var locationTextField = UITextField(placeholder: "Location")
     private lazy var bioTextField = UITextField(placeholder: "Bio")
     
     
-    private lazy var userNameLabel = UILabel(font: UIFont.systemFont(ofSize: 17.0, weight: .semibold), textAlignment: .right)
-    private lazy var phoneLabel = UILabel(font: UIFont.systemFont(ofSize: 17.0, weight: .semibold), textAlignment: .right)
-    private lazy var locationLabel = UILabel(font: UIFont.systemFont(ofSize: 17.0, weight: .semibold), textAlignment: .right)
-    private lazy var bioLabel = UILabel(font: UIFont.systemFont(ofSize: 17.0, weight: .semibold), textAlignment: .right)
+    private lazy var usernameLabel = UILabel(font: UIFont.systemFont(ofSize: 17.0,
+                                                                     weight: .semibold),
+                                                                     textAlignment: .right)
+    
+    private lazy var phoneLabel = UILabel(font: UIFont.systemFont(ofSize: 17.0,
+                                                                  weight: .semibold),
+                                                                  textAlignment: .right)
+    
+    private lazy var locationLabel = UILabel(font: UIFont.systemFont(ofSize: 17.0,
+                                                                     weight: .semibold),
+                                                                     textAlignment: .right)
+    
+    private lazy var bioLabel = UILabel(font: UIFont.systemFont(ofSize: 17.0,
+                                                                weight: .semibold),
+                                                                textAlignment: .right)
     
     
     
@@ -48,14 +60,17 @@ final class ProfileViewController: UIViewController {
     
     
     
-    private lazy var avatarImageView: UIImageView = {
+    private lazy var avatarImageView: MyImageView = {
         
-        let image = UIImageView(image: UIImage(systemName: "person.fill"))
+        let image = MyImageView(image: UIImage(systemName: "person.fill"))
         image.translatesAutoresizingMaskIntoConstraints = false
         image.tintColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         image.contentMode = .scaleToFill
-        image.clipsToBounds = true
+        image.layer.masksToBounds = false
         containerView.addSubview(image)
+        image.didSetImageBlock = { _ in
+            self.avatarImageView.layer.masksToBounds = true
+        }
         
         return image
     }() 
@@ -86,7 +101,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var textFieldsStackView: UIStackView = {
         
-        let stackView = UIStackView(arrangedSubviews: [userNameTextField, phoneTextField, locationTextField, bioTextField])
+        let stackView = UIStackView(arrangedSubviews: [usernameTextField, phoneTextField, locationTextField, bioTextField])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
@@ -102,7 +117,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var labelsStackView: UIStackView = {
         
-        let stackView = UIStackView(arrangedSubviews: [userNameLabel, phoneLabel, locationLabel, bioLabel])
+        let stackView = UIStackView(arrangedSubviews: [usernameLabel, phoneLabel, locationLabel, bioLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
@@ -140,39 +155,45 @@ final class ProfileViewController: UIViewController {
         title = "My Profile"
         
         imagePickerController.delegate = self
-        userNameTextField.delegate = self
+        usernameTextField.delegate = self
         phoneTextField.delegate = self
         locationTextField.delegate = self
         bioTextField.delegate = self
-        
         
         view.addSubview(containerView)
         setTabBarItem()
         setupLayout()
         setupProfileViewModelObserver()
         
-        viewModel.getDataProfile()
+        viewModel.observeDataProfile()
         
-        viewModel.getUserAvatarImageURL { url in
+        
+        DispatchQueue.main.async {
             
-            if let url = url {
-                self.avatarImageView.setImage(from: url)
+            self.viewModel.getUserAvatarImageURL { url in
+                
+                if let url = url {
+                    self.avatarImageView.setImage(from: url)
+                }
             }
         }
     }
     
     
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         avatarImageView.roundCorners(self.avatarImageView.bounds.size.height / 2.0)
+        openPhotoLibraryButton.roundCorners(openPhotoLibraryButton.bounds.size.height / 2.0)
+
     }
     
     
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        openPhotoLibraryButton.roundCorners(openPhotoLibraryButton.bounds.size.height / 2.0)
-        avatarImageView.roundCorners(avatarImageView.bounds.size.height / 2.0)
+    //    openPhotoLibraryButton.roundCorners(openPhotoLibraryButton.bounds.size.height / 2.0)
+     //   avatarImageView.roundCorners(avatarImageView.bounds.size.height / 2.0)
         
         
         textFieldsStackView.arrangedSubviews.forEach { view in
@@ -194,15 +215,13 @@ final class ProfileViewController: UIViewController {
     
     private func setupProfileViewModelObserver() {
         
-        viewModel.dataProfile.bind { [weak self] userProfileData in
+        viewModel.user.bind { [weak self] user in
             
-            DispatchQueue.main.async {
-                
-                self?.userNameLabel.text = userProfileData?[.userName]
-                self?.bioLabel.text = userProfileData?[.bio]
-                self?.phoneLabel.text = userProfileData?[.phone]
-                self?.locationLabel.text = userProfileData?[.location]
-            }
+            self?.usernameLabel.text = user?.username
+            self?.phoneLabel.text = user?.phone
+            self?.bioLabel.text = user?.bio
+            self?.locationLabel.text = user?.location
+            
         }
     }
     
@@ -210,8 +229,13 @@ final class ProfileViewController: UIViewController {
     
     private func showBarButtonItems() {
         
-        let doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonDidTap))
-        let unDoBarButtonItem = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(unDoButtonDidTap))
+        let doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
+                                                target: self,
+                                                action: #selector(doneButtonDidTap))
+        
+        let unDoBarButtonItem = UIBarButtonItem(barButtonSystemItem: .undo,
+                                                target: self,
+                                                action: #selector(unDoButtonDidTap))
         
         self.tabBarController?.navigationItem.rightBarButtonItems = [doneBarButtonItem, unDoBarButtonItem]
     }
@@ -222,19 +246,16 @@ final class ProfileViewController: UIViewController {
         
         if viewModel.isChanged {
             
-            viewModel.dataProfile.value?[.userName] = userNameLabel.text
-            viewModel.dataProfile.value?[.phone] = phoneLabel.text
-            viewModel.dataProfile.value?[.location] = locationLabel.text
-            viewModel.dataProfile.value?[.bio] = bioLabel.text
-            
             updateAvatarImage(image: avatarImageView.image)
             viewModel.updateProfile()
             
             viewModel.isChanged = false
             view.endEditing(true)
         }
+        
         tabBarController?.navigationItem.rightBarButtonItems = nil
     }
+    
     
     
     @objc
@@ -242,16 +263,13 @@ final class ProfileViewController: UIViewController {
         
         if viewModel.isChanged {
             
-            userNameLabel.text = viewModel.dataProfile.value?[.userName]
-            phoneLabel.text = viewModel.dataProfile.value?[.phone]
-            locationLabel.text = viewModel.dataProfile.value?[.location]
-            bioLabel.text = viewModel.dataProfile.value?[.bio]
-            
+            viewModel.user.value = viewModel.oldModelUser
             viewModel.isChanged = false
             view.endEditing(true)
         }
         tabBarController?.navigationItem.rightBarButtonItems = nil
     }
+    
     
     
     
@@ -262,7 +280,7 @@ final class ProfileViewController: UIViewController {
     }
     
     
-    
+   
     private func choosePhotoActionSheet() {
         
         let actionSheet = UIAlertController(title: "Photo source", message: "Choose a photo source", preferredStyle: .actionSheet)
@@ -358,13 +376,14 @@ extension ProfileViewController: UIImagePickerControllerDelegate & UINavigationC
         let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         
         avatarImageView.image = image
-        avatarImageView.clipsToBounds = true
         self.dismiss(animated: true, completion: nil)
         
         if navigationItem.rightBarButtonItems == nil {
+            viewModel.isChanged = true
             showBarButtonItems()
         }
     }
+    
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
@@ -374,7 +393,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate & UINavigationC
 
 
 extension ProfileViewController: UITextFieldDelegate {
-        
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if let text = textField.text {
@@ -382,7 +401,7 @@ extension ProfileViewController: UITextFieldDelegate {
             if !text.isEmpty {
                 
                 if !viewModel.isChanged {
-                 
+                    
                     viewModel.isChanged = true
                 }
                 
@@ -401,27 +420,31 @@ extension ProfileViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
+        guard let text = textField.text else { return true }
+        
+        if !text.isEmpty {
+            
+            if textField === usernameTextField {
+
+                viewModel.user.value?.username = text
+            }
+            
+            if textField === phoneTextField {
                 
-        if textField === userNameTextField {
+                viewModel.user.value?.phone = text
+            }
             
-            userNameLabel.text = textField.text
-        }
-        
-        if textField === phoneTextField {
+            if textField === locationTextField {
+                
+                viewModel.user.value?.location = text
+            }
             
-            phoneLabel.text = textField.text
+            if textField === bioTextField {
+                
+                viewModel.user.value?.bio = text
+            }
         }
-        
-        if textField === locationTextField {
-            
-            locationLabel.text = textField.text
-        }
-        
-        if textField === bioTextField {
-            
-            bioLabel.text = textField.text
-        }
-        
+
         textField.resignFirstResponder()
         return true
     }
@@ -429,6 +452,12 @@ extension ProfileViewController: UITextFieldDelegate {
     
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.text = ""
+        
+        guard let text = textField.text else { return }
+        
+        if !text.isEmpty {
+         
+            textField.text = ""
+        }
     }
 }

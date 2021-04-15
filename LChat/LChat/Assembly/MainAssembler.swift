@@ -28,6 +28,28 @@ final class MainAssembler {
         return viewController
     }
     
+    
+    static func buildSettingModule() -> UIViewController {
+        
+        let viewModel = SettingViewModel()
+        let vc = SettingViewController(viewModel: viewModel)
+        
+        return vc
+    }
+    
+    
+    static func buildProfileBodule() -> UIViewController {
+        
+        let storageService = FBStorageService()
+        let databaseService = FBDatabaseService()
+        
+        let viewModel = ProfileViewModel(storageService: storageService, databaseService: databaseService)
+        let vc = ProfileViewController(viewModel: viewModel)
+        
+        return vc
+    }
+    
+    
     static func buildHomeModule() -> UIViewController {
         
         let chatManager = FBChatService()
@@ -35,11 +57,13 @@ final class MainAssembler {
         let viewModel = ChatRoomsViewModel(chatManager: chatManager,
                                           databaseService: databaseService)
                 
-        let viewController = ChatRoomsViewController(viewModel: viewModel)
+        let chatRoomsVC = ChatRoomsViewController(viewModel: viewModel)
+        let settingVC = self.buildSettingModule()
+        let profileVC = self.buildProfileBodule()
         
         let homeViewModel = HomeViewModel()
         let tabBarController = HomeTabBarController(viewModel: homeViewModel)
-        tabBarController.setViewControllers([viewController], animated: true)
+        tabBarController.setViewControllers([chatRoomsVC, profileVC, settingVC], animated: true)
                 
         return tabBarController
     }
