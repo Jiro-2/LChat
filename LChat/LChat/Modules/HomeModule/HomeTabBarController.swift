@@ -12,7 +12,7 @@ class HomeTabBarController: UITabBarController {
     //MARK: - Properties -
     
     var viewModel: HomeViewModelProtocol
-    
+    var coordinator: MainCoordinator?
     
     
     //MARK: - Init -
@@ -40,7 +40,7 @@ class HomeTabBarController: UITabBarController {
     
     private func configureNavBar() {
         
-        self.title = "LingoChat"
+        self.title = "LChat"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchBarButtonItemDidTap))
     }
     
@@ -48,6 +48,8 @@ class HomeTabBarController: UITabBarController {
     
     @objc
     private func searchBarButtonItemDidTap() {
+        
         viewModel.search()
+        coordinator?.showSearch()
     }
 }

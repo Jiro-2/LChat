@@ -16,7 +16,10 @@ final class ChatCustomizeTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.textLabel?.text = "Chat Customize"
+        self.textLabel?.text = NSLocalizedString(
+            "SettingViewController.ChatCustomizeTableViewCell.textLabel",
+            comment: "")
+        
         self.textLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
         self.accessoryType = .disclosureIndicator
         

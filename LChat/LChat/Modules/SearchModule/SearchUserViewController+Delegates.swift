@@ -1,9 +1,4 @@
-//
-//  SearchUserViewController+Delegates.swift
-//  LChat
-//
-//  Created by Егор on 04.04.2021.
-//
+
 
 import UIKit
 
@@ -20,21 +15,23 @@ extension SearchUserViewController: UISearchResultsUpdating, UISearchBarDelegate
         viewModel.searchUserBy(searchBar.text)
     }
     
-    
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
-        if tableView.isHidden {
-            tableView.isHidden = false
-        }
+        isSearching = true
     }
     
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        
+        isSearching = false
+    }
     
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
      
         viewModel.searchResult.value = []
-        tableView.isHidden = true
+        isSearching = false
     }
 }
 
@@ -50,13 +47,15 @@ extension SearchUserViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         let userCell = cell as? UserTableViewCell
         
-        let userName = users[indexPath.row].userName
+        let userName = users[indexPath.row].username
         userCell?.userNameLabel.text = userName
     }
+    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

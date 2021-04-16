@@ -1,15 +1,9 @@
-//
-//  SearchUserViewModel.swift
-//  LingoChat
-//
-//  Created by Егор on 14.02.2021.
-//
+
 
 import Foundation
 
 protocol SearchUserViewModelProtocol: class {
     
-    //   var selectedUser: User? { get set }
     var searchResult: Bindable<[User]> { get set }
     
     func searchUserBy(_ username: String?)
@@ -21,7 +15,6 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
     //MARK: - Properties -
     
     private var searcher: FBSearchable
-    // var selectedUser: User? = nil
     var searchResult = Bindable<[User]>()
     
     
@@ -53,7 +46,7 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
                               let phone = dict["phone"],
                               let id = dict["id"] else { assertionFailure(); return }
                         
-                        let user = User(id: id, userName: key, phone: phone)
+                        let user = User(id: id, username: key, phone: phone)
                         users.append(user)
                     })
                     

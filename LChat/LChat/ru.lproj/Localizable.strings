@@ -1,0 +1,33 @@
+
+//MARK: - SearchViewController -
+
+"SearchViewController.SearchController.placeholder" = "Найти друзей";
+"SearchViewController.descriptionLabel" = "Введи имя своего друга и начни беседу.";
+
+
+//MARK: - ProfileViewController -
+
+"ProfileViewController.usernameTextField" = "Имя";
+"ProfileViewController.phoneTextField" = "Телефон";
+"ProfileViewController.locationTextField" = "Регион";
+"ProfileViewController.bioTextField" = "О себе";
+
+
+//MARK: - SettingViewController -
+
+//Cells
+
+"SettingViewController.DarkModeTableViewCell.textLabel" = "Темная тема";
+"SettingViewController.ChatCustomizeTableViewCell.textLabel" = "Кастомизация";
+"SettingViewController.NotificationTableViewCell.textLabel" = "Уведомления";
+"SettingViewController.LanguageTableViewCell.textLabel" = "Язык";
+"SettingViewController.DeleteAccountTableViewCell.textLabel" = "Удалить аккаунт";
+
+//Alerts
+
+"SettingViewController.ChoosePhoto.ActionSheet.title" = "Источники фотографий";
+"SettingViewController.ChoosePhoto.ActionSheet.message" = "Выбирите источник фото";
+"SettingViewController.ChoosePhoto.Action.Camera" = "Камера";
+"SettingViewController.ChoosePhoto.Action.PhotoLibrary" = "Галерея";
+"SettingViewController.ChoosePhoto.Action.Cancel" = "Отменить";
+"SettingViewController.ChoosePhoto.Alert.Error.NotAvailable" = "Камера не доступна";

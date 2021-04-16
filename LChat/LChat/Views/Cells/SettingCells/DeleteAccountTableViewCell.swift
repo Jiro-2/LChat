@@ -16,7 +16,10 @@ final class DeleteAccountTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.textLabel?.text = "Delete Account"
+        self.textLabel?.text = NSLocalizedString(
+            "SettingViewController.DeleteAccountTableViewCell.textLabel",
+            comment: "")
+        
         self.textLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
         self.textLabel?.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         

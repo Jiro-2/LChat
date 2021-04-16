@@ -103,7 +103,8 @@ class ChatTableViewCell: UITableViewCell {
             userNameLabel.leftAnchor.constraint(equalTo: avatarView.rightAnchor, constant: 8.0),
             
             lastMessageLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 5.0),
-            lastMessageLabel.leftAnchor.constraint(equalTo: userNameLabel.leftAnchor)
+            lastMessageLabel.leftAnchor.constraint(equalTo: userNameLabel.leftAnchor),
+            lastMessageLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6)
         ])
     }
 }

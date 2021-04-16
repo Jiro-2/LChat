@@ -16,28 +16,38 @@ final class ProfileViewController: UIViewController {
     
     //MARK: subviews
     
+    private lazy var usernameTextField = UITextField(placeholder: NSLocalizedString(
+                                                        "ProfileViewController.usernameTextField",
+                                                        comment: ""))
     
-    private lazy var usernameTextField = UITextField(placeholder: "Name")
-    private lazy var phoneTextField = UITextField(placeholder: "Phone")
-    private lazy var locationTextField = UITextField(placeholder: "Location")
-    private lazy var bioTextField = UITextField(placeholder: "Bio")
+    private lazy var phoneTextField = UITextField(placeholder: NSLocalizedString(
+                                                    "ProfileViewController.phoneTextField",
+                                                    comment: ""))
+    
+    private lazy var locationTextField = UITextField(placeholder: NSLocalizedString(
+                                                        "ProfileViewController.locationTextField",
+                                                        comment: ""))
+    
+    private lazy var bioTextField = UITextField(placeholder: NSLocalizedString(
+                                                    "ProfileViewController.bioTextField",
+                                                    comment: ""))
     
     
     private lazy var usernameLabel = UILabel(font: UIFont.systemFont(ofSize: 17.0,
                                                                      weight: .semibold),
-                                                                     textAlignment: .right)
+                                             textAlignment: .right)
     
     private lazy var phoneLabel = UILabel(font: UIFont.systemFont(ofSize: 17.0,
                                                                   weight: .semibold),
-                                                                  textAlignment: .right)
+                                          textAlignment: .right)
     
     private lazy var locationLabel = UILabel(font: UIFont.systemFont(ofSize: 17.0,
                                                                      weight: .semibold),
-                                                                     textAlignment: .right)
+                                             textAlignment: .right)
     
     private lazy var bioLabel = UILabel(font: UIFont.systemFont(ofSize: 17.0,
                                                                 weight: .semibold),
-                                                                textAlignment: .right)
+                                        textAlignment: .right)
     
     
     
@@ -185,15 +195,15 @@ final class ProfileViewController: UIViewController {
         super.viewDidAppear(animated)
         avatarImageView.roundCorners(self.avatarImageView.bounds.size.height / 2.0)
         openPhotoLibraryButton.roundCorners(openPhotoLibraryButton.bounds.size.height / 2.0)
-
+        
     }
     
     
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-    //    openPhotoLibraryButton.roundCorners(openPhotoLibraryButton.bounds.size.height / 2.0)
-     //   avatarImageView.roundCorners(avatarImageView.bounds.size.height / 2.0)
+        //    openPhotoLibraryButton.roundCorners(openPhotoLibraryButton.bounds.size.height / 2.0)
+        //   avatarImageView.roundCorners(avatarImageView.bounds.size.height / 2.0)
         
         
         textFieldsStackView.arrangedSubviews.forEach { view in
@@ -280,28 +290,42 @@ final class ProfileViewController: UIViewController {
     }
     
     
-   
+    
     private func choosePhotoActionSheet() {
         
-        let actionSheet = UIAlertController(title: "Photo source", message: "Choose a photo source", preferredStyle: .actionSheet)
+        let sheetTitle = NSLocalizedString("SettingViewController.ChoosePhoto.ActionSheet.title", comment: "")
+        let sheetMessage = NSLocalizedString("SettingViewController.ChoosePhoto.ActionSheet.message", comment: "")
         
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { action in
-            
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                
-                self.imagePickerController.sourceType = .camera
-                self.present(self.imagePickerController, animated: true, completion: nil)
-                
-            } else {
-                
-                let alert = UIAlertController(title: "Camera not available", message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-        }))
+        let actionSheet = UIAlertController(title: sheetTitle,
+                                            message: sheetMessage,
+                                            preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("SettingViewController.ChoosePhoto.Action.Camera",comment: ""),
+                                            style: .default,
+                                            
+                                            handler: { action in
+                                                
+                                                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                                                    
+                                                    self.imagePickerController.sourceType = .camera
+                                                    self.present(self.imagePickerController, animated: true, completion: nil)
+                                                    
+                                                } else {
+                                                    
+                                                    let alert = UIAlertController(title:NSLocalizedString("SettingViewController.ChoosePhoto.Alert.Error.NotAvailable", comment: ""),
+                                                                                  message: nil,
+                                                                                  preferredStyle: .alert)
+                                                    
+                                                    
+                                                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                                    self.present(alert, animated: true, completion: nil)
+                                                }
+                                            }))
         
         
-        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { action in
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("SettingViewController.ChoosePhoto.Action.PhotoLibrary", comment: ""),
+                                            style: .default,
+                                            handler: { action in
             
             self.imagePickerController.sourceType = .photoLibrary
             self.present(self.imagePickerController, animated: true, completion: nil)
@@ -309,9 +333,11 @@ final class ProfileViewController: UIViewController {
         }))
         
         
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("SettingViewController.ChoosePhoto.Action.Cancel", comment: ""),
+                                            style: .cancel,
+                                            handler: { action in
             
-            
+                                                print("Cancel")
             
         }))
         
@@ -425,7 +451,7 @@ extension ProfileViewController: UITextFieldDelegate {
         if !text.isEmpty {
             
             if textField === usernameTextField {
-
+                
                 viewModel.user.value?.username = text
             }
             
@@ -444,7 +470,7 @@ extension ProfileViewController: UITextFieldDelegate {
                 viewModel.user.value?.bio = text
             }
         }
-
+        
         textField.resignFirstResponder()
         return true
     }
@@ -456,7 +482,7 @@ extension ProfileViewController: UITextFieldDelegate {
         guard let text = textField.text else { return }
         
         if !text.isEmpty {
-         
+            
             textField.text = ""
         }
     }

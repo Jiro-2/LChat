@@ -1,12 +1,6 @@
-//
-//  SearchViewController.swift
-//  LingoChat
-//
-//  Created by Егор on 12.02.2021.
-//
+
 
 import UIKit
-
 
 protocol SearchUserViewControllerDelegate: class {
     
@@ -20,8 +14,25 @@ final class SearchUserViewController: UIViewController {
     //MARK: - Properties -
     
     var viewModel: SearchUserViewModelProtocol
-    var coordinator: MainCoordinator?
     weak var delegate: SearchUserViewControllerDelegate?
+    var coordinator: MainCoordinator?
+    var isSearching = false {
+        
+        didSet {
+            
+            if isSearching {
+                
+                searchImageView.isHidden = true
+                tableView.isHidden = false
+                
+            } else {
+                
+                searchImageView.isHidden = false
+                tableView.isHidden = true
+            }
+        }
+    }
+    
     
     var users: [User] = [] {
         
@@ -48,13 +59,16 @@ final class SearchUserViewController: UIViewController {
         searchController.searchBar.tintColor = .white
         
         let txtField = searchController.searchBar.value(forKey: "searchField") as? UITextField
-        txtField?.attributedPlaceholder = NSAttributedString(string: "Search friends", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        let text = NSLocalizedString("SearchViewController.SearchController.placeholder", comment: "")
+        
+        txtField?.attributedPlaceholder = NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         txtField?.leftView?.tintColor = .white
-        txtField?.backgroundColor = UIColor.primaryColor
+        txtField?.backgroundColor = .primaryColor
         txtField?.autocapitalizationType = .none
         
         return searchController
     }()
+    
     
     
      lazy var tableView: UITableView = {
@@ -81,11 +95,16 @@ final class SearchUserViewController: UIViewController {
     
     private lazy var descriptionLabel: UILabel = {
        
-        let lbl = UILabel()
-        lbl.backgroundColor = view.backgroundColor
-        lbl.numberOfLines = 0
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = NSLocalizedString("SearchViewController.descriptionLabel",
+                                       comment: "")
+        label.textAlignment = .center
+        label.backgroundColor = view.backgroundColor
+        label.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        label.numberOfLines = 0
         
-        return lbl
+        return label
     }()
     
     
@@ -127,6 +146,7 @@ final class SearchUserViewController: UIViewController {
     }
     
     
+    
 //    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 //        super.traitCollectionDidChange(previousTraitCollection)
 //        layoutTrait(traitCollection: traitCollection)
@@ -155,6 +175,8 @@ final class SearchUserViewController: UIViewController {
         searchController.searchResultsUpdater = self
     }
     
+    
+    
     private func configureNavigationBar() {
         
         navigationController?.navigationItem.title = "Search"
@@ -162,6 +184,7 @@ final class SearchUserViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.standardAppearance.backgroundColor = view.backgroundColor
     }
+    
     
     
     func subscribeDelegate() {
@@ -183,20 +206,18 @@ final class SearchUserViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             
-//            searchImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            searchImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            searchImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6),
-//            searchImageView.widthAnchor.constraint(equalTo: view.widthAnchor),
-//
-//            descriptionLabel.topAnchor.constraint(equalTo: searchImageView.bottomAnchor),
-//            descriptionLabel.centerXAnchor.constraint(equalTo: searchImageView.centerXAnchor),
-//            descriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)
-//
+            searchImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            searchImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6),
+            searchImageView.widthAnchor.constraint(equalTo: view.widthAnchor),
+
+            descriptionLabel.topAnchor.constraint(equalTo: searchImageView.bottomAnchor),
+            descriptionLabel.centerXAnchor.constraint(equalTo: searchImageView.centerXAnchor),
+            descriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)
         ])
     }
     
-    
-    
+
     
     
     

@@ -1,0 +1,35 @@
+
+
+//MARK: - SearchViewController -
+
+"SearchViewController.SearchController.placeholder" = "Search friends";
+"SearchViewController.descriptionLabel" = "Enter your friend's username and start conversation.";
+
+//MARK: - ProfileViewController -
+
+"ProfileViewController.usernameTextField" = "Name";
+"ProfileViewController.phoneTextField" = "Phone";
+"ProfileViewController.locationTextField" = "Location";
+"ProfileViewController.bioTextField" = "Bio";
+
+
+//MARK: -SettingViewController -
+
+//Cells
+
+"SettingViewController.DarkModeTableViewCell.textLabel" = "Dark Mode";
+"SettingViewController.ChatCustomizeTableViewCell.textLabel" = "Chat Customize";
+"SettingViewController.NotificationTableViewCell.textLabel" = "Notification";
+"SettingViewController.LanguageTableViewCell.textLabel" = "Language";
+"SettingViewController.DeleteAccountTableViewCell.textLabel" = "Delete Account";
+
+//Alerts
+
+"SettingViewController.ChoosePhoto.ActionSheet.title" = "Photo source";
+"SettingViewController.ChoosePhoto.ActionSheet.message" = "Choose a photo source";
+"SettingViewController.ChoosePhoto.Action.Camera" = "Camera";
+"SettingViewController.ChoosePhoto.Action.PhotoLibrary" = "Photo Library";
+"SettingViewController.ChoosePhoto.Action.Cancel" = "Cancel";
+"SettingViewController.ChoosePhoto.Alert.Error.NotAvailable" = "Camera not available";
+
+

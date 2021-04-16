@@ -28,7 +28,10 @@ final class DarkModeTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.textLabel?.text = "Dark Mode"
+        self.textLabel?.text = NSLocalizedString(
+            "SettingViewController.DarkModeTableViewCell.textLabel",
+            comment: "")
+        
         self.textLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
         self.accessoryView = darkModeSwitcher
         
