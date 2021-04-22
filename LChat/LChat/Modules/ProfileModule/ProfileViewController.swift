@@ -17,19 +17,19 @@ final class ProfileViewController: UIViewController {
     //MARK: subviews
     
     private lazy var usernameTextField = UITextField(placeholder: NSLocalizedString(
-                                                        "ProfileViewController.usernameTextField",
+                                                        "ProfileViewController.usernameTextField".localized,
                                                         comment: ""))
     
     private lazy var phoneTextField = UITextField(placeholder: NSLocalizedString(
-                                                    "ProfileViewController.phoneTextField",
+                                                    "ProfileViewController.phoneTextField".localized,
                                                     comment: ""))
     
     private lazy var locationTextField = UITextField(placeholder: NSLocalizedString(
-                                                        "ProfileViewController.locationTextField",
+                                                        "ProfileViewController.locationTextField".localized,
                                                         comment: ""))
     
     private lazy var bioTextField = UITextField(placeholder: NSLocalizedString(
-                                                    "ProfileViewController.bioTextField",
+                                                    "ProfileViewController.bioTextField".localized,
                                                     comment: ""))
     
     
@@ -160,9 +160,8 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = #colorLiteral(red: 0.9679402709, green: 0.964915216, blue: 0.9647199512, alpha: 1)
-        title = "My Profile"
+      //  title = "My Profile"
         
         imagePickerController.delegate = self
         usernameTextField.delegate = self
@@ -171,6 +170,7 @@ final class ProfileViewController: UIViewController {
         bioTextField.delegate = self
         
         view.addSubview(containerView)
+        setLocalizedText()
         setTabBarItem()
         setupLayout()
         setupProfileViewModelObserver()
@@ -232,6 +232,23 @@ final class ProfileViewController: UIViewController {
             self?.bioLabel.text = user?.bio
             self?.locationLabel.text = user?.location
             
+        }
+    }
+    
+    
+    
+    private func setLocalizedText() {
+        
+        LanguageManager.shared.didChangeLangBlocks.append {
+            
+            self.usernameTextField.placeholder = NSLocalizedString("ProfileViewController.usernameTextField".localized,
+                                                                   comment: "")
+            self.phoneTextField.placeholder = NSLocalizedString("ProfileViewController.phoneTextField".localized,
+                                                                comment: "")
+            self.locationTextField.placeholder = NSLocalizedString("ProfileViewController.locationTextField".localized,
+                                                                   comment: "")
+            self.bioTextField.placeholder = NSLocalizedString("ProfileViewController.bioTextField".localized,
+                                                              comment: "")
         }
     }
     
@@ -326,20 +343,20 @@ final class ProfileViewController: UIViewController {
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString("SettingViewController.ChoosePhoto.Action.PhotoLibrary", comment: ""),
                                             style: .default,
                                             handler: { action in
-            
-            self.imagePickerController.sourceType = .photoLibrary
-            self.present(self.imagePickerController, animated: true, completion: nil)
-            
-        }))
+                                                
+                                                self.imagePickerController.sourceType = .photoLibrary
+                                                self.present(self.imagePickerController, animated: true, completion: nil)
+                                                
+                                            }))
         
         
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString("SettingViewController.ChoosePhoto.Action.Cancel", comment: ""),
                                             style: .cancel,
                                             handler: { action in
-            
+                                                
                                                 print("Cancel")
-            
-        }))
+                                                
+                                            }))
         
         self.present(actionSheet, animated: true, completion: nil)
     }

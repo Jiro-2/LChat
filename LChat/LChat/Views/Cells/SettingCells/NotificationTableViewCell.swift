@@ -15,14 +15,17 @@ final class NotificationTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.textLabel?.text = NSLocalizedString(
-            "SettingViewController.NotificationTableViewCell.textLabel",
-            comment: "")
         
+        textLabel?.text = NSLocalizedString(
+            "SettingViewController.NotificationTableViewCell.textLabel".localized,
+            comment: "")
+
         self.textLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
         self.accessoryType = .disclosureIndicator
         
         setImageView()
+        setLocalizedText()
+
     }
     
     
@@ -33,6 +36,18 @@ final class NotificationTableViewCell: UITableViewCell {
     
     
     //MARK: - Methods -
+    
+    
+    private func setLocalizedText() {
+        
+        LanguageManager.shared.didChangeLangBlocks.append {
+            
+            self.textLabel?.text = NSLocalizedString("SettingViewController.ChatCustomizeTableViewCell.textLabel".localized, comment: "")
+        }
+    }
+    
+    
+    
     
     private func setImageView() {
         

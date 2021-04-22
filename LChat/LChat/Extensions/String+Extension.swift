@@ -9,15 +9,17 @@ import Foundation
 
 extension String {
     
-    var isNumeric: Bool {
+
+    var localized: String {
+                
+        let language = LanguageManager.shared.currentLang ?? "en"
+        let path = Bundle.main.path(forResource: language, ofType: "lproj")
+        let bundle = Bundle(path: path!)
         
-        guard self.count > 0 else { return false }
-        
-        let digits: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-        let set: Set<Character> = Set(self)
-        
-        return Set(set).isSubset(of: digits)
+        return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
     }
+   
+    
     
     
     var isValidPhone: Bool {

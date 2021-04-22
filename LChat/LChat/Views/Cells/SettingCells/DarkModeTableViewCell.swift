@@ -10,7 +10,6 @@ import UIKit
 final class DarkModeTableViewCell: UITableViewCell {
     
     
-    
     //MARK: - Properties -
     
     private lazy var darkModeSwitcher = UISwitch(frame: .zero, primaryAction: UIAction(handler: { _ in
@@ -28,15 +27,28 @@ final class DarkModeTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.textLabel?.text = NSLocalizedString(
-            "SettingViewController.DarkModeTableViewCell.textLabel",
+        textLabel?.text = NSLocalizedString(
+            "SettingViewController.DarkModeTableViewCell.textLabel".localized,
             comment: "")
-        
         self.textLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
         self.accessoryView = darkModeSwitcher
         
         setImageView()
+        setLocalizedText()
+
     }
+    
+    
+    private func setLocalizedText() {
+        
+        LanguageManager.shared.didChangeLangBlocks.append {
+            
+            self.textLabel?.text = NSLocalizedString(
+                "SettingViewController.DarkModeTableViewCell.textLabel".localized,
+                comment: "")
+        }
+    }
+    
     
     
     required init?(coder: NSCoder) {

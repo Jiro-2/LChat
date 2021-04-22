@@ -1,12 +1,5 @@
-//
-//  DeleteAccountTableViewCell.swift
-//  LingoChat
-//
-//  Created by Егор on 18.03.2021.
-//
 
 import UIKit
-
 
 final class DeleteAccountTableViewCell: UITableViewCell {
     
@@ -16,14 +9,16 @@ final class DeleteAccountTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.textLabel?.text = NSLocalizedString(
-            "SettingViewController.DeleteAccountTableViewCell.textLabel",
+       
+        textLabel?.text = NSLocalizedString(
+            "SettingViewController.DeleteAccountTableViewCell.textLabel".localized,
             comment: "")
         
         self.textLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
         self.textLabel?.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         
         setImageView()
+        setLocalizedText()
     }
     
     
@@ -32,8 +27,18 @@ final class DeleteAccountTableViewCell: UITableViewCell {
     }
     
     
-    
     //MARK: - Methods -
+    
+    
+    private func setLocalizedText() {
+        
+        LanguageManager.shared.didChangeLangBlocks.append {
+            
+            self.textLabel?.text = NSLocalizedString("SettingViewController.DeleteAccountTableViewCell.textLabel".localized, comment: "")
+        }
+    }
+    
+    
     
     private func setImageView() {
         

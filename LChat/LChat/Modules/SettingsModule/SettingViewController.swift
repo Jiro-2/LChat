@@ -7,11 +7,13 @@
 
 import UIKit
 
-final class SettingViewController: UIViewController {
+final class SettingsViewController: UIViewController {
+    
     
     //MARK: - Properties -
     
-    var viewModel: SettingViewModelProtocol
+    var viewModel: SettingsViewModelProtocol
+    var coordinator: SettingCoordinator?
     
     //MARK: Subviews
     
@@ -33,7 +35,7 @@ final class SettingViewController: UIViewController {
         table.layer.shadowOffset = .zero
         table.clipsToBounds = false
         table.rowHeight = 50.0
-        table.allowsSelection = false
+        
         return table
     }()
     
@@ -42,7 +44,7 @@ final class SettingViewController: UIViewController {
     //MARK: - Init -
     
     
-    init(viewModel: SettingViewModelProtocol) {
+    init(viewModel: SettingsViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -67,10 +69,12 @@ final class SettingViewController: UIViewController {
         
         setTabBarItem()
         setupLayout()
+        coordinator?.navigationController = navigationController!
     }
     
-    //MARK: - Methods -
+
     
+    //MARK: - Methods -
     
     private func setTabBarItem() {
         
@@ -80,6 +84,8 @@ final class SettingViewController: UIViewController {
         self.tabBarItem = tabBarItem
     }
     
+    
+   
     
     private func setupLayout() {
         
@@ -98,7 +104,7 @@ final class SettingViewController: UIViewController {
 //MARK: - Extension -
 
 
-extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
+extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,6 +134,25 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             
         default:
             return UITableViewCell()
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch indexPath.row {
+        
+        case 1:
+            coordinator?.showCustomization()
+            
+        case 2:
+            coordinator?.showNotification()
+            
+        case 3:
+            coordinator?.showLanguages()
+            
+        default:
+            break
         }
     }
 }

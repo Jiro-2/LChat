@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol SettingViewModelProtocol {
+protocol SettingsViewModelProtocol {
     
     
 }
 
 
-final class SettingViewModel: SettingViewModelProtocol {
+final class SettingsViewModel: SettingsViewModelProtocol {
     
     
     
