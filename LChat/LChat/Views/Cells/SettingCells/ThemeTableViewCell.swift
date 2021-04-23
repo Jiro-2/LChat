@@ -7,18 +7,26 @@
 
 import UIKit
 
-final class DarkModeTableViewCell: UITableViewCell {
+final class ThemeTableViewCell: UITableViewCell {
     
     
     //MARK: - Properties -
     
-    private lazy var darkModeSwitcher = UISwitch(frame: .zero, primaryAction: UIAction(handler: { _ in
-        
-        print("Switch")
-        
-    }))
+    var themeSwitcherAction: ((Bool) -> ())?
     
-    
+
+     lazy var themeSwitcher: UISwitch = {
+       
+        let switcher = UISwitch()
+        switcher.frame = .zero
+        switcher.addAction(UIAction(handler: { _ in
+            
+            self.themeSwitcherAction?(switcher.isOn)
+            
+        }), for: .touchUpInside)
+        
+        return switcher
+    }()
     
     
     //MARK: - Init -
@@ -27,11 +35,12 @@ final class DarkModeTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        backgroundColor = .secondarySystemBackground
         textLabel?.text = NSLocalizedString(
             "SettingViewController.DarkModeTableViewCell.textLabel".localized,
             comment: "")
         self.textLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
-        self.accessoryView = darkModeSwitcher
+        self.accessoryView = themeSwitcher
         
         setImageView()
         setLocalizedText()

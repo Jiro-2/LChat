@@ -15,7 +15,6 @@ protocol ChatRoomsViewControllerDelegate: class {
 
 
 
-
 class ChatRoomsViewController: UIViewController {
     
     //MARK: - Properties -
@@ -80,6 +79,12 @@ class ChatRoomsViewController: UIViewController {
         configureNavBar()
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view.window?.overrideUserInterfaceStyle = UserDefaults.standard.interfaceStyle
+    }
+
    
     
     //MARK: - Methods -

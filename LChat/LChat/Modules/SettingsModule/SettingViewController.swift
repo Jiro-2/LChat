@@ -1,9 +1,3 @@
-//
-//  SettingViewController.swift
-//  LingoChat
-//
-//  Created by Егор on 18.03.2021.
-//
 
 import UIKit
 
@@ -17,7 +11,7 @@ final class SettingsViewController: UIViewController {
     
     //MARK: Subviews
     
-    private let darkModeTableViewCell = DarkModeTableViewCell()
+    private let themeTableViewCell = ThemeTableViewCell()
     private let chatCustomizeTableViewCell = ChatCustomizeTableViewCell()
     private let notificationTableViewCell = NotificationTableViewCell()
     private let deleteAccountTableViewCell = DeleteAccountTableViewCell()
@@ -28,6 +22,7 @@ final class SettingsViewController: UIViewController {
        
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
+        table.backgroundColor = .secondarySystemBackground
         table.separatorStyle = .none
         table.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         table.layer.shadowOpacity = 0.3
@@ -35,6 +30,7 @@ final class SettingsViewController: UIViewController {
         table.layer.shadowOffset = .zero
         table.clipsToBounds = false
         table.rowHeight = 50.0
+        view.addSubview(table)
         
         return table
     }()
@@ -59,19 +55,28 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.9679402709, green: 0.964915216, blue: 0.9647199512, alpha: 1)
+        view.backgroundColor = .systemBackground
         title = "Setting"
 
-        view.addSubview(settingTableView)
                 
         settingTableView.delegate = self
         settingTableView.dataSource = self
         
         setTabBarItem()
         setupLayout()
+        setupSettingsViewModelObserver()
+        configThemeSwitcher()
         coordinator?.navigationController = navigationController!
     }
     
+    
+   
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view.window?.overrideUserInterfaceStyle = UserDefaults.standard.interfaceStyle
+
+    }
 
     
     //MARK: - Methods -
@@ -85,7 +90,42 @@ final class SettingsViewController: UIViewController {
     }
     
     
+    
+    private func setupSettingsViewModelObserver() {
+        
+        viewModel.isDarkStyle.bind { [weak self] isDarkStyle in
+            
+            guard let isDarkStyle = isDarkStyle else { return }
+            
+            if isDarkStyle {
+                
+                self?.view.window?.overrideUserInterfaceStyle = .dark
+                
+            } else {
+                
+                self?.view.window?.overrideUserInterfaceStyle = .light
+            }
+        }
+    }
    
+    
+    
+    private func configThemeSwitcher() {
+    
+        if let isOn = viewModel.isDarkStyle.value {
+            
+            themeTableViewCell.themeSwitcher.isOn = isOn
+        }
+    
+        
+        themeTableViewCell.themeSwitcherAction = { isOn in
+         
+            self.viewModel.changeAppTheme(isOn)
+        }
+    }
+    
+    
+    
     
     private func setupLayout() {
         
@@ -118,7 +158,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         
         case 0:
-            return darkModeTableViewCell
+            return themeTableViewCell
             
         case 1:
             return chatCustomizeTableViewCell

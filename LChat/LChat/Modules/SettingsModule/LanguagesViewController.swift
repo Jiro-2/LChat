@@ -29,6 +29,8 @@ final class LanguagesViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(tableView)
         
+      //  overrideUserInterfaceStyle = UserDefaults.standard.interfaceStyle
+        
         tableView.dataSource = self
         tableView.delegate = self
     }

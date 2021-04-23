@@ -16,7 +16,7 @@ final class ChatCustomizeTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        
+        backgroundColor = .secondarySystemBackground
         textLabel?.text = NSLocalizedString(
             "SettingViewController.ChatCustomizeTableViewCell.textLabel".localized,
             comment: "")

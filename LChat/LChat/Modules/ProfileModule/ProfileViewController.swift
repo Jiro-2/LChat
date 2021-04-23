@@ -59,7 +59,7 @@ final class ProfileViewController: UIViewController {
         
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.backgroundColor = .secondarySystemBackground
         view.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         view.layer.shadowOpacity = 0.3
         view.layer.shadowRadius = 5.0
@@ -160,7 +160,7 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.9679402709, green: 0.964915216, blue: 0.9647199512, alpha: 1)
+        view.backgroundColor = .systemBackground
       //  title = "My Profile"
         
         imagePickerController.delegate = self
@@ -191,11 +191,14 @@ final class ProfileViewController: UIViewController {
     
     
     
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         avatarImageView.roundCorners(self.avatarImageView.bounds.size.height / 2.0)
         openPhotoLibraryButton.roundCorners(openPhotoLibraryButton.bounds.size.height / 2.0)
-        
+        view.window?.overrideUserInterfaceStyle = UserDefaults.standard.interfaceStyle
+
     }
     
     
@@ -208,12 +211,12 @@ final class ProfileViewController: UIViewController {
         
         textFieldsStackView.arrangedSubviews.forEach { view in
             
-            view.addBorder(side: .bottom, thickness: 4.0, color: #colorLiteral(red: 0.9830254912, green: 0.976836741, blue: 0.9766126275, alpha: 1))
+            view.addBorder(side: .bottom, thickness: 4.0, color: .secondarySystemBackground)
         }
         
         labelsStackView.arrangedSubviews.forEach { view in
             
-            view.addBorder(side: .bottom, thickness: 4.0, color: #colorLiteral(red: 0.9830254912, green: 0.976836741, blue: 0.9766126275, alpha: 1))
+            view.addBorder(side: .bottom, thickness: 4.0, color: .secondarySystemBackground)
         }
     }
     

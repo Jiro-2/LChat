@@ -35,6 +35,11 @@ class HomeTabBarController: UITabBarController {
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view.window?.overrideUserInterfaceStyle = UserDefaults.standard.interfaceStyle
+    }
+
     
     //MARK: - Methods -
     

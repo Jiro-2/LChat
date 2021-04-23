@@ -33,6 +33,8 @@ final class ChatViewController: MessagesViewController {
         super.viewDidLoad()
         
         view.backgroundColor = #colorLiteral(red: 0.2615707219, green: 0.6179133654, blue: 0.5889353752, alpha: 1)
+        overrideUserInterfaceStyle = UserDefaults.standard.interfaceStyle
+
         setupDelegates()
         messagesCollectionView.messagesDataSource = self
         
@@ -54,12 +56,14 @@ final class ChatViewController: MessagesViewController {
     }
     
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         viewModel.stopObservingChat()
+        view.window?.overrideUserInterfaceStyle = UserDefaults.standard.interfaceStyle
     }
-    
-    
+
+
     
     //MARK: - Methods -
     

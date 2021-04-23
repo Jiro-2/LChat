@@ -15,7 +15,7 @@ final class LanguageTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        
+        backgroundColor = .secondarySystemBackground
         self.textLabel?.text = NSLocalizedString(
             "SettingViewController.LanguageTableViewCell.textLabel".localized,
             comment: "")
