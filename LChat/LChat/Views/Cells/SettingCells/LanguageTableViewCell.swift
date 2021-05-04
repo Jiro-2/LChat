@@ -1,10 +1,3 @@
-//
-//  LanguageTableViewCell.swift
-//  LingoChat
-//
-//  Created by Егор on 18.03.2021.
-//
-
 import UIKit
 
 final class LanguageTableViewCell: UITableViewCell {

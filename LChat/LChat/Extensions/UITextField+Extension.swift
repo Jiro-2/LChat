@@ -1,10 +1,3 @@
-//
-//  Extension+UITextField.swift
-//  LingoChat
-//
-//  Created by Егор on 05.01.2021.
-//
-
 import UIKit
 
 extension UITextField {

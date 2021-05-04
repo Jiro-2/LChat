@@ -1,10 +1,3 @@
-//
-//  UnSeenMessageBadgeLabel.swift
-//  LingoChat
-//
-//  Created by Егор on 03.03.2021.
-//
-
 import UIKit
 
 class UnSeenMessageBadgeLabel: UILabel {
@@ -32,7 +25,6 @@ class UnSeenMessageBadgeLabel: UILabel {
     override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
         
         var rect = super.textRect(forBounds: bounds, limitedToNumberOfLines: numberOfLines)
-        
         rect.size.width += (rightInset + leftInset) * 2
         rect.size.height += topInset + leftInset
         

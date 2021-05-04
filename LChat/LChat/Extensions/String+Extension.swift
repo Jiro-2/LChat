@@ -1,10 +1,3 @@
-//
-//  String+Extension.swift
-//  LingoChat
-//
-//  Created by Егор on 02.02.2021.
-//
-
 import Foundation
 
 extension String {
@@ -19,7 +12,6 @@ extension String {
         return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
     }
    
-    
     
     
     var isValidPhone: Bool {

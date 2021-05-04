@@ -1,10 +1,3 @@
-//
-//  Message.swift
-//  LingoChat
-//
-//  Created by Егор on 15.02.2021.
-//
-
 import Foundation
 import MessageKit
 

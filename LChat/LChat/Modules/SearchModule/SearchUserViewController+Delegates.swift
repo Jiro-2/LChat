@@ -1,14 +1,11 @@
-
-
 import UIKit
 
-extension SearchUserViewController: UISearchResultsUpdating, UISearchBarDelegate {
+extension SearchUserViewController:  UISearchBarDelegate {
     
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        (searchController.searchBar.value(forKey: "searchField") as? UITextField)?.textColor = .white
-    }
-    
+//    func updateSearchResults(for searchController: UISearchController) {
+//        
+//    }
+//    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         

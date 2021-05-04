@@ -1,10 +1,3 @@
-//
-//  UIImage+Extension.swift
-//  LingoChat
-//
-//  Created by Егор on 20.03.2021.
-//
-
 import UIKit
 
 extension UIImageView {

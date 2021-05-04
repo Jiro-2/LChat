@@ -1,10 +1,3 @@
-//
-//  HomeTabBarController.swift
-//  LingoChat
-//
-//  Created by Егор on 02.03.2021.
-//
-
 import UIKit
 
 class HomeTabBarController: UITabBarController {

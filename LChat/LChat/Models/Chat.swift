@@ -1,10 +1,3 @@
-//
-//  Chat.swift
-//  LingoChat
-//
-//  Created by Егор on 01.03.2021.
-//
-
 import Foundation
 
 struct Chat: Identifiable {

@@ -1,5 +1,3 @@
-
-
 import UIKit
 import MessageKit
 import InputBarAccessoryView
@@ -12,7 +10,7 @@ final class ChatViewController: MessagesViewController {
     var viewModel: ChatViewModelProtocol
     var coordinator: MainCoordinator?
     var messages = [Message]()
-        
+    public let primaryColor = ThemeManager.shared.primaryColor
   
     //MARK: - Init -
     
@@ -32,8 +30,7 @@ final class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = #colorLiteral(red: 0.2615707219, green: 0.6179133654, blue: 0.5889353752, alpha: 1)
-        overrideUserInterfaceStyle = UserDefaults.standard.interfaceStyle
+        view.backgroundColor = primaryColor
 
         setupDelegates()
         messagesCollectionView.messagesDataSource = self
@@ -48,6 +45,7 @@ final class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesCollectionViewFlowLayout.setMessageOutgoingAvatarSize(.zero)
         messagesCollectionView.messagesCollectionViewFlowLayout.setMessageIncomingAvatarSize(.zero)
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -71,7 +69,7 @@ final class ChatViewController: MessagesViewController {
         
         messageInputBar.isTranslucent = false
         messageInputBar.separatorLine.isHidden = true
-        messageInputBar.inputTextView.tintColor = .primaryColor
+        messageInputBar.inputTextView.tintColor = primaryColor
         messageInputBar.inputTextView.backgroundColor = #colorLiteral(red: 0.2580699335, green: 0.775914117, blue: 1, alpha: 0.1848429985)
         messageInputBar.inputTextView.placeholder = "Type your message"
         messageInputBar.inputTextView.placeholderTextColor = #colorLiteral(red: 0.6338604689, green: 0.6519217491, blue: 0.6755121946, alpha: 1)
@@ -95,9 +93,6 @@ final class ChatViewController: MessagesViewController {
     
     
     
-
-    
-    
     private func setupChatViewModelObserver() {
         
         viewModel.messages.bind { [weak self] messages in
@@ -119,7 +114,7 @@ final class ChatViewController: MessagesViewController {
     private func configureNavBar() {
         
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor : UIColor.white]
-        navigationController?.navigationBar.standardAppearance.backgroundColor = UIColor.primaryColor
+        navigationController?.navigationBar.standardAppearance.backgroundColor = primaryColor
         navigationController?.navigationBar.tintColor = .white
         self.title = viewModel.interLocutor?.username
     }
@@ -130,5 +125,19 @@ final class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         messageInputBar.delegate = self
+    }
+}
+
+
+
+
+//MARK: - Extension -
+
+extension ChatViewController: ThemeObserver {
+    
+    func didChangePrimaryColor(_ color: UIColor) {
+        
+        navigationController?.navigationBar.standardAppearance.backgroundColor = color
+        
     }
 }

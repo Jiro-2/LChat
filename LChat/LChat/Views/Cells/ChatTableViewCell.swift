@@ -1,19 +1,10 @@
-//
-//  ChatTableViewCell.swift
-//  LingoChat
-//
-//  Created by Егор on 01.03.2021.
-//
-
 import UIKit
 
 class ChatTableViewCell: UITableViewCell {
     
-    
-    //MARK: - Properties -
-    
-    
+
     //MARK: - Subviews
+    
     
     let userNameLabel: UILabel = {
         
@@ -40,7 +31,7 @@ class ChatTableViewCell: UITableViewCell {
         
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .green
+        view.backgroundColor = ThemeManager.shared.primaryColor
         
         return view
     }()
@@ -49,12 +40,12 @@ class ChatTableViewCell: UITableViewCell {
     let unSeenMessagesLabel: UnSeenMessageBadgeLabel = {
        
         let label = UnSeenMessageBadgeLabel(withInsets: 5.0, 5.0, 5.0, 5.0)
-        label.font = .systemFont(ofSize: 12)
+        label.font = .systemFont(ofSize: 13)
         label.text = "0"
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         label.clipsToBounds = true
-        label.backgroundColor = .primaryColor
+        label.backgroundColor = ThemeManager.shared.primaryColor
         label.sizeToFit()
         
         return label
@@ -71,6 +62,9 @@ class ChatTableViewCell: UITableViewCell {
         self.selectionStyle = .none
         self.accessoryView = unSeenMessagesLabel
         self.accessoryView?.isHidden = true
+        
+        
+        ThemeManager.shared.addObserver(self)
     }
     
     required init?(coder: NSCoder) {
@@ -78,6 +72,11 @@ class ChatTableViewCell: UITableViewCell {
     }
     
     
+    deinit {
+        ThemeManager.shared.removeObserver(self)
+    }
+    
+
     //MARK: - Methods -
     
     override func layoutSubviews() {
@@ -88,7 +87,6 @@ class ChatTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: - Private
     
     private func setupLayout() {
         
@@ -106,5 +104,16 @@ class ChatTableViewCell: UITableViewCell {
             lastMessageLabel.leftAnchor.constraint(equalTo: userNameLabel.leftAnchor),
             lastMessageLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6)
         ])
+    }
+}
+
+
+//MARK: - Extension -
+
+extension ChatTableViewCell: ThemeObserver {
+    
+    func didChangePrimaryColor(_ color: UIColor) {
+     
+        unSeenMessagesLabel.backgroundColor = color
     }
 }

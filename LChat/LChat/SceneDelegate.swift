@@ -1,20 +1,11 @@
-//
-//  SceneDelegate.swift
-//  LChat
-//
-//  Created by Егор on 23.03.2021.
-//
-
 import UIKit
 import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    var coordinator: Coordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
@@ -22,21 +13,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
-        
+        let appCoordinator = AppCoordinator(navController: navController)
         
         Auth.auth().addStateDidChangeListener { auth, user in
 
+            
             if user == nil {
 
-                self.coordinator = AuthCoordinator(navController: navController)
-                self.coordinator?.start()
+                appCoordinator.isLoggedIn = false
+                appCoordinator.start()
 
             } else {
-
+              
+             // try! Auth.auth().signOut()
+                print("usr", Auth.auth().currentUser)
+                print(Auth.auth().currentUser?.displayName)
                 
-                
-                print("User logged in")
-                
+                appCoordinator.isLoggedIn = true
+                appCoordinator.start()
             }
         }
     }

@@ -1,4 +1,3 @@
-
 import UIKit
 
 final class SettingsViewController: UIViewController {
@@ -12,8 +11,6 @@ final class SettingsViewController: UIViewController {
     //MARK: Subviews
     
     private let themeTableViewCell = ThemeTableViewCell()
-    private let chatCustomizeTableViewCell = ChatCustomizeTableViewCell()
-    private let notificationTableViewCell = NotificationTableViewCell()
     private let deleteAccountTableViewCell = DeleteAccountTableViewCell()
     private let languageTableViewCell = LanguageTableViewCell()
     
@@ -31,10 +28,24 @@ final class SettingsViewController: UIViewController {
         table.clipsToBounds = false
         table.rowHeight = 50.0
         view.addSubview(table)
-        
+
         return table
     }()
     
+    
+    private let colorsCollectionView: UICollectionView = {
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.backgroundColor = .clear
+        collection.register(ColorCollectionViewCell.self, forCellWithReuseIdentifier: "colorCell")
+        collection.backgroundColor = .secondarySystemBackground
+
+        return collection
+    }()
     
     
     //MARK: - Init -
@@ -56,28 +67,47 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        title = "Setting"
-
+        
+        view.addSubview(colorsCollectionView)
+        
                 
         settingTableView.delegate = self
         settingTableView.dataSource = self
+        colorsCollectionView.delegate = self
+        colorsCollectionView.dataSource = self
         
         setTabBarItem()
-        setupLayout()
         setupSettingsViewModelObserver()
         configThemeSwitcher()
         coordinator?.navigationController = navigationController!
+        
+        let item = self.viewModel.indexPrimaryColor
+        let cell = self.colorsCollectionView.cellForItem(at: IndexPath(item: item, section: 0))
+        cell?.isSelected = true
     }
     
     
-   
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupLayout()
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         view.window?.overrideUserInterfaceStyle = UserDefaults.standard.interfaceStyle
-
+        scrollToPrimaryColor()
     }
 
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        guard let layout = colorsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        layout.invalidateLayout()
+    }
+    
     
     //MARK: - Methods -
     
@@ -89,6 +119,23 @@ final class SettingsViewController: UIViewController {
         self.tabBarItem = tabBarItem
     }
     
+    
+    
+    private func scrollToPrimaryColor() {
+                        
+        guard let index = viewModel.colors.firstIndex(of: viewModel.primaryColor.value!) else { return }
+        
+        DispatchQueue.main.async {
+        
+            UIView.animate(withDuration: 0.3) {
+                
+                self.colorsCollectionView.scrollToItem(at:
+                                                        IndexPath(item: index, section: 0),
+                                                       at: .right,
+                                                       animated: true)
+            }
+        }
+    }
     
     
     private func setupSettingsViewModelObserver() {
@@ -134,7 +181,12 @@ final class SettingsViewController: UIViewController {
             settingTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15.0),
             settingTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15.0),
             settingTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15.0),
-            settingTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
+            settingTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
+            
+            colorsCollectionView.topAnchor.constraint(equalTo: settingTableView.bottomAnchor),
+            colorsCollectionView.centerXAnchor.constraint(equalTo: settingTableView.centerXAnchor),
+            colorsCollectionView.widthAnchor.constraint(equalTo: settingTableView.widthAnchor),
+            colorsCollectionView.heightAnchor.constraint(equalToConstant: settingTableView.rowHeight)
         
         ])
     }
@@ -144,13 +196,18 @@ final class SettingsViewController: UIViewController {
 //MARK: - Extension -
 
 
+
+//MARK: TableView
+
+
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 5
+        return 4
     }
+    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -160,16 +217,11 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return themeTableViewCell
             
+            
         case 1:
-            return chatCustomizeTableViewCell
-            
-        case 2:
-            return  notificationTableViewCell
-            
-        case 3:
             return languageTableViewCell
 
-        case 4:
+        case 2:
             return deleteAccountTableViewCell
             
         default:
@@ -178,17 +230,12 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath.row {
         
         case 1:
-            coordinator?.showCustomization()
-            
-        case 2:
-            coordinator?.showNotification()
-            
-        case 3:
             coordinator?.showLanguages()
             
         default:
@@ -198,3 +245,64 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
+
+//MARK: CollectionView
+
+
+extension SettingsViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        cell.backgroundColor = viewModel.colors[indexPath.row]
+
+        if viewModel.indexPrimaryColor == indexPath.row  {
+
+            cell.isSelected = true
+        }
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if let cell = collectionView.cellForItem(at: IndexPath(item: viewModel.indexPrimaryColor, section: 0)) {
+
+            cell.isSelected = false
+        }
+
+        viewModel.primaryColor.value = viewModel.colors[indexPath.item]
+        viewModel.setPrimaryColor(viewModel.colors[indexPath.item])
+    }
+}
+
+
+extension SettingsViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        viewModel.colors.count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+     
+        collectionView.dequeueReusableCell(withReuseIdentifier: "colorCell", for: indexPath)
+    }
+}
+
+
+extension SettingsViewController: UICollectionViewDelegateFlowLayout {
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        view.bounds.height * 0.1 / 2
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+         CGSize(width: collectionView.bounds.height * 0.8, height: collectionView.bounds.height * 0.8)
+    }
+}

@@ -1,10 +1,3 @@
-//
-//  SignUpViewController+Delegates.swift
-//  LChat
-//
-//  Created by Егор on 01.04.2021.
-//
-
 import UIKit
 
 extension SignUpViewController: CountriesViewControllerDelegate {

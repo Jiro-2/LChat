@@ -1,13 +1,5 @@
-//
-//  FBDatabaseService.swift
-//  LChat
-//
-//  Created by Егор on 09.04.2021.
-//
-
 import Foundation
 import FirebaseDatabase
-
 
 protocol FBDatabaseServiceProtocol {
     

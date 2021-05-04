@@ -1,10 +1,3 @@
-//
-//  CountrySelectorViewController.swift
-//  LingoChat
-//
-//  Created by Егор on 27.01.2021.
-//
-
 import UIKit
 
 protocol CountriesViewControllerDelegate: class {

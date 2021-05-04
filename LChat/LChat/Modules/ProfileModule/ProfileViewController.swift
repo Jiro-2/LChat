@@ -1,10 +1,3 @@
-//
-//  ProfileViewController.swift
-//  LingoChat
-//
-//  Created by Егор on 15.03.2021.
-//
-
 import UIKit
 
 final class ProfileViewController: UIViewController {
@@ -95,7 +88,7 @@ final class ProfileViewController: UIViewController {
         button.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         button.layer.borderWidth = 1.0
         button.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        button.backgroundColor = .primaryColor
+        button.backgroundColor = ThemeManager.shared.primaryColor
         containerView.addSubview(button)
         
         button.addAction(UIAction(handler: { action in
@@ -155,13 +148,19 @@ final class ProfileViewController: UIViewController {
     }
     
     
+    deinit {
+        ThemeManager.shared.removeObserver(self)
+    }
+    
+    
     //MARK: - Lifecycle -
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-      //  title = "My Profile"
+        
+        ThemeManager.shared.addObserver(self)
         
         imagePickerController.delegate = self
         usernameTextField.delegate = self
@@ -505,5 +504,14 @@ extension ProfileViewController: UITextFieldDelegate {
             
             textField.text = ""
         }
+    }
+}
+
+
+extension ProfileViewController: ThemeObserver {
+    
+    func didChangePrimaryColor(_ color: UIColor) {
+        
+        openPhotoLibraryButton.backgroundColor = color
     }
 }

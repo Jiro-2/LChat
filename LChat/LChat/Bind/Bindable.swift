@@ -1,10 +1,3 @@
-//
-//  Bindable.swift
-//  LingoChat
-//
-//  Created by Егор on 14.02.2021.
-//
-
 import Foundation
 
 class Bindable<T> {

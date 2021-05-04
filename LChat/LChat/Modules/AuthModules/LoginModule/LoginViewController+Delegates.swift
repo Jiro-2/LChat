@@ -1,10 +1,3 @@
-//
-//  LoginViewController+Delegates.swift
-//  LChat
-//
-//  Created by Егор on 02.04.2021.
-//
-
 import UIKit
 
 

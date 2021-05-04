@@ -1,10 +1,3 @@
-//
-//  Extension+UILabel.swift
-//  LingoChat
-//
-//  Created by Егор on 05.01.2021.
-//
-
 import UIKit
 
 extension UILabel {

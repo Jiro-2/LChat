@@ -1,10 +1,3 @@
-//
-//  UIView+Extension.swift
-//  LingoChat
-//
-//  Created by Егор on 13.01.2021.
-//
-
 import UIKit
 
 extension UIView {
@@ -41,6 +34,7 @@ extension UIView {
         case bottom
     }
     
+    
     func addBorder(side: BorderSide, thickness: CGFloat, color: UIColor) {
         
         switch side {
@@ -64,5 +58,25 @@ extension UIView {
             self.backgroundColor = color
             self.addSubview(border)
         }
+    }
+    
+    
+    
+    func addBorder(withIndent indent: CGFloat, width: CGFloat, color: UIColor) {
+        
+        let borderLayer = CAShapeLayer()
+        borderLayer.name = "IndentBorderLayer"
+        borderLayer.lineWidth = width
+        borderLayer.strokeColor = color.cgColor
+        borderLayer.fillColor = nil
+        borderLayer.lineCap = .square
+        
+        borderLayer.path = UIBezierPath(roundedRect: CGRect(x: -width / 2 - indent,
+                                                            y: -width / 2 - indent,
+                                                            width: bounds.width + width + 2 * indent,
+                                                            height: bounds.height + width + 2 * indent),
+                                                            cornerRadius: layer.cornerRadius).cgPath
+       
+        layer.addSublayer(borderLayer)
     }
 }

@@ -1,10 +1,3 @@
-//
-//  SignUpViewController.swift
-//  LChat
-//
-//  Created by Егор on 25.03.2021.
-//
-
 import UIKit
 
 

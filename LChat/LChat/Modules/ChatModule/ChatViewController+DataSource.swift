@@ -1,10 +1,3 @@
-//
-//  ChatViewController+DataSource.swift
-//  LChat
-//
-//  Created by Егор on 04.04.2021.
-//
-
 import Foundation
 import MessageKit
 
@@ -43,7 +36,6 @@ extension ChatViewController: MessagesDataSource {
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messages.count
     }
-    
     
     
     func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {

@@ -1,16 +1,7 @@
-//
-//  AppCoordinator.swift
-//  LChat
-//
-//  Created by Егор on 04.04.2021.
-//
-
 import UIKit
 
 
-
 final class AppCoordinator: Coordinator {
-    
     
     //MARK: - Properties -
     

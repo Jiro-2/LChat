@@ -1,12 +1,4 @@
-//
-//  ChatsListViewController.swift
-//  LingoChat
-//
-//  Created by Егор on 01.03.2021.
-
-
 import UIKit
-
 
 protocol ChatRoomsViewControllerDelegate: class {
     
@@ -14,8 +6,7 @@ protocol ChatRoomsViewControllerDelegate: class {
 }
 
 
-
-class ChatRoomsViewController: UIViewController {
+final class ChatRoomsViewController: UIViewController {
     
     //MARK: - Properties -
     
@@ -35,9 +26,9 @@ class ChatRoomsViewController: UIViewController {
     }()
     
     
+    
     //MARK: - Init -
-    
-    
+
     init(viewModel: ChatRoomsViewModelProtocol) {
         
         self.viewModel = viewModel
@@ -49,13 +40,20 @@ class ChatRoomsViewController: UIViewController {
     }
     
     
+    deinit {
+        ThemeManager.shared.removeObserver(self)
+    }
+    
+    
     //MARK: - Lifecycle -
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubviews([chatRoomsTableView])
+        
+        ThemeManager.shared.addObserver(self)
         
         chatRoomsTableView.delegate = self
         chatRoomsTableView.dataSource = self
@@ -74,6 +72,7 @@ class ChatRoomsViewController: UIViewController {
         setupLayout()
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavBar()
@@ -89,10 +88,10 @@ class ChatRoomsViewController: UIViewController {
     
     //MARK: - Methods -
     
+    
     private func setupChatListViewModelObserver() {
         
         viewModel.chatRooms.bind { [weak self] chats in
-            
             
             DispatchQueue.main.async {
                 
@@ -105,7 +104,7 @@ class ChatRoomsViewController: UIViewController {
     
     private func configureNavBar() {
                
-        navigationController?.navigationBar.standardAppearance.backgroundColor = UIColor.primaryColor
+        navigationController?.navigationBar.standardAppearance.backgroundColor = ThemeManager.shared.primaryColor
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor : UIColor.white,
                                                                                       .font : UIFont.systemFont(ofSize: 25.0, weight: .semibold)]
@@ -132,10 +131,12 @@ class ChatRoomsViewController: UIViewController {
 
 extension ChatRoomsViewController: UITableViewDelegate, UITableViewDataSource {
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
         viewModel.chatRooms.value?.count ?? 0
     }
+    
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -151,11 +152,13 @@ extension ChatRoomsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "chatCellID") as? ChatTableViewCell
         return cell ?? UITableViewCell()
     }
+    
     
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -186,8 +189,19 @@ extension ChatRoomsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad ? 150 : 70
+    }
+}
+
+
+
+extension ChatRoomsViewController: ThemeObserver {
+    
+    func didChangePrimaryColor(_ color: UIColor) {
+        
+        navigationController?.navigationBar.standardAppearance.backgroundColor = color
     }
 }

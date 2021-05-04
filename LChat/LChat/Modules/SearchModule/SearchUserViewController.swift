@@ -1,5 +1,3 @@
-
-
 import UIKit
 
 protocol SearchUserViewControllerDelegate: class {
@@ -16,6 +14,7 @@ final class SearchUserViewController: UIViewController {
     var viewModel: SearchUserViewModelProtocol
     weak var delegate: SearchUserViewControllerDelegate?
     var coordinator: MainCoordinator?
+    
     var isSearching = false {
         
         didSet {
@@ -23,11 +22,13 @@ final class SearchUserViewController: UIViewController {
             if isSearching {
                 
                 searchImageView.isHidden = true
+                descriptionLabel.isHidden = true
                 tableView.isHidden = false
                 
             } else {
                 
                 searchImageView.isHidden = false
+                descriptionLabel.isHidden = false
                 tableView.isHidden = true
             }
         }
@@ -42,28 +43,24 @@ final class SearchUserViewController: UIViewController {
     }
     
     
-    private var sharedConstraints = [NSLayoutConstraint]()
-    private var portraitConstraints = [NSLayoutConstraint]()
-    private var landscapeConstraints = [NSLayoutConstraint]()
-    private var regxRegConstraints = [NSLayoutConstraint]()
-    
-
-    
     
     private lazy var searchController: UISearchController = {
+        
         var searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.searchTextField.layer.cornerRadius = 10.0
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
         searchController.searchBar.setImage(UIImage(systemName: "xmark")?.withTintColor(.white), for: .clear, state: .normal)
-        searchController.searchBar.tintColor = .white
+        searchController.searchBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         
         let txtField = searchController.searchBar.value(forKey: "searchField") as? UITextField
         let text = NSLocalizedString("SearchViewController.SearchController.placeholder", comment: "")
         
         txtField?.attributedPlaceholder = NSAttributedString(string: text, attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
-        txtField?.leftView?.tintColor = .white
-        txtField?.backgroundColor = .primaryColor
+        txtField?.leftView?.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        txtField?.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         txtField?.autocapitalizationType = .none
         
         return searchController
@@ -77,6 +74,7 @@ final class SearchUserViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(UserTableViewCell.self, forCellReuseIdentifier: "userCellID")
         table.separatorStyle = .none
+        view.addSubview(table)
         
         return table
     }()
@@ -87,6 +85,7 @@ final class SearchUserViewController: UIViewController {
         
         let image = UIImageView(image: UIImage(named: "search"))
         image.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(image)
         
         return image
     }()
@@ -103,6 +102,7 @@ final class SearchUserViewController: UIViewController {
         label.backgroundColor = view.backgroundColor
         label.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         label.numberOfLines = 0
+        view.addSubview(label)
         
         return label
     }()
@@ -123,40 +123,34 @@ final class SearchUserViewController: UIViewController {
     }
     
     
+    deinit {
+        ThemeManager.shared.removeObserver(self)
+    }
+    
     
     //MARK: - Lifecycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.primaryColor
+        ThemeManager.shared.addObserver(self)
+        view.backgroundColor = ThemeManager.shared.primaryColor
         
+        searchController.searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isHidden = true
         
-        setupSearchController()
-        configureNavigationBar()
         setupLayout()
-        
-      //  setupConstraints()
-      //  layoutTrait(traitCollection: UIScreen.main.traitCollection)
-        
-        setupViewModelSearchingObserver()
+        setupViewModelObserving()
     }
     
     
-    
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        super.traitCollectionDidChange(previousTraitCollection)
-//        layoutTrait(traitCollection: traitCollection)
-//    }
-//
-    
+
     
     //MARK: - Methods -
     
-    private func setupViewModelSearchingObserver() {
+    private func setupViewModelObserving() {
         
         viewModel.searchResult.bind { [weak self] users in
             
@@ -164,27 +158,6 @@ final class SearchUserViewController: UIViewController {
             self?.users = users
         }
     }
-    
-    
-    
-    private func setupSearchController() {
-        
-        navigationItem.searchController = searchController
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-        searchController.searchResultsUpdater = self
-    }
-    
-    
-    
-    private func configureNavigationBar() {
-        
-        navigationController?.navigationItem.title = "Search"
-        navigationController?.navigationBar.backgroundColor = view.backgroundColor
-        navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.standardAppearance.backgroundColor = view.backgroundColor
-    }
-    
     
     
     func subscribeDelegate() {
@@ -197,7 +170,6 @@ final class SearchUserViewController: UIViewController {
     
     private func setupLayout() {
         
-        view.addSubviews([searchImageView, descriptionLabel, tableView])
         
         NSLayoutConstraint.activate([
             
@@ -216,81 +188,15 @@ final class SearchUserViewController: UIViewController {
             descriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)
         ])
     }
-    
+}
 
+
+//MARK: - Extension -
+
+extension SearchUserViewController: ThemeObserver {
     
-    
-    
-    
-//    private func setupConstraints() {
-//
-//        sharedConstraints.append(contentsOf: [
-//
-//            searchImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            searchImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//
-//            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            tableView.heightAnchor.constraint(equalTo: view.heightAnchor),
-//            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-//            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-//
-//            descriptionLabel.topAnchor.constraint(equalTo: searchImageView.bottomAnchor),
-//            descriptionLabel.centerXAnchor.constraint(equalTo: searchImageView.centerXAnchor),
-//            descriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)
-//
-//        ])
-//
-//
-//        portraitConstraints.append(contentsOf: [
-//
-//            searchImageView.widthAnchor.constraint(equalTo: view.widthAnchor),
-//            searchImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
-//
-//        ])
-//
-//
-//        landscapeConstraints.append(contentsOf: [
-//
-//            searchImageView.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.8),
-//            searchImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6)
-//
-//        ])
-//
-//        regxRegConstraints.append(contentsOf: [
-//
-//            searchImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-//            searchImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
-//        ])
-//    }
-//
-//
-//    private func layoutTrait(traitCollection: UITraitCollection) {
-//
-//        if !sharedConstraints[0].isActive {
-//
-//            NSLayoutConstraint.activate(sharedConstraints)
-//        }
-//
-//
-//        if traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .regular {
-//
-//            if landscapeConstraints[0].isActive {
-//
-//                NSLayoutConstraint.deactivate(landscapeConstraints)
-//            }
-//            NSLayoutConstraint.activate(portraitConstraints)
-//
-//        } else if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .compact {
-//
-//            if portraitConstraints[0].isActive {
-//
-//                NSLayoutConstraint.deactivate(portraitConstraints)
-//            }
-//
-//            NSLayoutConstraint.activate(landscapeConstraints)
-//        } else {
-//
-//            NSLayoutConstraint.activate(regxRegConstraints)
-//        }
-//    }
+    func didChangePrimaryColor(_ color: UIColor) {
+     
+        view.backgroundColor = color
+    }
 }

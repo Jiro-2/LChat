@@ -1,10 +1,3 @@
-//
-//  ChatViewController+Delegates.swift
-//  LChat
-//
-//  Created by Егор on 04.04.2021.
-//
-
 import UIKit
 import MessageKit
 import InputBarAccessoryView
@@ -34,7 +27,6 @@ extension ChatViewController: ChatRoomsViewControllerDelegate {
 
 
 extension ChatViewController: MessagesDisplayDelegate {
-    
     
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
         
@@ -83,7 +75,8 @@ extension ChatViewController: MessagesLayoutDelegate {
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         
-        let colorOfUserMessages = UIColor(red: 0.2815505862, green: 0.6601088643, blue: 0.6278207302, alpha: 1.0)
+                
+        let colorOfUserMessages = self.primaryColor
         let colorOfMemberMessages = UIColor(red: 0.9078431726, green: 0.9589278102, blue: 0.9659121633, alpha: 1)
         
         return  isFromCurrentSender(message: message) ? colorOfUserMessages : colorOfMemberMessages

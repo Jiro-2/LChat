@@ -1,10 +1,3 @@
-//
-//  LanguagesViewModel.swift
-//  LChat
-//
-//  Created by Егор on 18.04.2021.
-//
-
 import Foundation
 
 protocol LanguagesViewModelProtocol {

@@ -1,10 +1,3 @@
-//
-//  UserTableViewCell.swift
-//  LingoChat
-//
-//  Created by Егор on 14.02.2021.
-//
-
 import UIKit
 
 class UserTableViewCell: UITableViewCell {

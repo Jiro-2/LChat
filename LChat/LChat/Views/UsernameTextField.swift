@@ -1,10 +1,3 @@
-//
-//  UsernameTextField.swift
-//  LChat
-//
-//  Created by Егор on 30.03.2021.
-//
-
 import UIKit
 
 

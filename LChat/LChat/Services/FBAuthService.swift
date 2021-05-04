@@ -1,10 +1,3 @@
-//
-//  FBLoginService.swift
-//  LChat
-//
-//  Created by Егор on 23.03.2021.
-//
-
 import Foundation
 import Firebase
 

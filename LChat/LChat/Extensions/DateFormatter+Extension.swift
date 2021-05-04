@@ -1,10 +1,3 @@
-//
-//  DateFormatter+Extension.swift
-//  LingoChat
-//
-//  Created by Егор on 28.02.2021.
-//
-
 import Foundation
 
 extension DateFormatter {

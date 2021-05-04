@@ -1,12 +1,4 @@
-//
-//  LoginAssembler.swift
-//  LChat
-//
-//  Created by Егор on 25.03.2021.
-//
-
 import UIKit
-
 
 class AuthAssembler {
     
@@ -14,8 +6,12 @@ class AuthAssembler {
         
         let countrySelector = CountrySelector()
         let authService = FBAuthService()
+        let searcher = FBSearchService()
         
-        let viewModel = LoginViewModel(authService: authService, countrySelector: countrySelector)
+        let viewModel = LoginViewModel(authService: authService,
+                                       countrySelector: countrySelector,
+                                       searcher: searcher)
+        
         let viewController = LoginViewController(viewModel: viewModel)
         
         return viewController

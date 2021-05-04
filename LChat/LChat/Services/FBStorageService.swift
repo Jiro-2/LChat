@@ -1,10 +1,3 @@
-//
-//  FBStorageService.swift
-//  LingoChat
-//
-//  Created by Егор on 19.03.2021.
-//
-
 import Foundation
 import FirebaseStorage
 

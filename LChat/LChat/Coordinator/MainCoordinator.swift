@@ -1,11 +1,3 @@
-//
-//  MainCoordinator.swift
-//  LChat
-//
-//  Created by Егор on 03.04.2021.
-//
-
-
 import UIKit
 
 final class MainCoordinator: Coordinator {
@@ -49,14 +41,8 @@ final class MainCoordinator: Coordinator {
         self.navigationController.pushViewController(vc, animated: true)
     }
     
-    
-    func showProfile() {
 
         
-        
-    }
-    
-    
     
     func childDidFinish(_ child: Coordinator?) {
         

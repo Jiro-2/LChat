@@ -1,10 +1,3 @@
-//
-//  AuthFormView.swift
-//  LChat
-//
-//  Created by Егор on 24.03.2021.
-//
-
 import UIKit
 
 class AuthView: UIView {
@@ -51,7 +44,7 @@ class AuthView: UIView {
         
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .primaryColor
+        button.backgroundColor = .green
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
         button.addAction(UIAction(handler: { _ in
             

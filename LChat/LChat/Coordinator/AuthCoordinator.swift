@@ -1,10 +1,3 @@
-//
-//  LoginCoordinator.swift
-//  LChat
-//
-//  Created by Егор on 27.03.2021.
-//
-
 import UIKit
 
 final class AuthCoordinator: Coordinator {

@@ -1,10 +1,3 @@
-//
-//  Assembler.swift
-//  LingoChat
-//
-//  Created by Егор on 14.02.2021.
-//
-
 import UIKit
 
 final class MainAssembler {
@@ -28,17 +21,8 @@ final class MainAssembler {
         return viewController
     }
     
-    
-    static func buildSettingModule() -> UIViewController {
         
-        let viewModel = SettingViewModel()
-        let vc = SettingViewController(viewModel: viewModel)
-        
-        return vc
-    }
-    
-    
-    static func buildProfileBodule() -> UIViewController {
+    static func buildProfileModule() -> UIViewController {
         
         let storageService = FBStorageService()
         let databaseService = FBDatabaseService()
@@ -50,6 +34,7 @@ final class MainAssembler {
     }
     
     
+    
     static func buildHomeModule() -> UIViewController {
         
         let chatManager = FBChatService()
@@ -58,8 +43,8 @@ final class MainAssembler {
                                           databaseService: databaseService)
                 
         let chatRoomsVC = ChatRoomsViewController(viewModel: viewModel)
-        let settingVC = self.buildSettingModule()
-        let profileVC = self.buildProfileBodule()
+        let settingVC = SettingAssembler.buildSettingModule()
+        let profileVC = self.buildProfileModule()
         
         let homeViewModel = HomeViewModel()
         let tabBarController = HomeTabBarController(viewModel: homeViewModel)

@@ -1,10 +1,3 @@
-//
-//  PhoneNumberTextField.swift
-//  LingoChat
-//
-//  Created by Егор on 22.01.2021.
-//
-
 import UIKit
 
 class PhoneNumberTextField: UITextField {
