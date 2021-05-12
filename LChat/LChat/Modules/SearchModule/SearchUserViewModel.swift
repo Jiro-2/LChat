@@ -44,7 +44,7 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
                         
                         guard let dict = value as? [String:String],
                               let phone = dict["phone"],
-                              let id = dict["id"] else { assertionFailure(); return }
+                              let id = dict["id"] else { assertionFailure(); return } // MARK: FIX as String
                         
                         let user = User(id: id, username: key, phone: phone)
                         users.append(user)

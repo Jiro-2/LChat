@@ -147,7 +147,7 @@ final class LoginViewController: UIViewController {
             
                 } else {
                     
-                    print("TODO:  Show alert with error in LoginVC")
+                    self.showErrorAlert()
                 }
             }
         }
@@ -192,6 +192,20 @@ final class LoginViewController: UIViewController {
         view.insertSubview(imageView, at: 0)
     }
     
+    
+    private func showErrorAlert() {
+        
+        let blur = UIBlurEffect(style: .dark)
+        let effectView = UIVisualEffectView(effect: blur)
+        effectView.frame = view.frame
+
+        let alert = UIAlertController(title: "Error", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            effectView.removeFromSuperview()
+        }))
+        self.view.addSubview(effectView)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
     

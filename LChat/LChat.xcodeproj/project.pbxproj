@@ -79,7 +79,6 @@
 		74F86D90260A101D00CA03EC /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D86260A101D00CA03EC /* UITextField+Extension.swift */; };
 		74F86D97260A10F100CA03EC /* UnSeenMessageBadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D95260A10F100CA03EC /* UnSeenMessageBadgeLabel.swift */; };
 		74F86D98260A10F100CA03EC /* PhoneNumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D96260A10F100CA03EC /* PhoneNumberTextField.swift */; };
-		74F86DA0260A115D00CA03EC /* FBWriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D9D260A115D00CA03EC /* FBWriteService.swift */; };
 		74F86DA1260A115D00CA03EC /* FBObserveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D9E260A115D00CA03EC /* FBObserveService.swift */; };
 		74F86DA2260A115D00CA03EC /* FBStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86D9F260A115D00CA03EC /* FBStorageService.swift */; };
 		74F86DB3260A22FF00CA03EC /* FBAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F86DB2260A22FF00CA03EC /* FBAuthService.swift */; };
@@ -193,7 +192,6 @@
 		74F86D86260A101D00CA03EC /* UITextField+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		74F86D95260A10F100CA03EC /* UnSeenMessageBadgeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnSeenMessageBadgeLabel.swift; sourceTree = "<group>"; };
 		74F86D96260A10F100CA03EC /* PhoneNumberTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberTextField.swift; sourceTree = "<group>"; };
-		74F86D9D260A115D00CA03EC /* FBWriteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBWriteService.swift; sourceTree = "<group>"; };
 		74F86D9E260A115D00CA03EC /* FBObserveService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBObserveService.swift; sourceTree = "<group>"; };
 		74F86D9F260A115D00CA03EC /* FBStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBStorageService.swift; sourceTree = "<group>"; };
 		74F86DB2260A22FF00CA03EC /* FBAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAuthService.swift; sourceTree = "<group>"; };
@@ -541,7 +539,6 @@
 		74F86D9C260A115D00CA03EC /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				74F86D9D260A115D00CA03EC /* FBWriteService.swift */,
 				74F86D9E260A115D00CA03EC /* FBObserveService.swift */,
 				74F86D9F260A115D00CA03EC /* FBStorageService.swift */,
 				74F86DB2260A22FF00CA03EC /* FBAuthService.swift */,
@@ -869,7 +866,6 @@
 				7433E0982620DA170003D1B5 /* DBError.swift in Sources */,
 				74F86DD2260B912C00CA03EC /* LoginViewModel.swift in Sources */,
 				74F86D8D260A101D00CA03EC /* String+Extension.swift in Sources */,
-				74F86DA0260A115D00CA03EC /* FBWriteService.swift in Sources */,
 				74AD66372619FFF9000943BC /* ChatViewController+Delegates.swift in Sources */,
 				74F86D87260A101D00CA03EC /* UIImageView+Extension.swift in Sources */,
 				74F86D77260A0F3500CA03EC /* LanguageTableViewCell.swift in Sources */,

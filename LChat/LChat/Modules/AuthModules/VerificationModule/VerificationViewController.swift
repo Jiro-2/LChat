@@ -74,7 +74,7 @@ class VerificationViewController: UIViewController {
         
         button.addAction(UIAction(handler: { _ in
             
-            
+            self.viewModel.resendVerificationCode()
             
         }), for: .touchUpInside)
         

@@ -41,26 +41,25 @@ final class SignUpViewModel: SignUpViewModelProtocol {
     
     func signUp(WithVerificationCode code: String, completion: @escaping (_ isSuccess: Bool) -> ()) {
         
-        
+      
         guard let callingCode = self.callingCode,
               let phone = self.phoneNumber,
               let username = self.username,
-              let id = self.authService.getVerificationId(WithDeletion: true)
-        else { assertionFailure(); return }
+              let id = self.authService.getVerificationId(WithDeletion: true) else { assertionFailure(); return }
         
         if callingCode != "+000" && phone.isValidPhone {
             
             let fullPhoneNumber = (callingCode + phone).removingWhitespaces()
             
             
-            self.authService.signUp(WithVerificationId: id,
+            authService.signUp(WithVerificationId: id,
                                     verificationCode: code,
                                     username: username,
                                     phoneNumber: fullPhoneNumber) { error in
                 
                 if let error = error {
                     
-                    print(error.localizedDescription)
+                    assertionFailure(error.localizedDescription)
                     completion(false)
                     
                 } else {

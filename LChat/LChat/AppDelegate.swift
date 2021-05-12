@@ -4,10 +4,14 @@ import Firebase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var authListener: AuthStateDidChangeListenerHandle?
+ //   var navController = UINavigationController()
+    var appCoordinator = AppCoordinator(navController: UINavigationController())
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-        
+         startListenAuthChanges()
         return true
     }
 
@@ -18,11 +22,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
+}
 
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+
+
+extension AppDelegate {
+    
+    
+    func stopListenAuthChanges() {
+        
+        guard let listener = authListener else { assertionFailure(); return }
+        
+        Auth.auth().removeStateDidChangeListener(listener)
+    }
+    
+    
+    
+    func startListenAuthChanges() {
+        
+        authListener = Auth.auth().addStateDidChangeListener({ auth, user in
+            
+            if user == nil {
+
+                self.appCoordinator.isLoggedIn = false
+                self.appCoordinator.start()
+
+            } else {
+              
+             // try! Auth.auth().signOut()
+                print("usr", Auth.auth().currentUser)
+                print(Auth.auth().currentUser?.displayName)
+                
+                    
+                self.appCoordinator.isLoggedIn = true
+                self.appCoordinator.start()
+            }
+        })
     }
 }
 

@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 extension SignUpViewController: CountriesViewControllerDelegate {
     

@@ -153,7 +153,7 @@ final class ChatRoomsViewModel: ChatRoomsViewModelProtocol {
     
     
     private func configCurrentUser () {
-        
+                
         guard let currentUser = Auth.auth().currentUser,
               let username = currentUser.displayName else { assertionFailure(); return }
         

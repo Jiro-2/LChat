@@ -1,7 +1,7 @@
 import UIKit
 
 
-class SignUpViewController: UIViewController {
+final class SignUpViewController: UIViewController {
     
     
     //MARK: - Properties -
@@ -9,8 +9,7 @@ class SignUpViewController: UIViewController {
     var viewModel: SignUpViewModelProtocol
     var coordinator: AuthCoordinator?
     var cardViewBottomConstraint: NSLayoutConstraint?
-    
-    lazy var authView = AuthView()
+    let authView = AuthView()
     
     
     //MARK: - Init -
@@ -24,6 +23,10 @@ class SignUpViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     
     //MARK: - Lifecycle -
@@ -52,25 +55,11 @@ class SignUpViewController: UIViewController {
     
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        authView.button.roundCorners(authView.button.bounds.height / 2.0)
-    }
-    
-    
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        authView.button.roundCorners(authView.button.bounds.height / 2.0)
         authView.roundCorners([.topLeft, .topRight], radius: 20.0)
     }
     
@@ -114,18 +103,28 @@ class SignUpViewController: UIViewController {
     private  func configCardViewButtonAction() {
         
         authView.buttonAction = {
-         
-            self.viewModel.verifyPhoneNumber { isSuccess in
+            
+            guard let isTakenUsername = self.viewModel.isTakenUsername.value else { return }
+            
+            if !isTakenUsername {
                 
-                if isSuccess {
-                 
-                    self.coordinator?.navigateToVerification()
-                    self.subscribeDelegate()
+                
+                self.viewModel.verifyPhoneNumber { isSuccess in
                     
-                } else {
-                    
-                    print("TODO:  Show alert with error in SignUpVC")
+                    if isSuccess {
+                        
+                        self.coordinator?.navigateToVerification()
+                        self.subscribeDelegate()
+                        
+                    } else {
+
+                        self.showErrorAlert()
+                    }
                 }
+                
+            } else {
+                
+                self.showErrorAlert()
             }
         }
     }
@@ -169,7 +168,6 @@ class SignUpViewController: UIViewController {
     
     
     
-    
     @objc
     private func keyboardWillShow(_ notification: Notification) {
         
@@ -183,6 +181,7 @@ class SignUpViewController: UIViewController {
             }
         }
     }
+    
     
     
     @objc
@@ -227,11 +226,27 @@ class SignUpViewController: UIViewController {
     }
     
     
+    
     private func subscribeDelegate() {
         
-        guard let vc = self.navigationController?.topViewController as? VerificationViewController else { return }
-        vc.delegate = self
+        if let callingCode = viewModel.callingCode, let phone = viewModel.phoneNumber {
+            
+            guard let vc = self.navigationController?.topViewController as? VerificationViewController else { return }
+            vc.delegate = self
+            vc.viewModel.userPhoneNumber = callingCode + phone
+        }
     }
+    
+    
+    
+    
+    private func showErrorAlert() {
+        
+        let alert = UIAlertController(title: "Error", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     
     

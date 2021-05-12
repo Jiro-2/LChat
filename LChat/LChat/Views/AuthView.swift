@@ -8,7 +8,7 @@ class AuthView: UIView {
     
     //Subviews
     
-    public lazy var titleLabel: UILabel = {
+    public let titleLabel: UILabel = {
         
         let label = UILabel(font: UIFont.systemFont(ofSize: 35.0, weight: .bold), textAlignment: .left)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -18,7 +18,7 @@ class AuthView: UIView {
     }()
     
     
-    lazy var usernameTxtField: UsernameTextField = {
+     let usernameTxtField: UsernameTextField = {
         
         let txtField = UsernameTextField(placeholder: " User Name")
         txtField.backgroundColor = #colorLiteral(red: 0.9526441693, green: 0.9536944032, blue: 0.9636160731, alpha: 1)
@@ -29,7 +29,7 @@ class AuthView: UIView {
     
     
     
-    lazy var phoneTxtField: PhoneNumberTextField = {
+     let phoneTxtField: PhoneNumberTextField = {
         
         let txtField = PhoneNumberTextField()
         txtField.backgroundColor = #colorLiteral(red: 0.9533203244, green: 0.9572271705, blue: 0.9638128877, alpha: 1)
@@ -40,17 +40,12 @@ class AuthView: UIView {
     
     
     
-    lazy var button: UIButton = {
+     let button: UIButton = {
         
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .green
+        button.backgroundColor = ThemeManager.shared.primaryColor
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
-        button.addAction(UIAction(handler: { _ in
-            
-            self.buttonAction?()
-            
-        }), for: .touchUpInside)
         
         return button
     }()
@@ -77,6 +72,12 @@ class AuthView: UIView {
         super.init(frame: CGRect.zero)
         backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         setupLayout()
+        
+        button.addAction(UIAction(handler: { _ in
+            
+            self.buttonAction?()
+            
+        }), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {

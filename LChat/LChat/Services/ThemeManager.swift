@@ -1,6 +1,5 @@
 import class UIKit.UIColor
 import Foundation
-import UIKit
 
 protocol ThemeObserver: class {
     
@@ -22,7 +21,7 @@ final class ThemeManager {
         
         get {
 
-            UserDefaults.standard.colorForKey("primary_color") ?? .white
+            UserDefaults.standard.colorForKey("primary_color") ?? colors[0]
         }
         
         

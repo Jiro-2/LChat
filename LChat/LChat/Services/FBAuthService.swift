@@ -1,5 +1,6 @@
 import Foundation
 import Firebase
+import class UIKit.UIApplication
 
 protocol FBAuthServiceProtocol {
     
@@ -18,7 +19,6 @@ final class FBAuthService: FBAuthServiceProtocol {
     
     
     private let databaseReference = Database.database(url: "https://lchat-9bb0e-default-rtdb.europe-west1.firebasedatabase.app").reference()
-    
     
     
     func login(WithVerificationId id: String, verificationCode code: String, completion: @escaping (Error?) -> ()) {
@@ -45,9 +45,10 @@ final class FBAuthService: FBAuthServiceProtocol {
     func signUp(WithVerificationId id: String, verificationCode code: String, username: String, phoneNumber: String, completion: @escaping (Error?) -> ()) {
         
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: id, verificationCode: code)
-        
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.stopListenAuthChanges()
         Auth.auth().signIn(with: credential) { authResult, error in
-            
+                        
             if let error = error {
                 
                 completion(error)
@@ -58,9 +59,21 @@ final class FBAuthService: FBAuthServiceProtocol {
                 let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                 changeRequest?.displayName = username
                 
-                let dict = ["phone": phoneNumber, "id": userId]
-                self.databaseReference.child("users").child(username).setValue(dict)
-                completion(nil)
+                changeRequest?.commitChanges(completion: { err in
+                    
+                    if let err = err {
+                        
+                        assertionFailure(err.localizedDescription)
+                        completion(err)
+                        
+                    } else {
+                        
+                        let dict = ["phone": phoneNumber, "id": userId]
+                        self.databaseReference.child("users/\(username)").setValue(dict)
+                        appDelegate?.startListenAuthChanges()
+                        completion(nil)
+                    }
+                })
             }
         }
     }
@@ -94,7 +107,6 @@ final class FBAuthService: FBAuthServiceProtocol {
             } else {
                 
                 completion(.success(verificationID))
-                
             }
         }
     }
@@ -132,11 +144,7 @@ final class FBAuthService: FBAuthServiceProtocol {
         case .username:
             
             dbQuery = databaseReference
-                .child("users")
-                .queryOrdered(byChild: category.rawValue)
-                .queryStarting(atValue: data)
-                .queryEnding(atValue: data + "\u{f8ff}")
-            
+                .child("users/\(data)")
             
         case .phone:
             
