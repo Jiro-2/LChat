@@ -2,11 +2,6 @@ import UIKit
 
 extension SearchUserViewController:  UISearchBarDelegate {
     
-//    func updateSearchResults(for searchController: UISearchController) {
-//        
-//    }
-//    
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         viewModel.searchUserBy(searchBar.text)

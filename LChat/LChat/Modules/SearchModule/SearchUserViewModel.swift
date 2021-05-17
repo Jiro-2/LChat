@@ -37,20 +37,13 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
                 
                 self.searcher.search(username, in: .username) { [weak self] result in
                     
-                    let dictResult = result as? [String: Any]
-                    var users = [User]()
+                    guard let dictResult = result as? [String:String] else { return }
+                                        
+                    guard let id = dictResult["id"],
+                          let phone = dictResult["phone"] else { assertionFailure(); return }
                     
-                    dictResult?.forEach({ key, value in
-                        
-                        guard let dict = value as? [String:String],
-                              let phone = dict["phone"],
-                              let id = dict["id"] else { assertionFailure(); return } // MARK: FIX as String
-                        
-                        let user = User(id: id, username: key, phone: phone)
-                        users.append(user)
-                    })
-                    
-                    self?.searchResult.value = users
+                    let user = User(id: id, username: username, phone: phone)
+                    self?.searchResult.value = [user]
                 }
                 
             } else {

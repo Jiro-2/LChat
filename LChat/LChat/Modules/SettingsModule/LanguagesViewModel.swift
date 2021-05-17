@@ -11,14 +11,23 @@ protocol LanguagesViewModelProtocol {
 
 final class LanguagesViewModel: LanguagesViewModelProtocol {
     
+    //MARK: - Properties -
+    
     var languages = LanguageManager.shared.availableLanguages
     var currentLang = LanguageManager.shared.currentLang
    
+    
+    //MARK: - Init -
+    
     init() {
         
+        checkDefaultLang()
         moveToStartCurrentLang()
     }
     
+    
+    
+    //MARK: - Methods -
    
     func set(_ language: String) {
         
@@ -32,9 +41,21 @@ final class LanguagesViewModel: LanguagesViewModelProtocol {
     }
     
     
+    
+    private func checkDefaultLang() {
+        
+        if currentLang == nil {
+            
+            LanguageManager.shared.currentLang = "en"
+        }
+    }
+    
+    
+    
     private func moveToStartCurrentLang() {
         
-        guard let indexCurrentLang = languages.firstIndex(of: currentLang!) else { return }
+        guard let lang = currentLang,
+              let indexCurrentLang = languages.firstIndex(of: lang) else { assertionFailure(); return }
         
         if indexCurrentLang == 0 {
             

@@ -51,10 +51,7 @@ final class FBSearchService: FBSearchable {
             
             dbQuery = databaseReference
                 .child("users/\(query)")
-               // .queryOrderedByKey()
-               // .queryStarting(atValue: query)
-              //  .queryEnding(atValue: query + "\u{f8ff}")
-        
+
         case .phone:
             
             dbQuery = databaseReference
