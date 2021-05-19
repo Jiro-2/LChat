@@ -27,13 +27,15 @@ class ChatTableViewCell: UITableViewCell {
     }()
     
     
-    let avatarView: UIView = {
+    let avatarImageView: UIImageView = {
         
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = ThemeManager.shared.primaryColor
+        let image = UIImageView(image: UIImage(systemName: "person.fill"))
+        image.tintColor = .gray
+        image.clipsToBounds = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.backgroundColor = ThemeManager.shared.primaryColor
         
-        return view
+        return image
     }()
     
     
@@ -58,7 +60,7 @@ class ChatTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addSubviews([avatarView, userNameLabel, lastMessageLabel])
+        self.addSubviews([avatarImageView, userNameLabel, lastMessageLabel])
         self.selectionStyle = .none
         self.accessoryView = unSeenMessagesLabel
         self.accessoryView?.isHidden = true
@@ -82,7 +84,7 @@ class ChatTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         setupLayout()
-        avatarView.roundCorners(avatarView.bounds.size.height / 2.0)
+        avatarImageView.roundCorners(avatarImageView.bounds.size.height / 2.0)
         unSeenMessagesLabel.roundCorners(unSeenMessagesLabel.bounds.size.height / 2.0)
     }
     
@@ -92,13 +94,13 @@ class ChatTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             
-            avatarView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            avatarView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 15.0),
-            avatarView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6),
-            avatarView.widthAnchor.constraint(equalTo: avatarView.heightAnchor),
+            avatarImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            avatarImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 15.0),
+            avatarImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6),
+            avatarImageView.widthAnchor.constraint(equalTo: avatarImageView.heightAnchor),
             
             userNameLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor),
-            userNameLabel.leftAnchor.constraint(equalTo: avatarView.rightAnchor, constant: 8.0),
+            userNameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 8.0),
             
             lastMessageLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 5.0),
             lastMessageLabel.leftAnchor.constraint(equalTo: userNameLabel.leftAnchor),

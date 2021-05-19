@@ -1,4 +1,5 @@
 import UIKit
+import SDWebImage
 
 protocol ChatRoomsViewControllerDelegate: class {
     
@@ -172,6 +173,17 @@ extension ChatRoomsViewController: UITableViewDelegate, UITableViewDataSource {
         
         chatCell?.userNameLabel.text = "\(interLocutor?.username ?? "username")"
         
+        
+        if let user = interLocutor {
+            
+            viewModel.getUserAvatarURL(user.username) { url in
+                
+                chatCell?.avatarImageView.sd_setImage(with: url)
+            }
+        }
+        
+        
+
         if let lastMessage = chatRooms[indexPath.row].lastMessage {
             
             chatCell?.lastMessageLabel.text = lastMessage

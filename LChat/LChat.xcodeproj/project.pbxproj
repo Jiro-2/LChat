@@ -405,18 +405,18 @@
 		74F86D02260A013600CA03EC /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				74F86D0F260A013600CA03EC /* AuthModules */,
-				74F86D1F260A013600CA03EC /* HomeModule */,
-				74F86D29260A013600CA03EC /* ChatRoomsModule */,
-				74F86D03260A013600CA03EC /* ChatModule */,
-				74F86D1A260A013600CA03EC /* ProfileModule */,
-				74F86D0A260A013600CA03EC /* SettingsModule */,
-				74F86D39260A013600CA03EC /* SearchModule */,
+				74F86D0F260A013600CA03EC /* Auth */,
+				74F86D1F260A013600CA03EC /* Home */,
+				74F86D29260A013600CA03EC /* Chats */,
+				74F86D03260A013600CA03EC /* Chat */,
+				74F86D1A260A013600CA03EC /* Profile */,
+				74F86D0A260A013600CA03EC /* Settings */,
+				74F86D39260A013600CA03EC /* Search */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		74F86D03260A013600CA03EC /* ChatModule */ = {
+		74F86D03260A013600CA03EC /* Chat */ = {
 			isa = PBXGroup;
 			children = (
 				74F86D05260A013600CA03EC /* ChatViewModel.swift */,
@@ -424,10 +424,10 @@
 				74AD663B261A010F000943BC /* ChatViewController+DataSource.swift */,
 				74AD66362619FFF9000943BC /* ChatViewController+Delegates.swift */,
 			);
-			path = ChatModule;
+			path = Chat;
 			sourceTree = "<group>";
 		};
-		74F86D0A260A013600CA03EC /* SettingsModule */ = {
+		74F86D0A260A013600CA03EC /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				74F86D0C260A013600CA03EC /* SettingsViewModel.swift */,
@@ -435,10 +435,10 @@
 				7449E2EF262CAE5A00BCE934 /* LanguagesViewModel.swift */,
 				7449E2D4262B040C00BCE934 /* LanguagesViewController.swift */,
 			);
-			path = SettingsModule;
+			path = Settings;
 			sourceTree = "<group>";
 		};
-		74F86D0F260A013600CA03EC /* AuthModules */ = {
+		74F86D0F260A013600CA03EC /* Auth */ = {
 			isa = PBXGroup;
 			children = (
 				7490AA4A2618C5FB00D078DE /* LoginModule */,
@@ -446,44 +446,44 @@
 				7490AA4B2618C60800D078DE /* VerificationModule */,
 				7490AA4C2618C6E100D078DE /* CountriesModule */,
 			);
-			path = AuthModules;
+			path = Auth;
 			sourceTree = "<group>";
 		};
-		74F86D1A260A013600CA03EC /* ProfileModule */ = {
+		74F86D1A260A013600CA03EC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				74F86D1C260A013600CA03EC /* ProfileViewModel.swift */,
 				74F86D1E260A013600CA03EC /* ProfileViewController.swift */,
 			);
-			path = ProfileModule;
+			path = Profile;
 			sourceTree = "<group>";
 		};
-		74F86D1F260A013600CA03EC /* HomeModule */ = {
+		74F86D1F260A013600CA03EC /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				74F86D21260A013600CA03EC /* HomeViewModel.swift */,
 				74F86D23260A013600CA03EC /* HomeTabBarController.swift */,
 			);
-			path = HomeModule;
+			path = Home;
 			sourceTree = "<group>";
 		};
-		74F86D29260A013600CA03EC /* ChatRoomsModule */ = {
+		74F86D29260A013600CA03EC /* Chats */ = {
 			isa = PBXGroup;
 			children = (
 				74F86D2B260A013600CA03EC /* ChatRoomsViewModel.swift */,
 				74F86D2D260A013600CA03EC /* ChatRoomsViewController.swift */,
 			);
-			path = ChatRoomsModule;
+			path = Chats;
 			sourceTree = "<group>";
 		};
-		74F86D39260A013600CA03EC /* SearchModule */ = {
+		74F86D39260A013600CA03EC /* Search */ = {
 			isa = PBXGroup;
 			children = (
 				74F86D3B260A013600CA03EC /* SearchUserViewModel.swift */,
 				74F86D3D260A013600CA03EC /* SearchUserViewController.swift */,
 				74AD662C26194368000943BC /* SearchUserViewController+Delegates.swift */,
 			);
-			path = SearchModule;
+			path = Search;
 			sourceTree = "<group>";
 		};
 		74F86D69260A0F3400CA03EC /* Cells */ = {

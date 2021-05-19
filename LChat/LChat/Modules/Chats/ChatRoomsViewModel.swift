@@ -8,6 +8,7 @@ protocol ChatRoomsViewModelProtocol: class {
     var currentUser: User? { get }
     
     func startObservingUserChatRooms()
+    func getUserAvatarURL(_ username: String, completion: @escaping (URL?) -> ())
 }
 
 
@@ -18,6 +19,7 @@ final class ChatRoomsViewModel: ChatRoomsViewModelProtocol {
     
    private let chatManager: FBChatServiceProtocol
    private let databaseService: FBDatabaseServiceProtocol
+   private let storageService: FBStorageServiceProtocol
     
     var chatRooms = Bindable<[Chat]>()
     var currentUser: User?
@@ -44,10 +46,11 @@ final class ChatRoomsViewModel: ChatRoomsViewModelProtocol {
     
     //MARK: - Init -
     
-    init(chatManager: FBChatService, databaseService: FBDatabaseServiceProtocol) {
+    init(chatManager: FBChatService, databaseService: FBDatabaseServiceProtocol, storageService: FBStorageServiceProtocol) {
         
         self.chatManager = chatManager
         self.databaseService = databaseService
+        self.storageService = storageService
         
         self.chatRooms.value = []
         configCurrentUser()
@@ -78,11 +81,29 @@ final class ChatRoomsViewModel: ChatRoomsViewModelProtocol {
    }
     
     
+   
+    func getUserAvatarURL(_ username: String, completion: @escaping (URL?) -> ()) {
+        
+        storageService.getURL(from: "avatars/\(username)") { result in
+            
+            switch result {
+            
+            case .success(let url):
+         
+                completion(url)
+                
+            case .failure(let error):
+                
+                print(error.localizedDescription)
+            }
+        }
+    }
     
+   
     
     private func getChatBy(id: String,_ completion: @escaping (Chat) -> ()) {
         
-        guard let currentUser = self.currentUser else {assertionFailure(); return }
+        guard let currentUser = self.currentUser else { assertionFailure(); return }
         
         databaseService.getData(for: "chats/\(id)") { result in
             

@@ -157,7 +157,7 @@ final class ChatViewModel: ChatViewModelProtocol {
     
     func stopObservingChat() {
         
-        guard let id = self.chatRoomId else { assertionFailure(); return }
+        guard let id = self.chatRoomId else { /*assertionFailure();*/print("ERROR: Chat id not exist"); return }
         chatManager.stopObserving(ChatRoom: id)
     }
     

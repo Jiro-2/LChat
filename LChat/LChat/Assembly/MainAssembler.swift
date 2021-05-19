@@ -39,8 +39,11 @@ final class MainAssembler {
         
         let chatManager = FBChatService()
         let databaseService = FBDatabaseService()
+        let storageService = FBStorageService()
+        
         let viewModel = ChatRoomsViewModel(chatManager: chatManager,
-                                          databaseService: databaseService)
+                                           databaseService: databaseService,
+                                           storageService: storageService)
                 
         let chatRoomsVC = ChatRoomsViewController(viewModel: viewModel)
         let settingVC = SettingAssembler.buildSettingModule()

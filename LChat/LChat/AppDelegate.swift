@@ -50,7 +50,7 @@ extension AppDelegate {
             } else {
               
              // try! Auth.auth().signOut()
-                print("usr", Auth.auth().currentUser)
+                print("user - ", Auth.auth().currentUser)
                 print(Auth.auth().currentUser?.displayName)
                 
                     
