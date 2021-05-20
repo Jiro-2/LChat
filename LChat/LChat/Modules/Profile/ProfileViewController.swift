@@ -140,6 +140,7 @@ final class ProfileViewController: UIViewController {
     init(viewModel: ProfileViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        tabBarItem.image = UIImage(systemName: "person.fill")
     }
     
     
@@ -170,7 +171,6 @@ final class ProfileViewController: UIViewController {
         
         view.addSubview(containerView)
         setLocalizedText()
-        setTabBarItem()
         setupLayout()
         setupProfileViewModelObserver()
         
@@ -361,16 +361,6 @@ final class ProfileViewController: UIViewController {
                                             }))
         
         self.present(actionSheet, animated: true, completion: nil)
-    }
-    
-    
-    
-    private func setTabBarItem() {
-        
-        let image = UIImage(systemName: "person.fill")
-        let tabBarItem = UITabBarItem(title: nil, image: image, selectedImage: nil)
-        
-        self.tabBarItem = tabBarItem
     }
     
     

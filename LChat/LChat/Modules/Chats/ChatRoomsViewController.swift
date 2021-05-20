@@ -27,14 +27,16 @@ final class ChatRoomsViewController: UIViewController {
     }()
     
     
-    
     //MARK: - Init -
 
     init(viewModel: ChatRoomsViewModelProtocol) {
         
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        tabBarItem.image = UIImage(systemName: "message.fill")
     }
+    
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

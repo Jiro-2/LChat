@@ -52,8 +52,10 @@ final class SettingsViewController: UIViewController {
     
     
     init(viewModel: SettingsViewModelProtocol) {
+        
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        tabBarItem.image = UIImage(systemName: "gearshape.fill")
     }
     
     
@@ -76,7 +78,6 @@ final class SettingsViewController: UIViewController {
         colorsCollectionView.delegate = self
         colorsCollectionView.dataSource = self
         
-        setTabBarItem()
         setupSettingsViewModelObserver()
         configThemeSwitcher()
         coordinator?.navigationController = navigationController!
@@ -111,16 +112,7 @@ final class SettingsViewController: UIViewController {
     
     //MARK: - Methods -
     
-    private func setTabBarItem() {
-        
-        let image = UIImage(systemName: "gearshape.fill")
-        let tabBarItem = UITabBarItem(title: nil, image: image, selectedImage: nil)
-        
-        self.tabBarItem = tabBarItem
-    }
-    
-    
-    
+  
     private func scrollToPrimaryColor() {
                         
         guard let index = viewModel.colors.firstIndex(of: viewModel.primaryColor.value!) else { return }
