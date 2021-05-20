@@ -120,7 +120,10 @@ final class ChatRoomsViewModel: ChatRoomsViewModelProtocol {
                         
                         guard let user = user else { return }
                         
-                        let chat = Chat(id: id, members: [user, currentUser], messages: [])
+                        let chat = Chat(id: id,
+                                        interlocutors: (currentUser: currentUser, interlocutor: user),
+                                        messages: [])
+                        
                         completion(chat)
                     }
                 }

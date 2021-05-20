@@ -5,14 +5,14 @@ struct Chat: Identifiable {
   //MARK: - Properties -
 
     let id: String
-    let members: [User]
+    let interlocutors: (currentUser: User, interlocutor: User)
     
     var messages: [Message] {
         
         didSet {
             
             calculateUnSeenMessages()
-            setLastMessage()
+            lastMessage = messages.last?.text
         }
     }
     
@@ -22,16 +22,11 @@ struct Chat: Identifiable {
     
     //MARK: - Methods -
     
-    private mutating func setLastMessage() {
-        
-        self.lastMessage = self.messages.last?.text
-    }
-    
-    
-    
     private mutating func calculateUnSeenMessages() {
                 
-        let unSeenMessages = messages.filter() { $0.isSeen == false }
+        let unSeenMessages = messages.filter() { $0.isSeen == false && $0.memberId == interlocutors.interlocutor.id }
         self.countUnSeenMessages = UInt(unSeenMessages.count)
     }
 }
+
+

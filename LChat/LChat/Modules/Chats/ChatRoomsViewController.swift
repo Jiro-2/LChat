@@ -164,26 +164,19 @@ extension ChatRoomsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 
+        guard let chatRooms = viewModel.chatRooms.value else { return }
         let chatCell = cell as? ChatTableViewCell
-
-        guard let chatRooms = viewModel.chatRooms.value,
-              let currentUser = viewModel.currentUser  else { return }
-
-        let interLocutor = chatRooms[indexPath.row].members.first(where:) { $0.id != currentUser.id }
-        
-        chatCell?.userNameLabel.text = "\(interLocutor?.username ?? "username")"
+        let interlocutor = chatRooms[indexPath.row].interlocutors.interlocutor
         
         
-        if let user = interLocutor {
+        chatCell?.usernameLabel.text = "\(interlocutor.username)"
+        
+        viewModel.getUserAvatarURL(interlocutor.username) { url in
             
-            viewModel.getUserAvatarURL(user.username) { url in
-                
-                chatCell?.avatarImageView.sd_setImage(with: url)
-            }
+            chatCell?.avatarImageView.sd_setImage(with: url)
         }
         
-        
-
+    
         if let lastMessage = chatRooms[indexPath.row].lastMessage {
             
             chatCell?.lastMessageLabel.text = lastMessage

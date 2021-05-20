@@ -6,7 +6,7 @@ class ChatTableViewCell: UITableViewCell {
     //MARK: - Subviews
     
     
-    let userNameLabel: UILabel = {
+    let usernameLabel: UILabel = {
         
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +60,7 @@ class ChatTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addSubviews([avatarImageView, userNameLabel, lastMessageLabel])
+        self.addSubviews([avatarImageView, usernameLabel, lastMessageLabel])
         self.selectionStyle = .none
         self.accessoryView = unSeenMessagesLabel
         self.accessoryView?.isHidden = true
@@ -99,11 +99,11 @@ class ChatTableViewCell: UITableViewCell {
             avatarImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6),
             avatarImageView.widthAnchor.constraint(equalTo: avatarImageView.heightAnchor),
             
-            userNameLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor),
-            userNameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 8.0),
+            usernameLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor),
+            usernameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 8.0),
             
-            lastMessageLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 5.0),
-            lastMessageLabel.leftAnchor.constraint(equalTo: userNameLabel.leftAnchor),
+            lastMessageLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 5.0),
+            lastMessageLabel.leftAnchor.constraint(equalTo: usernameLabel.leftAnchor),
             lastMessageLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6)
         ])
     }
