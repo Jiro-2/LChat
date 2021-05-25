@@ -5,13 +5,12 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var authListener: AuthStateDidChangeListenerHandle?
- //   var navController = UINavigationController()
     var appCoordinator = AppCoordinator(navController: UINavigationController())
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-         startListenAuthChanges()
+        startListenAuthChanges()
         return true
     }
 
@@ -48,12 +47,7 @@ extension AppDelegate {
                 self.appCoordinator.start()
 
             } else {
-              
-             // try! Auth.auth().signOut()
-                print("user - ", Auth.auth().currentUser)
-                print(Auth.auth().currentUser?.displayName)
                 
-                    
                 self.appCoordinator.isLoggedIn = true
                 self.appCoordinator.start()
             }
